@@ -2,28 +2,45 @@
 
 Welcome to the Computer Security RAG AI Copilot project! To keep our Git history clean, professional, and easy to review, we follow the **Conventional Commits** standard.
 
-## Commit Message Format
+## 1. Commit Message Standard: Conventional Commits
 
-Every commit message **MUST** start with a **type** followed by a colon and a space (`type: description`).
+The commit message structure **MUST** adhere to the following format: `type: Subject (imperative mood)`
+
+**Crucial Rules for Clarity and Structure:**
+1.  **Type Prefix:** Every commit must start with a valid `type:` (e.g., `feat`, `fix`, `docs`). See table below.
+2.  **Subject Length:** The subject line **MUST NOT exceed 50 characters** (including the type prefix). This forces a clear, concise summary.
+3.  **Capitalization:** The subject **MUST** start with a **capital letter** (the part after the colon).
+4.  **Imperative Mood:** Use the command form (e.g., "**Add** feature," not "Added feature").
+5.  **No Punctuation:** The subject **MUST NOT** end with a period (`.`).
 
 ### The Standard Commit Types
 
 Use the table below to decide which prefix best describes your change.
 
-| Type | When to Use It | Example for Our Project |
+| Type | When to Use It | Example |
 | :--- | :--- | :--- |
-| **`feat`** | A new **feature** or enhancement (user-facing). | `feat: add user query processing logic` |
-| **`fix`** | A commit that **fixes a bug** (user-facing). | `fix: prevent chat interface from crashing on long response` |
-| **`docs`** | Changes only to **documentation** (like the SRS or README). | `docs: update SRS with agreed-upon NFR-200 performance value` |
-| **`refactor`** | Restructuring code without changing functionality. | `refactor: simplify vector storage initialization function` |
-| **`test`** | Adding or correcting tests. | `test: add unit tests for retrieval scoring` |
-| **`chore`** | Routine maintenance, setup, config changes, dependency bumps. | `chore: update Python dependencies in requirements.txt` |
+| **`feat`** | Introduces a **new feature** or enhancement (user-facing). | `feat: Implement basic RAG retrieval logic` |
+| **`fix`** | Patches a **bug** or resolves an issue. | `fix: Resolve infinite loop when user input is empty` |
+| **`docs`** | Changes only to **documentation** (like the SRS, README, or this file). | `docs: Finalize system overview in SRS` |
+| **`refactor`** | Restructures code, but **does not change functionality**. | `refactor: Simplify vector storage initialization function` |
+| **`test`** | Adds or corrects tests. | `test: Add unit tests for retrieval scoring` |
+| **`chore`** | Routine maintenance, setup, config changes, dependency bumps. | `chore: Add placeholder file for configuration` |
+
+### Using the Commit Body (For Detail)
+
+If your change is too complex to explain in 50 characters, you must use the **commit body** (the detail section below the subject line).
+
+* **Format:** Leave a single blank line after the subject.
+* **Content:** Explain the **why** and **what** (the motivation, context, and high-level decisions). Do not explain the *how* (the code itself shows the *how*).
+* **Wrap at 72 Characters:** The lines in the commit body should not exceed 72 characters for optimal readability in Git logs and terminals.
 
 ---
 
-## Pull Request (PR) Workflow
+## 2. Development Workflow
 
-1.  **Create a New Branch** for your work (e.g., `feature/login-ui` or `fix/vector-db-bug`).
-2.  **Commit** your changes using the Conventional Commit standard above.
-3.  **Open a Pull Request** targeting the `main` branch.
-4.  **Wait for 1 Approval** from a teammate or the project leader before merging.
+To enforce code quality and the "one approval" rule:
+
+1.  **Work on a Feature Branch:** Always create a new branch (e.g., `feature/login-ui`, `fix/db-connection`). **Do not commit directly to `main`.**
+2.  **Open a Pull Request (PR):** Submit your work via a Pull Request when it is ready for review.
+3.  **Required Approval:** Every PR **MUST** receive **1 approval** from the Project Leader or another designated team member before it can be merged into the `main` branch.
+4.  **Stay Updated:** If you push new commits to your PR after receiving an approval, the approval is automatically dismissed. You will need a new review and approval on the final code.
