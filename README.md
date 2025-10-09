@@ -1,6 +1,6 @@
-# 🤖 Security Course AI Copilot
+# 🤖 AI Classroom Copilot
 
-This is the repository for the **Retrieval-Augmented Generation (RAG) AI Copilot** being developed for a Computer Security course.
+This is the repository for the **Retrieval-Augmented Generation (RAG) AI Classroom Copilot** being developed for a Computer Security course.
 
 The system's goal is to serve as an intelligent assistant, answering student queries using the professor's course materials as its primary knowledge source, thereby enhancing study and review efficiency.
 
