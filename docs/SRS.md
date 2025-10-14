@@ -312,4 +312,70 @@ The prototype will be considered verified if it meets the following conditions:
 
 ---
 
+## 5. Appendices
+This section contains supporting information and placeholders for diagrams, user stories, and future revisions.  
+These materials provide visual context and traceability for requirements defined in earlier sections.
+
+### 5.1 Revision History
+| Version | Date | Author(s) | Description |
+|:---------|:------|:-----------|:-------------|
+| **0.1** | *TBD* | Chris Cartaya & Team | Initial SRS draft including Introduction, Product Overview, Requirements, and Verification. |
+| **0.2** | *Future* | — | Add UML diagrams, user stories, and updated requirements. |
+| **0.3** | *Future* | — | Finalize SRS v1.0 after prototype presentation and feedback. |
+
+---
+
+### 5.2 Use-Case Diagram *(Placeholder)*
+A UML **Use-Case Diagram** will be created to illustrate interactions between:
+- **Actors:** *Student*, *Professor/Instructor*, and *System (AI Classroom Co-Pilot)*  
+- **Use Cases:** *Ask Question*, *Upload Course Material*, *Get Answer with Citations*, *Request Feedback*  
+
+*This diagram will visually depict user roles and system functionality once finalized.*
+
+---
+
+### 5.3 User Stories *(Placeholder)*
+| ID | As a (user) … | I want to … | So that I can … |
+|:----|:----------------|:--------------|:----------------|
+| **US-1** | Student | Ask a question about course slides | Get an AI-generated answer with citations |
+| **US-2** | Professor | Upload PowerPoint slides | Make the material searchable by the AI |
+| **US-3** | Student | Receive clear sources in answers | Verify accuracy and credibility |
+| **US-4** | Professor | View common student questions | Improve or clarify future lectures |
+
+Additional user stories may be added as development progresses.
+
+---
+
+### 5.4 UML Diagrams *(Future Work)*
+This section may include the following UML or architecture diagrams as the design matures:
+- **System Architecture Diagram:** Overview of frontend, backend, database, and LLM interactions.  
+- **Activity Diagram:** Workflow from question submission to AI response.  
+- **Sequence Diagram:** Interaction sequence between frontend, backend, vector DB, and LLM.  
+- **Class Diagram (optional):** Illustrating main system components and relationships.
+
+*(Diagrams may be stored in `/docs/diagrams/` and linked here when ready.)*
+
+---
+
+### 5.5 Requirements Traceability Matrix (RTM) *(Future Placeholder)*
+A lightweight RTM may be added in a later revision to link:
+- **Functional Requirements (FR)** → **Design Modules** → **Test Cases**
+
+Example format:
+| Requirement ID | Implemented In | Tested By | Status |
+|:----------------|:---------------|:-----------|:--------|
+| FR-1 | `/ask` API endpoint | `test_ask_api.py` | Planned |
+| FR-2 | `/upload` route | `test_upload_file.py` | Planned |
+
+---
+
+### 5.6 References and Acknowledgements
+- FGCU Software Engineering Course Materials – Instructor Dr. Qu  
+- IEEE 830 / 29148 SRS Guidelines  
+- Project repository: [https://github.com/Chris-Cartaya/ai-classroom-copilot](https://github.com/Chris-Cartaya/ai-classroom-copilot)
+
+---
+
+*End of Software Requirements Specification v0.1*
+
 
