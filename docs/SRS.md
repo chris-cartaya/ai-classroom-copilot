@@ -168,8 +168,6 @@ The backend will use **FastAPI (Python)** to provide RESTful endpoints that hand
 
 All interfaces will be designed with modularity in mind to allow future expansion (e.g., switching databases or adding authentication).
 
----
-
 ### 3.2 Functional Requirements
 This section specifies the key functional capabilities of the *AI Classroom Co-Pilot* system.  
 Requirements are grouped according to their priority using the MoSCoW method and labeled hierarchically for traceability.  
@@ -211,5 +209,70 @@ Each requirement uses “shall” for mandatory behavior and “should” for de
 
 *All functional requirements might later be linked to corresponding design elements and test cases in a Requirements Traceability Matrix (to be added in the Appendix).*
 
+### 3.3 Non-Functional Requirements (Quality Attributes)
+This section defines the quality and behavioral characteristics that the *AI Classroom Co-Pilot* system must exhibit.  
+Each non-functional requirement (NFR) describes constraints or properties related to performance, reliability, security, usability, and explainability.
 
+#### 3.3.1 Performance
+- **NFR-1:** The system **shall** achieve a **p95 response time of ≤ 3 seconds** for user queries under standard operating conditions.  
+  *(Note: p95 means 95% of all queries should return in 3 seconds or less.)*  
+- **NFR-2:** File uploads and document processing **shall** complete within **30 seconds** for files up to 10 MB.  
+- **NFR-3:** The vector database **shall** efficiently retrieve relevant chunks from thousands of stored embeddings.  
+- **NFR-4:** The system **should** scale to handle multiple users when deployed in a hosted environment.
+
+#### 3.3.2 Security and Privacy
+- **NFR-5:** The system **shall** restrict file upload access to instructors only.  
+- **NFR-6:** The system **shall** anonymize any stored or logged student data.  
+- **NFR-7:** All logs **shall** mask sensitive text inputs or personal identifiers.  
+- **NFR-8:** Uploaded files **shall** remain stored locally for the MVP/prototype and be securely deleted upon user removal.  
+- **NFR-9:** Any future online deployment **should** include user authentication and HTTPS encryption.
+
+#### 3.3.3 Reliability and Availability
+- **NFR-10:** The system **shall** handle unexpected errors (e.g., failed uploads, API timeouts) without crashing.  
+- **NFR-11:** The backend **shall** log errors for debugging and recovery purposes.  
+- **NFR-12:** The system **shall** maintain at least **99% demo uptime** during presentations or live testing.  
+- **NFR-13:** The system **should** support automated restart or recovery for hosted deployments.
+
+#### 3.3.4 Usability and Accessibility
+- **NFR-14:** A **first-time user should succeed within 5 minutes** of initial interaction (e.g., asking a question and receiving an answer).  
+- **NFR-15:** The interface **shall** be intuitive and accessible to both students and instructors with minimal training.  
+- **NFR-16:** The interface **shall** maintain text readability, consistent color contrast, and responsive design.  
+- **NFR-17:** The application **should** be compatible with screen readers and keyboard navigation.  
+- **NFR-18:** The system **should** allow optional customization of font size and theme (light/dark mode).
+
+#### 3.3.5 Explainability
+- **NFR-19:** The system **shall** ensure that **100% of generated answers include at least two citations** referencing the original content (course material or credible online sources).  
+- **NFR-20:** The system **should** display citations clearly in each answer’s output area for user verification.  
+
+
+### 3.4 System Constraints
+This section outlines limitations and constraints that may affect the system’s design, development, or operation.
+
+#### 3.4.1 Technology Stack
+- The system will be developed using the following core technologies:
+  - **Frontend:** React (JavaScript or TypeScript, TBD)  
+  - **Backend:** Python with **FastAPI** (or Flask if chosen later)  
+  - **AI Integration:** **Ollama** for local LLM inference  
+  - **Retrieval Framework:** **LangChain** for chaining model logic and document retrieval  
+  - **Vector Database:** **Chroma** (subject to final ADR confirmation)  
+  - **Standard Database (optional):** SQLite or PostgreSQL for metadata/user info  
+
+- All components shall remain **open-source** and locally deployable for the MVP and prototype phases.  
+- Internet access may be required for optional online search functionality.
+
+#### 3.4.2 Deadline
+- **Prototype Presentation:** Monday, **October 27, 2025**  
+- **Final Presentation:** Monday, **November 24** or **December 1, 2025** (exact date TBD)  
+- **Personal MVP Goal (Chris Cartaya):** Develop a working single-feature local prototype (question-answering with citations) **before the prototype deadline**, to serve as a foundation for the team’s implementation.  
+- Development milestones and updates will be tracked via GitHub commits and issues.
+
+#### 3.4.3 Cost
+- There are **no financial costs** anticipated for the MVP or prototype phase, as all selected tools are open-source.  
+- Future versions **may** incur costs related to:
+  - Hosting (e.g., Render, Vercel, or Supabase).  
+  - Paid API usage for external LLMs (e.g., OpenAI, Anthropic).  
+  - Data storage and bandwidth if deployed online.  
+- Cost analysis and budgeting will be considered only if cloud migration becomes a team objective.
+
+---
 
