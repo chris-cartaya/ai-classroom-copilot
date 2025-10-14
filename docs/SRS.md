@@ -125,3 +125,49 @@ A high-level use-case or data-flow diagram may be added in a later SRS revision 
 
 ---
 
+## 3. Requirements
+This section specifies the software product’s requirements, including interfaces, functional behavior, and system constraints.
+
+### 3.1 External Interfaces
+The *AI Classroom Co-Pilot* system interfaces with both human users and other software components.  
+This section describes those interfaces at a conceptual level.
+
+#### 3.1.1 User Interfaces
+The system will be accessed through a **web-based interface** built with **React**.  
+The frontend design will prioritize simplicity, responsiveness, and accessibility for both professors and students.
+
+**General Features:**
+- A navigation bar or sidebar to switch between user roles (if applicable).  
+- A main chat or question area where users can type natural-language questions.  
+- A results panel displaying the AI’s response along with at least two citations (e.g., *Module 2, Slide 8*).  
+- A file upload interface (for instructors) to add new course materials (PPTX, PDF, DOCX).  
+- Status or feedback messages (e.g., “Processing question...”, “Uploading document...”).  
+
+**Accessibility:**
+- The interface should use readable fonts, consistent color contrast, and intuitive layout design.  
+- The system should remain usable across major browsers (Chrome, Edge, Firefox).  
+
+**Sample Screens to Include Later:**  
+Wireframes or early UI mockups may be added to the design documentation once the MVP frontend is created.
+
+#### 3.1.2 Software Interfaces
+The backend will use **FastAPI (Python)** to provide RESTful endpoints that handle user requests and communicate with the AI and database components.
+
+**Primary Interfaces:**
+| Interface | Description |
+|:-----------|:-------------|
+| **Frontend ↔ Backend** | Communicates through HTTP requests (JSON). The frontend sends user questions, and the backend returns formatted AI responses. |
+| **Backend ↔ Vector Database** | The backend stores and retrieves document embeddings and metadata using a vector database (initially Chroma). |
+| **Backend ↔ LLM / Ollama** | The backend sends retrieved content to the local LLM via the Ollama API for contextual answer generation. |
+| **Backend ↔ Standard Database (optional)** | May store user data, question history, or system logs for future versions. |
+| **Backend ↔ Internet (optional)** | For general-domain questions (should-have feature), the backend may access web search APIs to retrieve external citations. |
+
+**Data Exchange:**
+- **Input format:** JSON requests containing question text or file upload metadata.  
+- **Output format:** JSON responses containing AI-generated text, citation list, and confidence score (if implemented).  
+
+All interfaces will be designed with modularity in mind to allow future expansion (e.g., switching databases or adding authentication).
+
+---
+
+
