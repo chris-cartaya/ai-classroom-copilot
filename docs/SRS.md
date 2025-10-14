@@ -8,14 +8,9 @@ Date Created: Monday, October 13, 2025
 
 Table of Contents
 =================
-* 1 [Introduction](#1-introduction)
-  * 1.1 [Document Purpose](#11-document-purpose)
-  * 1.2 [Product Scope](#12-product-scope)
-  * 1.3 [Definitions, Acronyms and Abbreviations](#13-definitions-acronyms-and-abbreviations)
-  * 1.4 [References](#14-references)
-  * 1.5 [Document Overview](#15-document-overview)
+Whole ToC will be added at end
 
-
+---
 
 ## 1. Introduction
 This section provides an overview of the *AI Classroom Co-Pilot* project and describes the purpose, audience, and organization of this Software Requirements Specification (SRS).
@@ -72,3 +67,61 @@ The remainder of this document is organized as follows:
 - **Section 5 – Appendices:** Contains supporting materials such as the use-case diagram, user stories, MoSCoW table, and revision history.  
 
 ---
+
+## 2. Product Overview
+This section describes the context, major functions, users, and environmental assumptions of the *AI Classroom Co-Pilot* system.  
+It provides background information to help readers understand how the system fits within its intended academic environment.
+
+### 2.1 Product Perspective
+The *AI Classroom Co-Pilot* is a new, self-contained software product developed as part of the FGCU Software Engineering course project.  
+It is not replacing an existing system but rather introducing an intelligent learning assistant that integrates with course content.  
+
+The system follows a **client–server architecture**:
+- The **frontend** (React-based web interface) allows users to interact with the AI assistant through a question-and-answer interface.  
+- The **backend** (Python + FastAPI) handles data ingestion, embedding generation, vector retrieval, and LLM responses.  
+- A **vector database** (e.g., Chroma) stores processed document embeddings along with metadata such as module and slide number.  
+
+The system operates locally during early development but may later migrate to a hosted environment using cloud-based LLMs and storage systems.  
+
+A simplified system architecture diagram illustrating these components and/or data flow will be included in the Design Document.
+
+### 2.2 Product Functions
+At a high level, the system will provide the following key functions:
+1. **Document Upload and Processing:** Professors can upload course files (PPTX, PDF, DOCX). The system automatically extracts text, segments it into chunks, and stores embeddings with metadata.  
+2. **Question Answering:** Students and professors can ask natural-language questions about course material and receive AI-generated answers with at least two citations (e.g., *Module 2, Slide 5*).  
+3. **Context Retrieval:** Relevant document chunks are retrieved using semantic search within the vector database.  
+4. **Response Generation:** The backend LLM uses the retrieved content to generate context-aware answers.  
+5. **General Question Handling (Should-Have):** If no relevant course material is found, the system should perform an online search to answer general domain questions (e.g., networking or Linux topics) and provide at least two online citations.  
+6. **Instructor Management Tools (Future):** Professors may later access dashboards to track common questions, content coverage, or student engagement.
+
+A high-level use-case or data-flow diagram may be added in a later SRS revision to visually represent these core functions.
+
+### 2.3 Product Constraints
+- **Technical Constraints:**
+  - The MVP and prototype will run on local machines using open-source components.  
+  - The system must operate without dependence on paid APIs.  
+  - Performance may vary depending on available CPU/GPU resources.  
+- **Design Constraints:**
+  - The frontend must remain simple and intuitive for student use.  
+  - Backend and database integration should be modular to allow future upgrades.  
+- **Ethical and Academic Constraints:**
+  - The AI system must avoid generating misleading or unverifiable answers.  
+  - All responses must include transparent citations to promote academic integrity.  
+
+### 2.4 User Characteristics
+| User Type | Description | Technical Skill Level | Frequency of Use |
+|:-----------|:-------------|:----------------------|:-----------------|
+| **Professor / Instructor** | Uploads, manages, and validates course content; may view analytics. | Moderate – Comfortable with web dashboards and file management. | Weekly |
+| **Student** | Asks questions, studies with AI responses, and reviews cited material. | Basic – Familiar with standard web interfaces. | Daily / as needed |
+| **Developer / Contributor** | Maintains codebase, improves features, and reviews system performance. | Advanced – Software Engineering or Computer Science background. | As needed |
+
+### 2.5 Assumptions and Dependencies
+- All project members have access to a local development environment supporting Python 3.11+, Node.js, and Git.  
+- The system assumes availability of open-source LLMs via **Ollama** and integration through **LangChain**.  
+- The selected vector database (initially Chroma) will be used for embedding storage and retrieval.  
+- Internet connectivity may be required only for optional online searches.  
+- Future deployment or hosting may depend on additional cloud resources (e.g., Supabase, Render, Vercel).  
+- The SRS reflects project status as of Version 0.1 and may evolve as new design decisions are recorded in the Architecture Decision Record (ADR).  
+
+---
+
