@@ -1,14 +1,45 @@
 # Software Requirements Specification
 ## For AI Classroom Co-Pilot (RAG System)
 
-Version: 0.1  
-Prepared by: Chris Cartaya and Team  
-Course: CEN 3031 Software Engineering (FGCU)  
-Date Created: Monday, October 13, 2025 
+Version 0.1  
+Prepared by **Chris Cartaya** and Team  
+Florida Gulf Coast University  
+CEN 3031 - Software Engineering Fundamentals Project  
+Instructor: Dr. Chengyi Qu  
+Date Created: October 13, 2025  
 
-Table of Contents
-=================
-Whole ToC will be added at end
+---
+
+## Table of Contents
+* [1 Introduction](#1-introduction)
+  * [1.1 Document Purpose](#11-document-purpose)
+  * [1.2 Product Scope](#12-product-scope)
+  * [1.3 Definitions, Acronyms, and Abbreviations](#13-definitions-acronyms-and-abbreviations)
+  * [1.4 References](#14-references)
+  * [1.5 Document Overview](#15-document-overview)
+* [2 Product Overview](#2-product-overview)
+  * [2.1 Product Perspective](#21-product-perspective)
+  * [2.2 Product Functions](#22-product-functions)
+  * [2.3 Product Constraints](#23-product-constraints)
+  * [2.4 User Characteristics](#24-user-characteristics)
+  * [2.5 Assumptions and Dependencies](#25-assumptions-and-dependencies)
+* [3 Requirements](#3-requirements)
+  * [3.1 External Interfaces](#31-external-interfaces)
+  * [3.2 Functional Requirements](#32-functional-requirements)
+  * [3.3 Non-Functional Requirements](#33-non-functional-requirements-quality-attributes)
+  * [3.4 System Constraints](#34-system-constraints)
+* [4 Verification](#4-verification)
+  * [4.1 Verification Objectives](#41-verification-objectives)
+  * [4.2 Verification Methods](#42-verification-methods)
+  * [4.3 Verification Deliverables](#43-verification-deliverables)
+  * [4.4 Acceptance Criteria](#44-acceptance-criteria)
+* [5 Appendices](#5-appendices)
+  * [5.1 Revision History](#51-revision-history)
+  * [5.2 Use-Case Diagram](#52-use-case-diagram-placeholder)
+  * [5.3 User Stories](#53-user-stories-placeholder)
+  * [5.4 UML Diagrams](#54-uml-diagrams-future-work)
+  * [5.5 Requirements Traceability Matrix](#55-requirements-traceability-matrix-rtm-future-placeholder)
+  * [5.6 References and Acknowledgements](#56-references-and-acknowledgements)
 
 ---
 
@@ -370,7 +401,7 @@ Example format:
 ---
 
 ### 5.6 References and Acknowledgements
-- FGCU Software Engineering Course Materials – Instructor Dr. Qu  
+- FGCU Software Engineering Course Materials – Instructor Dr. Chengyi Qu  
 - IEEE 830 / 29148 SRS Guidelines  
 - Project repository: [https://github.com/Chris-Cartaya/ai-classroom-copilot](https://github.com/Chris-Cartaya/ai-classroom-copilot)
 
