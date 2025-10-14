@@ -276,3 +276,40 @@ This section outlines limitations and constraints that may affect the system’s
 
 ---
 
+## 4. Verification
+This section describes how the *AI Classroom Co-Pilot* system will be evaluated to ensure that it fulfills the functional and non-functional requirements defined in Section 3.  
+Verification activities will occur throughout development — during implementation, integration, and final prototype testing.
+
+### 4.1 Verification Objectives
+The primary objectives of verification are to:
+- Confirm that each functional requirement (FR) is implemented correctly and produces expected behavior.  
+- Validate that each non-functional requirement (NFR) meets measurable criteria (e.g., response time, uptime, usability).  
+- Ensure that the delivered prototype operates reliably during classroom demonstrations and aligns with professor-defined performance targets.
+
+### 4.2 Verification Methods
+| Method | Description | Applied To |
+|:--------|:-------------|:-------------|
+| **Unit Testing** | Individual backend functions (e.g., text chunking, embedding creation, retrieval, LLM response generation) will be tested in isolation using automated unit tests. | Core logic in FastAPI backend |
+| **Integration Testing** | Tests will verify that interconnected components — frontend ↔ backend ↔ vector DB ↔ LLM — work together as expected. | End-to-end data flow |
+| **System Testing** | Full application tests conducted on local hardware to validate functionality from user input to AI output, including error handling. | Entire MVP/Prototype |
+| **User Acceptance Testing (UAT)** | Informal testing by team members simulating students and instructors to ensure usability and first-time user success ≤ 5 minutes. | Usability & accessibility |
+| **Performance Testing** | Measure query latency to confirm **p95 ≤ 3 seconds** and check processing time for file uploads ≤ 30 seconds. | Performance & scalability |
+| **Reliability Testing** | Run multiple query cycles during demo rehearsals to verify **≥ 99% uptime** and proper error recovery. | Reliability |
+| **Manual Review** | Professor or reviewers validate citation accuracy and alignment with uploaded materials. | Explainability & correctness |
+
+### 4.3 Verification Deliverables
+- **Test Plan (to be developed later):** Will outline detailed test cases, expected results, and acceptance criteria.  
+- **Verification Log:** Record of all tests executed and their outcomes during prototype evaluation.  
+- **Traceability Updates:** Future versions may include a simplified Requirements Traceability Matrix (RTM) linking FRs/NFRs to specific test cases.
+
+### 4.4 Acceptance Criteria
+The prototype will be considered verified if it meets the following conditions:
+1. The system answers user questions with ≥ 2 citations for 100% of responses.  
+2. 95% of user queries complete within 3 seconds.  
+3. First-time users can successfully ask and receive an answer within 5 minutes.  
+4. Demo session uptime ≥ 99%.  
+5. No critical errors or crashes during live presentation.
+
+---
+
+
