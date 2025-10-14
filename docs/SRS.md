@@ -170,4 +170,46 @@ All interfaces will be designed with modularity in mind to allow future expansio
 
 ---
 
+### 3.2 Functional Requirements
+This section specifies the key functional capabilities of the *AI Classroom Co-Pilot* system.  
+Requirements are grouped according to their priority using the MoSCoW method and labeled hierarchically for traceability.  
+Each requirement uses “shall” for mandatory behavior and “should” for desirable behavior.
+
+#### 3.2.1 Core Functionalities (Must-Have)
+
+| ID | Requirement Description | Priority |
+|:----|:-------------------------|:----------|
+| **FR-1** | The system **shall** allow users (students or instructors) to enter a question into the web interface. | Must |
+| **FR-1.1** | The system **shall** process the question and retrieve semantically relevant text chunks from the vector database. | Must |
+| **FR-1.2** | The system **shall** send the retrieved content to the local LLM (via Ollama) for contextual response generation. | Must |
+| **FR-1.3** | The system **shall** display the AI-generated answer along with **at least two citations** referencing the original course materials (e.g., *Module 3, Slide 5*). | Must |
+| **FR-2** | The system **shall** allow instructors to upload supported file types (PPTX, PDF, DOCX) containing course content. | Must |
+| **FR-2.1** | Upon upload, the system **shall** automatically extract text, divide it into manageable chunks, and create vector embeddings with metadata (module / slide / page numbers). | Must |
+| **FR-3** | The system **shall** store all embeddings and metadata in the vector database (initially Chroma). | Must |
+| **FR-4** | The system **shall** provide a simple web interface for students and instructors to interact with the AI assistant. | Must |
+| **FR-5** | The system **shall** handle errors gracefully (e.g., invalid file types, empty questions, or missing data) and return informative messages. | Must |
+| **FR-6** | The system **shall** operate locally using only open-source components and without dependence on paid APIs. | Must |
+
+#### 3.2.2 Secondary Functionalities (Should-Have)
+
+| ID | Requirement Description | Priority |
+|:----|:-------------------------|:----------|
+| **FR-7** | When no relevant course material is found, the system **should** perform an **online search** for credible external information related to the question. | Should |
+| **FR-7.1** | Responses generated from online sources **should** include at least two citations referencing trustworthy websites or scholarly articles. | Should |
+| **FR-8** | The system **should** allow students to request **draft feedback** on short written responses or explanations. | Should |
+| **FR-9** | The system **should** enable professors to view question logs or frequently asked topics to improve course materials. | Should |
+| **FR-10** | The system **should** allow future integration with a user authentication mechanism for secure access control. | Should |
+
+#### 3.2.3 MoSCoW Summary Table
+
+| Priority | Description |
+|:----------|:-------------|
+| **Must-Have** | Essential functions required for the MVP and prototype demonstrations. These include question answering, file upload, local vector retrieval, and citation display. |
+| **Should-Have** | Valuable additions that enhance system utility or meet professor-defined goals but are not required for initial deployment (e.g., online search, feedback, analytics). |
+| **Could-Have** | Features under consideration for future releases (e.g., chat history persistence, personalized dashboards). Not part of SRS v0.1. |
+| **Won’t-Have** | Features explicitly excluded from the current scope (e.g., mobile app, advanced multi-user analytics). |
+
+*All functional requirements might later be linked to corresponding design elements and test cases in a Requirements Traceability Matrix (to be added in the Appendix).*
+
+
 
