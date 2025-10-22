@@ -1,0 +1,81 @@
+/* textarea component styles */
+
+.textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+/* label styling */
+.textarea-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+/* textarea field styling */
+.textarea-field {
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-gray);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  color: var(--text-dark);
+  background-color: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* textarea focus state */
+.textarea-field:focus {
+  outline: none;
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 3px rgba(75, 0, 130, 0.1);
+}
+
+/* textarea hover state */
+.textarea-field:hover:not(:disabled) {
+  border-color: var(--primary-purple-light);
+}
+
+/* disabled textarea state */
+.textarea-field:disabled {
+  background-color: var(--background-gray);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* error state styling */
+.textarea-field.textarea-error {
+  border-color: var(--error-red);
+}
+
+.textarea-field.textarea-error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+/* character count display */
+.character-count {
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+  text-align: right;
+}
+
+/* placeholder styling */
+.textarea-field::placeholder {
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+/* ensure proper touch targets on mobile */
+@media (max-width: 768px) {
+  .textarea-field {
+    min-height: 100px;
+  }
+}

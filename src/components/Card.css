@@ -1,0 +1,67 @@
+/* card component styles for content containers */
+
+.card {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+/* subtle hover effect for interactive cards */
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* card header section */
+.card-header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-gray);
+  background-color: var(--background-gray);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* card body section - main content area */
+.card-body {
+  padding: var(--spacing-lg);
+}
+
+/* card footer section */
+.card-footer {
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border-gray);
+  background-color: var(--background-gray);
+}
+
+/* card variants for different use cases */
+.card-compact .card-body {
+  padding: var(--spacing-md);
+}
+
+.card-spacious .card-body {
+  padding: var(--spacing-xl);
+}
+
+/* card with no shadow for nested cards */
+.card-flat {
+  box-shadow: none;
+  border: 1px solid var(--border-gray);
+}
+
+/* responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .card-body {
+    padding: var(--spacing-md);
+  }
+  
+  .card-header,
+  .card-footer {
+    padding: var(--spacing-md);
+  }
+}
