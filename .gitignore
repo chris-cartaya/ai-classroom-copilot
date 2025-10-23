@@ -234,3 +234,5 @@ yarn-error.log*
 *.swp
 *.swo
 *~
+#  Node modules
+client/node_modules
