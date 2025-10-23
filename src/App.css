@@ -1,0 +1,232 @@
+/* main application layout styles */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-gray);
+}
+
+/* header navigation bar matching reference image */
+.app-header {
+  background-color: var(--primary-purple);
+  color: white;
+  padding: var(--spacing-md) 0;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* back button in header */
+.back-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: var(--primary-purple-dark);
+}
+
+/* page title in header */
+.page-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* user profile button in header */
+.user-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.user-button:hover {
+  background-color: var(--primary-purple-dark);
+}
+
+/* main content area */
+.main-content {
+  flex: 1;
+  padding: var(--spacing-xl) 0;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* navigation menu for switching between pages */
+.nav-menu {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  padding: 0 var(--spacing-md);
+}
+
+.nav-button {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: white;
+  border: 2px solid var(--primary-purple);
+  color: var(--primary-purple);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-button:hover {
+  background-color: var(--primary-purple);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-button.active {
+  background-color: var(--primary-purple);
+  color: white;
+}
+
+/* role selector for switching between student and instructor */
+.role-selector {
+  background-color: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin: 0 var(--spacing-md) var(--spacing-xl);
+  text-align: center;
+}
+
+.role-selector h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-dark);
+}
+
+.role-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.role-button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: 2px solid var(--border-gray);
+  background-color: white;
+  color: var(--text-dark);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 120px;
+}
+
+.role-button:hover {
+  border-color: var(--primary-purple);
+  color: var(--primary-purple);
+}
+
+.role-button.active {
+  background-color: var(--primary-purple);
+  color: white;
+  border-color: var(--primary-purple);
+}
+
+/* responsive design for tablets */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .page-title {
+    font-size: var(--font-size-base);
+  }
+  
+  .nav-menu {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .nav-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .main-content {
+    padding: var(--spacing-lg) 0;
+  }
+}
+
+/* responsive design for mobile phones */
+@media (max-width: 480px) {
+  .role-buttons {
+    flex-direction: column;
+  }
+  
+  .role-button {
+    width: 100%;
+  }
+}
+
+/* footer styling */
+.app-footer {
+  background-color: var(--primary-purple);
+  color: white;
+  padding: var(--spacing-xl) 0;
+  margin-top: auto;
+  text-align: center;
+}
+
+.app-footer p {
+  margin: var(--spacing-sm) 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  padding: 0 var(--spacing-sm);
+  transition: opacity 0.2s;
+}
+
+.footer-links a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
