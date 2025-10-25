@@ -6,10 +6,10 @@ import './AccountSettings.css';
 
 /**
  * account settings page - user profile and preferences management
- * allows users to update their profile information and application settings
+ * allows users to update their profile information, theme, and font size
  * implements nfr-18: customization options for font size and theme
  */
-const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
+const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange, fontSize, onFontSizeChange }) => {
   // state for user profile information
   const [profile, setProfile] = useState({
     name: 'John Doe',
@@ -18,22 +18,20 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
     institution: 'University Name',
     department: 'Computer Science'
   });
-  
-  // state for preferences
+
+  // state for preferences - now uses props for theme and font size
   const [preferences, setPreferences] = useState({
-    theme: theme || 'light',
-    fontSize: 'medium',
     notifications: true,
     emailUpdates: false
   });
-  
+
   // state for password change
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   });
-  
+
   // state for form submission
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
@@ -50,18 +48,13 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
   };
 
   /**
-   * handle preference changes
+   * handle preference changes (for checkboxes)
    */
-  const handlePreferenceChange = (field, value) => {
+  const handleCheckboxChange = (field, value) => {
     setPreferences({
       ...preferences,
       [field]: value
     });
-    
-    // apply theme change immediately
-    if (field === 'theme' && onThemeChange) {
-      onThemeChange(value);
-    }
   };
 
   /**
@@ -82,25 +75,25 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
     setIsSaving(true);
     setSaveMessage('');
     setErrorMessage('');
-    
+
     try {
       // TODO: replace with actual api call
       // await fetch('/api/profile', {
       //   method: 'PUT',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(profile)
+      //   headers: { 'content-type': 'application/json' },
+      //   body: json.stringify(profile)
       // });
-      
+
       // simulate api call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setSaveMessage('Profile updated successfully!');
-      
+
       // update role if changed
       if (profile.role !== userRole && onRoleChange) {
         onRoleChange(profile.role);
       }
-      
+
     } catch (err) {
       setErrorMessage('Failed to update profile. Please try again.');
       console.error('Profile update error:', err);
@@ -110,27 +103,27 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
   };
 
   /**
-   * save preferences
+   * save preferences (only notifications for now)
    */
   const handleSavePreferences = async (e) => {
     e.preventDefault();
     setIsSaving(true);
     setSaveMessage('');
     setErrorMessage('');
-    
+
     try {
-      // TODO: replace with actual api call
+      // TODO: replace with actual api call for preferences (theme/font size handled directly)
       // await fetch('/api/preferences', {
       //   method: 'PUT',
       //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(preferences)
+      //   body: JSON.stringify(preferences) // send only notification prefs
       // });
-      
+
       // simulate api call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setSaveMessage('Preferences saved successfully!');
-      
+
     } catch (err) {
       setErrorMessage('Failed to save preferences. Please try again.');
       console.error('Preferences save error:', err);
@@ -147,20 +140,20 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
     setIsSaving(true);
     setSaveMessage('');
     setErrorMessage('');
-    
+
     // validate password fields
     if (passwordData.newPassword !== passwordData.confirmPassword) {
       setErrorMessage('New passwords do not match.');
       setIsSaving(false);
       return;
     }
-    
+
     if (passwordData.newPassword.length < 8) {
       setErrorMessage('Password must be at least 8 characters long.');
       setIsSaving(false);
       return;
     }
-    
+
     try {
       // TODO: replace with actual api call
       // await fetch('/api/change-password', {
@@ -171,17 +164,17 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
       //     newPassword: passwordData.newPassword
       //   })
       // });
-      
+
       // simulate api call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setSaveMessage('Password changed successfully!');
       setPasswordData({
         currentPassword: '',
         newPassword: '',
         confirmPassword: ''
       });
-      
+
     } catch (err) {
       setErrorMessage('Failed to change password. Please check your current password.');
       console.error('Password change error:', err);
@@ -207,7 +200,7 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
             ✓ {saveMessage}
           </div>
         )}
-        
+
         {errorMessage && (
           <div className="status-message status-error" role="alert">
             ⚠ {errorMessage}
@@ -225,7 +218,7 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
                 placeholder="Enter your full name"
                 required
               />
-              
+
               <Input
                 type="email"
                 label="Email Address"
@@ -234,14 +227,14 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
                 placeholder="your.email@university.edu"
                 required
               />
-              
+
               <Input
                 label="Institution"
                 value={profile.institution}
                 onChange={(e) => handleProfileChange('institution', e.target.value)}
                 placeholder="Your university or institution"
               />
-              
+
               <Input
                 label="Department"
                 value={profile.department}
@@ -298,15 +291,17 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
               <div className="theme-selector">
                 <button
                   type="button"
-                  className={`theme-option ${preferences.theme === 'light' ? 'active' : ''}`}
-                  onClick={() => handlePreferenceChange('theme', 'light')}
+                  className={`theme-option ${theme === 'light' ? 'active' : ''}`}
+                  onClick={() => onThemeChange('light')}
+                  aria-pressed={theme === 'light'}
                 >
                   ☀️ Light
                 </button>
                 <button
                   type="button"
-                  className={`theme-option ${preferences.theme === 'dark' ? 'active' : ''}`}
-                  onClick={() => handlePreferenceChange('theme', 'dark')}
+                  className={`theme-option ${theme === 'dark' ? 'active' : ''}`}
+                  onClick={() => onThemeChange('dark')}
+                  aria-pressed={theme === 'dark'}
                 >
                   🌙 Dark
                 </button>
@@ -319,22 +314,25 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
               <div className="font-size-selector">
                 <button
                   type="button"
-                  className={`size-option ${preferences.fontSize === 'small' ? 'active' : ''}`}
-                  onClick={() => handlePreferenceChange('fontSize', 'small')}
+                  className={`size-option ${fontSize === 'small' ? 'active' : ''}`}
+                  onClick={() => onFontSizeChange('small')}
+                  aria-pressed={fontSize === 'small'}
                 >
                   A
                 </button>
                 <button
                   type="button"
-                  className={`size-option ${preferences.fontSize === 'medium' ? 'active' : ''}`}
-                  onClick={() => handlePreferenceChange('fontSize', 'medium')}
+                  className={`size-option ${fontSize === 'medium' ? 'active' : ''}`}
+                  onClick={() => onFontSizeChange('medium')}
+                  aria-pressed={fontSize === 'medium'}
                 >
                   A
                 </button>
                 <button
                   type="button"
-                  className={`size-option ${preferences.fontSize === 'large' ? 'active' : ''}`}
-                  onClick={() => handlePreferenceChange('fontSize', 'large')}
+                  className={`size-option ${fontSize === 'large' ? 'active' : ''}`}
+                  onClick={() => onFontSizeChange('large')}
+                  aria-pressed={fontSize === 'large'}
                 >
                   A
                 </button>
@@ -349,7 +347,7 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
                   <input
                     type="checkbox"
                     checked={preferences.notifications}
-                    onChange={(e) => handlePreferenceChange('notifications', e.target.checked)}
+                    onChange={(e) => handleCheckboxChange('notifications', e.target.checked)}
                   />
                   <span>Enable in-app notifications</span>
                 </label>
@@ -357,7 +355,7 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
                   <input
                     type="checkbox"
                     checked={preferences.emailUpdates}
-                    onChange={(e) => handlePreferenceChange('emailUpdates', e.target.checked)}
+                    onChange={(e) => handleCheckboxChange('emailUpdates', e.target.checked)}
                   />
                   <span>Receive email updates</span>
                 </label>
@@ -387,7 +385,7 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
               placeholder="Enter your current password"
               required
             />
-            
+
             <Input
               type="password"
               label="New Password"
@@ -396,7 +394,7 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
               placeholder="Enter new password (min 8 characters)"
               required
             />
-            
+
             <Input
               type="password"
               label="Confirm New Password"

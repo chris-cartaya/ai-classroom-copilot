@@ -1,0 +1,193 @@
+/* WeekCard component styles */
+
+.week-card {
+  margin-bottom: var(--spacing-xl);
+}
+
+.week-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.week-title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.week-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+/* Specific styling for the add material button to stand out a bit */
+.week-actions .btn-secondary {
+  border-color: var(--primary-purple);
+  color: var(--primary-purple);
+}
+.week-actions .btn-secondary:hover {
+  background-color: var(--primary-purple);
+  color: var(--button-text-primary);
+}
+body.theme-dark .week-actions .btn-secondary {
+  color: var(--primary-purple-light);
+  border-color: var(--primary-purple-light);
+}
+body.theme-dark .week-actions .btn-secondary:hover {
+  background-color: var(--primary-purple-light);
+  color: var(--button-text-primary);
+}
+
+
+/* Styling for the upload form within the week */
+.week-upload-form {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background-color: var(--background-gray-light); /* Lighter background for form */
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+body.theme-dark .week-upload-form {
+  background-color: rgba(255, 255, 255, 0.03); /* Subtle dark background */
+}
+
+.week-upload-form .dropzone {
+  padding: var(--spacing-lg); /* Make dropzone smaller within the form */
+  min-height: 100px;
+}
+.week-upload-form .dropzone .dropzone-content {
+  gap: var(--spacing-sm);
+}
+.week-upload-form .dropzone-icon {
+  font-size: 2.5rem;
+}
+.week-upload-form .dropzone-text {
+  font-size: var(--font-size-base);
+}
+.week-upload-form .upload-progress,
+.week-upload-form .status-message {
+  margin-top: var(--spacing-md);
+  margin-bottom: 0; /* Adjust margin for messages within form */
+}
+
+
+.no-materials {
+  font-style: italic;
+  color: var(--text-secondary);
+  padding: var(--spacing-md);
+  text-align: center;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-lg);
+}
+
+/* Material list */
+.materials-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.material-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--background-gray-medium);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+}
+body.theme-dark .material-item {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.material-item:hover {
+  background-color: var(--background-hover-light);
+  transform: translateX(4px);
+  border-color: var(--primary-purple);
+}
+body.theme-dark .material-item:hover {
+  border-color: var(--primary-purple-light);
+}
+
+.material-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.material-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.material-name {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.material-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.material-separator {
+  color: var(--border-color);
+}
+
+.material-status .status-badge {
+  min-width: 70px; /* Give badge some minimum width */
+  text-align: center; /* Center the checkmark */
+}
+
+.material-actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .week-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+  .week-actions {
+    width: 100%;
+    justify-content: flex-start; /* Align actions to left on mobile */
+  }
+  .week-actions button {
+    flex-grow: 1; /* Make buttons take available space */
+  }
+  .material-item {
+    flex-wrap: wrap;
+  }
+  .material-actions {
+    width: 100%;
+    margin-top: var(--spacing-sm);
+    justify-content: flex-end; /* Push action buttons to the right on wrap */
+  }
+}
+
+@media (max-width: 480px) {
+  .week-actions button {
+    flex-grow: unset; /* Revert to default flex-grow */
+    width: 100%; /* Make buttons full width on small mobile */
+  }
+}

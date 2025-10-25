@@ -4,13 +4,13 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--background-gray);
+  background-color: var(--background-page); /* use theme variable */
 }
 
-/* header navigation bar matching reference image */
+/* header navigation bar */
 .app-header {
-  background-color: var(--primary-purple);
-  color: white;
+  background-color: var(--header-background); /* use header specific background */
+  color: var(--header-text); /* use header specific text color */
   padding: var(--spacing-md) 0;
   box-shadow: var(--shadow-md);
   position: sticky;
@@ -27,11 +27,13 @@
   padding: 0 var(--spacing-md);
 }
 
-/* back button in header */
-.back-button {
+/* header buttons (Back and User) */
+.back-button,
+.user-button {
   background: none;
   border: none;
-  color: white;
+  /* Use the dedicated icon color variable */
+  color: var(--header-icon-color);
   font-size: var(--font-size-xl);
   cursor: pointer;
   padding: var(--spacing-sm);
@@ -39,12 +41,23 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.3s ease; /* Added color transition */
+  min-width: 44px; /* Ensure touch target size */
+  min-height: 44px;
 }
 
-.back-button:hover {
+/* Hover effect should not change the icon color, only background */
+.back-button:hover,
+.user-button:hover {
   background-color: var(--primary-purple-dark);
+  /* Icon color remains var(--header-icon-color) */
 }
+body.theme-dark .back-button:hover,
+body.theme-dark .user-button:hover {
+   background-color: var(--primary-purple-light);
+   /* Icon color remains var(--header-icon-color) */
+}
+
 
 /* page title in header */
 .page-title {
@@ -52,25 +65,7 @@
   font-weight: 600;
   flex-grow: 1;
   text-align: center;
-}
-
-/* user profile button in header */
-.user-button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: var(--font-size-xl);
-  cursor: pointer;
-  padding: var(--spacing-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s;
-}
-
-.user-button:hover {
-  background-color: var(--primary-purple-dark);
+  color: var(--header-text); /* Ensure title uses header text color */
 }
 
 /* main content area */
@@ -94,7 +89,7 @@
 
 .nav-button {
   padding: var(--spacing-md) var(--spacing-lg);
-  background-color: white;
+  background-color: var(--background-card); /* use card background */
   border: 2px solid var(--primary-purple);
   color: var(--primary-purple);
   border-radius: var(--radius-md);
@@ -105,32 +100,46 @@
   text-decoration: none;
   display: inline-block;
 }
+body.theme-dark .nav-button {
+  color: var(--primary-purple-light); /* Make text lighter in dark mode */
+  border-color: var(--primary-purple-light);
+}
 
 .nav-button:hover {
   background-color: var(--primary-purple);
-  color: white;
+  color: var(--button-text-primary); /* use button text color for contrast */
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+body.theme-dark .nav-button:hover {
+  background-color: var(--primary-purple-light);
+  color: var(--text-dark); /* Use dark text on light purple button */
 }
 
 .nav-button.active {
   background-color: var(--primary-purple);
-  color: white;
+  color: var(--button-text-primary); /* use button text color for contrast */
 }
+body.theme-dark .nav-button.active {
+  background-color: var(--primary-purple-light);
+  color: var(--text-dark); /* Use dark text on light purple button */
+}
+
 
 /* role selector for switching between student and instructor */
 .role-selector {
-  background-color: white;
+  background-color: var(--background-card); /* use card background */
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   margin: 0 var(--spacing-md) var(--spacing-xl);
   text-align: center;
+  border: 1px solid var(--border-color); /* Add border */
 }
 
 .role-selector h3 {
   margin-bottom: var(--spacing-md);
-  color: var(--text-dark);
+  color: var(--text-primary); /* use theme text color */
 }
 
 .role-buttons {
@@ -142,9 +151,9 @@
 
 .role-button {
   padding: var(--spacing-md) var(--spacing-xl);
-  border: 2px solid var(--border-gray);
-  background-color: white;
-  color: var(--text-dark);
+  border: 2px solid var(--border-color); /* use theme border color */
+  background-color: var(--background-card); /* use card background */
+  color: var(--text-primary); /* use theme text color */
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
   cursor: pointer;
@@ -155,12 +164,21 @@
 .role-button:hover {
   border-color: var(--primary-purple);
   color: var(--primary-purple);
+  background-color: var(--background-hover-light); /* subtle hover */
+}
+body.theme-dark .role-button:hover {
+  color: var(--primary-purple-light); /* Lighter purple text on hover */
+  border-color: var(--primary-purple-light);
 }
 
 .role-button.active {
   background-color: var(--primary-purple);
-  color: white;
+  color: var(--button-text-primary); /* Use button text color for contrast */
   border-color: var(--primary-purple);
+}
+body.theme-dark .role-button.active {
+  background-color: var(--primary-purple-light);
+  color: var(--text-dark); /* Use dark text on light purple button */
 }
 
 /* responsive design for tablets */
@@ -168,21 +186,21 @@
   .header-content {
     padding: 0 var(--spacing-sm);
   }
-  
+
   .page-title {
     font-size: var(--font-size-base);
   }
-  
+
   .nav-menu {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .nav-button {
     width: 100%;
     text-align: center;
   }
-  
+
   .main-content {
     padding: var(--spacing-lg) 0;
   }
@@ -193,7 +211,7 @@
   .role-buttons {
     flex-direction: column;
   }
-  
+
   .role-button {
     width: 100%;
   }
@@ -201,8 +219,8 @@
 
 /* footer styling */
 .app-footer {
-  background-color: var(--primary-purple);
-  color: white;
+  background-color: var(--header-background); /* use header specific background */
+  color: var(--header-text); /* use header specific text color */
   padding: var(--spacing-xl) 0;
   margin-top: auto;
   text-align: center;
@@ -210,6 +228,7 @@
 
 .app-footer p {
   margin: var(--spacing-sm) 0;
+  color: inherit; /* Ensure footer text inherits color */
 }
 
 .footer-links {
@@ -220,7 +239,7 @@
 }
 
 .footer-links a {
-  color: white;
+  color: var(--header-text);
   text-decoration: none;
   padding: 0 var(--spacing-sm);
   transition: opacity 0.2s;
