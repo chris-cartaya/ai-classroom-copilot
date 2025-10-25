@@ -1,173 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Card from '../components/Card';
 import Button from '../components/Button';
-import './CourseMaterials.css';
+import WeekCard from '../components/WeekCard'; // Import the WeekCard component
+import './CourseMaterials.css'; // Keep this for overall layout
+import '../components/WeekCard.css'; // Also import WeekCard styles for global access
 
 /**
  * course materials page - file upload interface for instructors
- * allows instructors to upload course content (pptx, pdf, docx)
+ * allows instructors to organize materials by week, add/delete weeks, and upload files.
  * implements fr-2: allow instructors to upload supported file types
+ * receives courseWeeks state and setter function from parent (App.js)
  */
-const CourseMaterials = ({ userRole }) => {
-  // state for uploaded files list
-  const [uploadedFiles, setUploadedFiles] = useState([
-    // mock data for demonstration
-    { id: 1, name: 'Module 1 - Introduction.pptx', size: '2.4 MB', uploadDate: '2025-10-15', status: 'processed' },
-    { id: 2, name: 'Module 2 - Core Concepts.pdf', size: '1.8 MB', uploadDate: '2025-10-16', status: 'processed' },
-    { id: 3, name: 'Module 3 - Advanced Topics.docx', size: '856 KB', uploadDate: '2025-10-18', status: 'processing' }
-  ]);
-  
-  // state for drag and drop
-  const [isDragging, setIsDragging] = useState(false);
-  
-  // state for upload progress
-  const [uploadProgress, setUploadProgress] = useState(null);
-  
-  // state for status messages
-  const [statusMessage, setStatusMessage] = useState('');
-  
-  // state for error messages
-  const [errorMessage, setErrorMessage] = useState('');
+const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
 
-  /**
-   * handle file selection from input
-   * implements fr-2.1: extract text, chunk, and create embeddings
-   */
-  const handleFileSelect = async (e) => {
-    const files = Array.from(e.target.files);
-    await processFiles(files);
-  };
-
-  /**
-   * handle drag over event
-   */
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  /**
-   * handle drag leave event
-   */
-  const handleDragLeave = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  /**
-   * handle file drop
-   */
-  const handleDrop = async (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    
-    const files = Array.from(e.dataTransfer.files);
-    await processFiles(files);
-  };
-
-  /**
-   * process uploaded files
-   * validates file types and uploads to backend
-   */
-  const processFiles = async (files) => {
-    // clear previous messages
-    setErrorMessage('');
-    setStatusMessage('');
-    
-    // validate file types (fr-2)
-    const allowedTypes = ['.pptx', '.pdf', '.docx'];
-    const invalidFiles = files.filter(file => {
-      const extension = '.' + file.name.split('.').pop().toLowerCase();
-      return !allowedTypes.includes(extension);
-    });
-    
-    if (invalidFiles.length > 0) {
-      setErrorMessage(`Invalid file type(s). Only PPTX, PDF, and DOCX files are allowed.`);
-      return;
-    }
-    
-    // validate file size (max 10mb per nfr-2)
-    const maxSize = 10 * 1024 * 1024; // 10mb in bytes
-    const oversizedFiles = files.filter(file => file.size > maxSize);
-    
-    if (oversizedFiles.length > 0) {
-      setErrorMessage(`File(s) too large. Maximum size is 10 MB per file.`);
-      return;
-    }
-    
-    // process each file
-    for (const file of files) {
-      try {
-        setUploadProgress({ fileName: file.name, progress: 0 });
-        
-        // TODO: replace with actual api call to backend
-        // const formData = new FormData();
-        // formData.append('file', file);
-        // const response = await fetch('/api/upload', {
-        //   method: 'POST',
-        //   body: formData,
-        //   onUploadProgress: (progressEvent) => {
-        //     const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        //     setUploadProgress({ fileName: file.name, progress });
-        //   }
-        // });
-        
-        // simulate upload progress
-        for (let i = 0; i <= 100; i += 10) {
-          await new Promise(resolve => setTimeout(resolve, 100));
-          setUploadProgress({ fileName: file.name, progress: i });
-        }
-        
-        // add file to uploaded files list
-        const newFile = {
-          id: Date.now(),
-          name: file.name,
-          size: formatFileSize(file.size),
-          uploadDate: new Date().toISOString().split('T')[0],
-          status: 'processing'
-        };
-        
-        setUploadedFiles([newFile, ...uploadedFiles]);
-        setStatusMessage(`Successfully uploaded ${file.name}`);
-        
-      } catch (err) {
-        setErrorMessage(`Failed to upload ${file.name}. Please try again.`);
-        console.error('Upload error:', err);
-      }
-    }
-    
-    setUploadProgress(null);
-  };
-
-  /**
-   * format file size for display
-   */
+  // Utility function to format file size for display
   const formatFileSize = (bytes) => {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    const precision = i === 0 ? 0 : 1;
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(precision)) + ' ' + sizes[i];
   };
 
-  /**
-   * handle file deletion
-   */
-  const handleDeleteFile = (fileId) => {
-    if (window.confirm('Are you sure you want to delete this file?')) {
-      setUploadedFiles(uploadedFiles.filter(file => file.id !== fileId));
-      setStatusMessage('File deleted successfully');
-    }
-  };
-
-  /**
-   * get status badge color
-   */
+  // Utility function to get status badge class
   const getStatusBadgeClass = (status) => {
     switch (status) {
       case 'processed':
         return 'status-badge-success';
       case 'processing':
+      case 'uploading':
         return 'status-badge-warning';
       case 'error':
         return 'status-badge-error';
@@ -176,147 +38,172 @@ const CourseMaterials = ({ userRole }) => {
     }
   };
 
+  /**
+   * renumbers week titles sequentially based on their position in the array.
+   * returns a new array with updated titles.
+   */
+  const renumberWeeks = (weeks) => {
+    return weeks.map((week, index) => ({
+      ...week,
+      title: `Week ${index + 1}` // Update title based on index
+    }));
+  };
+
+  /**
+   * handle adding a new week, optionally at a specific index.
+   * index: the position *before* which to insert the new week.
+   * if index is null or undefined, adds to the end.
+   */
+  const handleAddWeek = (index = null) => {
+    const newWeek = {
+      id: `week-${Date.now()}`,
+      title: `Week ${index !== null ? index + 1 : courseWeeks.length + 1}`, // Temporary title
+      materials: [],
+    };
+
+    let updatedWeeks;
+    if (index !== null && index >= 0 && index <= courseWeeks.length) {
+      updatedWeeks = [
+        ...courseWeeks.slice(0, index),
+        newWeek,
+        ...courseWeeks.slice(index)
+      ];
+    } else {
+      updatedWeeks = [...courseWeeks, newWeek];
+    }
+
+    // Renumber all weeks after adding/inserting
+    setCourseWeeks(renumberWeeks(updatedWeeks));
+  };
+
+  /**
+   * handle deleting a week and renumber subsequent weeks.
+   */
+  const handleDeleteWeek = (weekId) => {
+    if (window.confirm('Are you sure you want to delete this week and all its materials? This action cannot be undone.')) {
+      const updatedWeeks = courseWeeks.filter(week => week.id !== weekId);
+      // Renumber remaining weeks
+      setCourseWeeks(renumberWeeks(updatedWeeks));
+    }
+  };
+
+  /**
+   * handle adding or updating material within a specific week
+   * isUpdate flag indicates if it's an update to an existing material or a new one
+   */
+  const handleAddOrUpdateMaterial = (weekId, newMaterial, isUpdate = false) => {
+    setCourseWeeks(prevWeeks => {
+      return prevWeeks.map(week => {
+        if (week.id === weekId) {
+          let updatedMaterials;
+          if (isUpdate) {
+            // update existing material
+            updatedMaterials = week.materials.map(mat =>
+              mat.id === newMaterial.id ? newMaterial : mat
+            );
+          } else {
+            // add new material - make sure it doesn't already exist by name (simple check)
+            const exists = week.materials.some(mat => mat.name === newMaterial.name);
+            updatedMaterials = exists ? week.materials : [...week.materials, newMaterial];
+          }
+          return { ...week, materials: updatedMaterials };
+        }
+        return week;
+      });
+    });
+  };
+
+
+  /**
+   * handle deleting material from a specific week
+   */
+  const handleDeleteMaterial = (weekId, materialId) => {
+    if (window.confirm('Are you sure you want to delete this material?')) {
+      setCourseWeeks(prevWeeks => {
+        return prevWeeks.map(week => {
+          if (week.id === weekId) {
+            return {
+              ...week,
+              materials: week.materials.filter(material => material.id !== materialId)
+            };
+          }
+          return week;
+        });
+      });
+    }
+  };
+
+
   return (
-    <div className="course-materials">
+    <div className="course-materials-page">
       <div className="container">
         {/* page header */}
         <div className="page-header">
           <h2>Course Materials Management</h2>
           <p className="page-description">
-            {userRole === 'instructor' 
-              ? 'Upload and manage your course materials. Supported formats: PPTX, PDF, DOCX'
-              : 'View available course materials uploaded by your instructor'
+            {userRole === 'instructor'
+              ? 'Organize your course content into weeks. Upload PPTX, PDF, and DOCX files for each week.'
+              : 'Explore the course materials organized by your instructor.'
             }
           </p>
         </div>
 
-        {/* upload section - only visible to instructors (fr-2, nfr-5) */}
-        {userRole === 'instructor' && (
-          <Card className="upload-card">
-            <h3>📤 Upload New Materials</h3>
-            
-            {/* drag and drop zone */}
-            <div
-              className={`dropzone ${isDragging ? 'dropzone-active' : ''}`}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-            >
-              <div className="dropzone-content">
-                <span className="dropzone-icon">📁</span>
-                <p className="dropzone-text">
-                  Drag and drop files here, or click to browse
-                </p>
-                <p className="dropzone-subtext">
-                  Supported formats: PPTX, PDF, DOCX (Max 10 MB per file)
-                </p>
-                <input
-                  type="file"
-                  id="file-input"
-                  className="file-input"
-                  accept=".pptx,.pdf,.docx"
-                  multiple
-                  onChange={handleFileSelect}
-                  aria-label="Upload course materials"
-                />
-                <label htmlFor="file-input" className="file-input-label">
-                  <Button variant="success" size="large">
-                    Browse Files
-                  </Button>
-                </label>
-              </div>
-            </div>
-
-            {/* upload progress indicator */}
-            {uploadProgress && (
-              <div className="upload-progress">
-                <p className="progress-text">
-                  Uploading {uploadProgress.fileName}...
-                </p>
-                <div className="progress-bar">
-                  <div 
-                    className="progress-fill" 
-                    style={{ width: `${uploadProgress.progress}%` }}
-                  />
-                </div>
-                <p className="progress-percentage">{uploadProgress.progress}%</p>
-              </div>
-            )}
-
-            {/* status messages */}
-            {statusMessage && (
-              <div className="status-message status-success" role="status">
-                ✓ {statusMessage}
-              </div>
-            )}
-
-            {/* error messages (fr-5) */}
-            {errorMessage && (
-              <div className="status-message status-error" role="alert">
-                ⚠ {errorMessage}
-              </div>
-            )}
-          </Card>
-        )}
-
-        {/* uploaded files list */}
-        <Card className="files-card">
-          <h3>📚 Uploaded Course Materials</h3>
-          
-          {uploadedFiles.length === 0 ? (
+        {/* List of Week Cards */}
+        <div className="weeks-list">
+          {courseWeeks.length === 0 ? (
             <div className="empty-state">
-              <p>No course materials uploaded yet.</p>
+              <p>No weeks have been added yet.</p>
               {userRole === 'instructor' && (
-                <p>Upload your first file to get started!</p>
+                <p>Click "Add Week" below to start organizing your materials.</p>
               )}
             </div>
           ) : (
-            <div className="files-list">
-              {uploadedFiles.map(file => (
-                <div key={file.id} className="file-item">
-                  <div className="file-icon">📄</div>
-                  <div className="file-info">
-                    <h4 className="file-name">{file.name}</h4>
-                    <div className="file-meta">
-                      <span className="file-size">{file.size}</span>
-                      <span className="file-separator">•</span>
-                      <span className="file-date">Uploaded {file.uploadDate}</span>
-                    </div>
-                  </div>
-                  <div className="file-status">
-                    <span className={`status-badge ${getStatusBadgeClass(file.status)}`}>
-                      {file.status}
-                    </span>
-                  </div>
-                  {userRole === 'instructor' && (
-                    <div className="file-actions">
-                      <Button
-                        variant="secondary"
-                        size="small"
-                        onClick={() => handleDeleteFile(file.id)}
-                        ariaLabel={`Delete ${file.name}`}
-                      >
-                        🗑️ Delete
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            courseWeeks.map((week, index) => (
+              <React.Fragment key={week.id}>
+                {/* "Add Week Here" button for instructors, appears *before* each week */}
+                {userRole === 'instructor' && (
+                   <div className="add-week-divider">
+                     <Button
+                       variant="outline" /* New variant needed */
+                       size="small"
+                       onClick={() => handleAddWeek(index)} // Pass the index to insert before
+                       ariaLabel={`Add a new week before ${week.title}`}
+                       title={`Add week before ${week.title}`}
+                     >
+                       ＋ Add Week Here
+                     </Button>
+                   </div>
+                )}
+                <WeekCard
+                  week={week}
+                  userRole={userRole}
+                  onDeleteWeek={handleDeleteWeek}
+                  onAddMaterial={handleAddOrUpdateMaterial}
+                  onDeleteMaterial={handleDeleteMaterial}
+                  formatFileSize={formatFileSize}
+                  getStatusBadgeClass={getStatusBadgeClass}
+                />
+              </React.Fragment>
+            ))
           )}
-        </Card>
+        </div>
 
-        {/* information card */}
-        <Card className="info-card">
-          <h3>ℹ️ How It Works</h3>
-          <ol className="info-list">
-            <li>Upload your course materials in supported formats (PPTX, PDF, DOCX)</li>
-            <li>The system automatically extracts text and creates searchable content</li>
-            <li>Content is divided into chunks and stored with metadata (module, slide, page numbers)</li>
-            <li>Students can ask questions and receive answers with citations from your materials</li>
-            <li>Processing typically completes within 30 seconds for files up to 10 MB</li>
-          </ol>
-        </Card>
+        {/* Add Week Button (at the end) - only for instructors */}
+        {userRole === 'instructor' && (
+          <div className="add-week-section">
+            <Button
+              variant="success"
+              size="large"
+              onClick={() => handleAddWeek(courseWeeks.length)} // Pass length to add at the end
+              ariaLabel="Add a new week to the end of the course materials"
+            >
+              ➕ Add Week at End
+            </Button>
+          </div>
+        )}
+
+        {/* Removed the Information Card ("How It Works") section */}
+
       </div>
     </div>
   );

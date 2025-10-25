@@ -15,10 +15,13 @@
   color: var(--primary-purple);
   margin-bottom: var(--spacing-sm);
 }
+body.theme-dark .page-header h2 {
+   color: var(--primary-purple-light);
+}
 
 .page-description {
   font-size: var(--font-size-lg);
-  color: var(--text-light);
+  color: var(--text-secondary); /* Use theme secondary text */
   max-width: 600px;
   margin: 0 auto;
 }
@@ -28,7 +31,22 @@
   margin-bottom: var(--spacing-xl);
   max-height: 600px;
   overflow-y: auto;
+  /* Add subtle scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--background-card);
 }
+.conversation-card::-webkit-scrollbar {
+  width: 8px;
+}
+.conversation-card::-webkit-scrollbar-track {
+  background: var(--background-card);
+}
+.conversation-card::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--background-card);
+}
+
 
 .conversation-header {
   display: flex;
@@ -36,12 +54,12 @@
   align-items: center;
   margin-bottom: var(--spacing-lg);
   padding-bottom: var(--spacing-md);
-  border-bottom: 2px solid var(--border-gray);
+  border-bottom: 1px solid var(--border-color); /* Use theme border */
 }
 
 .conversation-header h3 {
   margin: 0;
-  color: var(--text-dark);
+  color: var(--text-primary); /* Use theme text color */
 }
 
 /* conversation list */
@@ -58,11 +76,16 @@
 /* question bubble styling */
 .question-bubble {
   background-color: var(--primary-purple);
-  color: white;
+  color: var(--header-text); /* Use header text color for contrast */
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   margin-left: auto;
   max-width: 80%;
+  border: 1px solid var(--primary-purple-dark); /* Add subtle border */
+}
+body.theme-dark .question-bubble {
+   background-color: var(--primary-purple-dark); /* Slightly darker in dark mode */
+   border-color: var(--primary-purple);
 }
 
 .bubble-header {
@@ -81,52 +104,62 @@
   font-size: var(--font-size-sm);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  opacity: 0.9; /* Slightly less prominent label */
 }
 
 .bubble-content {
   margin: 0;
   line-height: 1.6;
+  color: inherit; /* Inherit color from parent bubble */
 }
 
 /* answer bubble styling */
 .answer-bubble {
-  background-color: var(--background-gray);
+  background-color: var(--background-gray-medium); /* Use medium gray */
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   margin-right: auto;
   max-width: 85%;
   border-left: 4px solid var(--accent-green);
+  border: 1px solid var(--border-color); /* Add subtle border */
+}
+body.theme-dark .answer-bubble {
+  background-color: #2c2c2c; /* slightly different shade for dark answer bubble */
+  border-color: var(--border-color);
 }
 
 .answer-bubble .bubble-header {
-  color: var(--text-dark);
+  color: var(--text-primary); /* Use theme text color */
 }
 
 .answer-bubble .bubble-content {
-  color: var(--text-dark);
+  color: var(--text-primary); /* Use theme text color */
 }
 
 /* confidence badge */
 .confidence-badge {
   margin-left: auto;
   background-color: var(--accent-green);
-  color: white;
+  color: var(--background-white); /* White text */
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-sm);
   font-size: var(--font-size-sm);
   font-weight: 600;
+}
+body.theme-dark .confidence-badge {
+  color: var(--text-dark); /* Dark text on green in dark mode */
 }
 
 /* citations section styling */
 .citations-section {
   margin-top: var(--spacing-lg);
   padding-top: var(--spacing-lg);
-  border-top: 2px solid var(--border-gray);
+  border-top: 1px solid var(--border-color); /* Use theme border */
 }
 
 .citations-title {
   font-size: var(--font-size-base);
-  color: var(--text-dark);
+  color: var(--text-primary); /* Use theme text color */
   margin-bottom: var(--spacing-md);
   display: flex;
   align-items: center;
@@ -143,10 +176,14 @@
 }
 
 .citation-item {
-  background-color: white;
+  background-color: var(--background-card); /* Use card background */
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   border-left: 3px solid var(--primary-purple);
+  border: 1px solid var(--border-color); /* Add subtle border */
+}
+body.theme-dark .citation-item {
+  border-left-color: var(--primary-purple-light);
 }
 
 .citation-item strong {
@@ -154,10 +191,13 @@
   display: block;
   margin-bottom: var(--spacing-xs);
 }
+body.theme-dark .citation-item strong {
+  color: var(--primary-purple-light);
+}
 
 .citation-content {
   margin: 0;
-  color: var(--text-light);
+  color: var(--text-secondary); /* Use theme secondary text */
   font-size: var(--font-size-sm);
   font-style: italic;
 }
@@ -183,19 +223,28 @@
   width: 16px;
   height: 16px;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
+  border-top-color: var(--button-text-primary); /* Use button text color */
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
+}
+body.theme-dark .spinner-small {
+  border-top-color: var(--text-primary); /* Ensure contrast in dark mode */
 }
 
 /* tips card styling */
 .tips-card {
   background: linear-gradient(135deg, var(--primary-purple-light) 0%, var(--primary-purple) 100%);
-  color: white;
+  color: var(--header-text); /* Use header text color for contrast */
+  border: none; /* Remove border for gradient card */
+}
+body.theme-dark .tips-card {
+   /* Use a slightly different gradient or overlay for dark mode if needed */
+   background: linear-gradient(135deg, rgba(106, 13, 173, 0.8) 0%, rgba(75, 0, 130, 0.9) 100%), var(--background-card);
 }
 
+
 .tips-card h3 {
-  color: white;
+  color: inherit; /* Inherit color */
   margin-bottom: var(--spacing-md);
 }
 
@@ -209,6 +258,7 @@
   padding: var(--spacing-sm) 0;
   padding-left: var(--spacing-lg);
   position: relative;
+  color: inherit; /* Inherit color */
 }
 
 .tips-list li::before {
@@ -218,6 +268,9 @@
   color: var(--accent-green);
   font-weight: bold;
 }
+body.theme-dark .tips-list li::before {
+  color: var(--accent-green); /* Ensure checkmark color is visible */
+}
 
 /* responsive design for tablets */
 @media (max-width: 768px) {
@@ -225,13 +278,13 @@
   .answer-bubble {
     max-width: 95%;
   }
-  
+
   .conversation-header {
     flex-direction: column;
     gap: var(--spacing-md);
     align-items: flex-start;
   }
-  
+
   .submit-button {
     width: 100%;
   }
@@ -242,7 +295,7 @@
   .page-header h2 {
     font-size: var(--font-size-xl);
   }
-  
+
   .question-bubble,
   .answer-bubble {
     max-width: 100%;
