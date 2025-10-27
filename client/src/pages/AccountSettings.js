@@ -78,14 +78,11 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange, fontSiz
 
     try {
       // TODO: replace with actual api call
-      // await fetch('/api/profile', {
+      // await fetch('http://localhost:8000/api/profile', {
       //   method: 'PUT',
       //   headers: { 'content-type': 'application/json' },
-      //   body: json.stringify(profile)
+      //   body: JSON.stringify(profile)
       // });
-
-      // simulate api call
-      await new Promise(resolve => setTimeout(resolve, 1000));
 
       setSaveMessage('Profile updated successfully!');
 
@@ -113,14 +110,11 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange, fontSiz
 
     try {
       // TODO: replace with actual api call for preferences (theme/font size handled directly)
-      // await fetch('/api/preferences', {
+      // await fetch('http://localhost:8000/api/preferences', {
       //   method: 'PUT',
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify(preferences) // send only notification prefs
       // });
-
-      // simulate api call
-      await new Promise(resolve => setTimeout(resolve, 1000));
 
       setSaveMessage('Preferences saved successfully!');
 
@@ -156,7 +150,7 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange, fontSiz
 
     try {
       // TODO: replace with actual api call
-      // await fetch('/api/change-password', {
+      // await fetch('http://localhost:8000/api/change-password', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify({
@@ -164,9 +158,6 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange, fontSiz
       //     newPassword: passwordData.newPassword
       //   })
       // });
-
-      // simulate api call
-      await new Promise(resolve => setTimeout(resolve, 1000));
 
       setSaveMessage('Password changed successfully!');
       setPasswordData({

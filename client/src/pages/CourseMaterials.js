@@ -1,17 +1,20 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Card from '../components/Card';
 import Button from '../components/Button';
-import WeekCard from '../components/WeekCard'; // Import the WeekCard component
-import './CourseMaterials.css'; // Keep this for overall layout
-import '../components/WeekCard.css'; // Also import WeekCard styles for global access
+import WeekCard from '../components/WeekCard';
+import StudentMetrics from '../components/StudentMetrics';
+import './CourseMaterials.css';
+import '../components/WeekCard.css';
 
-/**
- * course materials page - file upload interface for instructors
- * allows instructors to organize materials by week, add/delete weeks, and upload files.
- * implements fr-2: allow instructors to upload supported file types
- * receives courseWeeks state and setter function from parent (App.js)
- */
 const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
+  const [studentMetrics, setStudentMetrics] = useState([]);
+
+  useEffect(() => {
+    // TODO: Fetch course materials from the backend when the component mounts
+    // fetch('http://localhost:8000/api/materials')
+    //   .then(response => response.json())
+    //   .then(data => setCourseWeeks(data));
+  }, [setCourseWeeks]);
 
   // Utility function to format file size for display
   const formatFileSize = (bytes) => {
@@ -55,6 +58,25 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
    * if index is null or undefined, adds to the end.
    */
   const handleAddWeek = (index = null) => {
+    // TODO: Make an API call to the backend to add a new week
+    // fetch('http://localhost:8000/api/materials/weeks', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ index })
+    // }).then(response => response.json()).then(newWeek => {
+    //   let updatedWeeks;
+    //   if (index !== null && index >= 0 && index <= courseWeeks.length) {
+    //     updatedWeeks = [
+    //       ...courseWeeks.slice(0, index),
+    //       newWeek,
+    //       ...courseWeeks.slice(index)
+    //     ];
+    //   } else {
+    //     updatedWeeks = [...courseWeeks, newWeek];
+    //   }
+    //   setCourseWeeks(renumberWeeks(updatedWeeks));
+    // });
+
     const newWeek = {
       id: `week-${Date.now()}`,
       title: `Week ${index !== null ? index + 1 : courseWeeks.length + 1}`, // Temporary title
@@ -81,6 +103,13 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
    */
   const handleDeleteWeek = (weekId) => {
     if (window.confirm('Are you sure you want to delete this week and all its materials? This action cannot be undone.')) {
+      // TODO: Make an API call to the backend to delete a week
+      // fetch(`http://localhost:8000/api/materials/weeks/${weekId}`, { method: 'DELETE' })
+      //   .then(() => {
+      //     const updatedWeeks = courseWeeks.filter(week => week.id !== weekId);
+      //     setCourseWeeks(renumberWeeks(updatedWeeks));
+      //   });
+
       const updatedWeeks = courseWeeks.filter(week => week.id !== weekId);
       // Renumber remaining weeks
       setCourseWeeks(renumberWeeks(updatedWeeks));
@@ -92,6 +121,36 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
    * isUpdate flag indicates if it's an update to an existing material or a new one
    */
   const handleAddOrUpdateMaterial = (weekId, newMaterial, isUpdate = false) => {
+    // TODO: Make an API call to the backend to add or update a material
+    // const url = isUpdate
+    //   ? `http://localhost:8000/api/materials/weeks/${weekId}/materials/${newMaterial.id}`
+    //   : `http://localhost:8000/api/materials/weeks/${weekId}/materials`;
+    // const method = isUpdate ? 'PUT' : 'POST';
+    //
+    // fetch(url, {
+    //   method,
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(newMaterial)
+    // }).then(response => response.json()).then(updatedMaterial => {
+    //   setCourseWeeks(prevWeeks => {
+    //     return prevWeeks.map(week => {
+    //       if (week.id === weekId) {
+    //         let updatedMaterials;
+    //         if (isUpdate) {
+    //           updatedMaterials = week.materials.map(mat =>
+    //             mat.id === updatedMaterial.id ? updatedMaterial : mat
+    //           );
+    //         } else {
+    //           const exists = week.materials.some(mat => mat.name === updatedMaterial.name);
+    //           updatedMaterials = exists ? week.materials : [...week.materials, updatedMaterial];
+    //         }
+    //         return { ...week, materials: updatedMaterials };
+    //       }
+    //       return week;
+    //     });
+    //   });
+    // });
+
     setCourseWeeks(prevWeeks => {
       return prevWeeks.map(week => {
         if (week.id === weekId) {
@@ -119,6 +178,22 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
    */
   const handleDeleteMaterial = (weekId, materialId) => {
     if (window.confirm('Are you sure you want to delete this material?')) {
+      // TODO: Make an API call to the backend to delete a material
+      // fetch(`http://localhost:8000/api/materials/weeks/${weekId}/materials/${materialId}`, { method: 'DELETE' })
+      //   .then(() => {
+      //     setCourseWeeks(prevWeeks => {
+      //       return prevWeeks.map(week => {
+      //         if (week.id === weekId) {
+      //           return {
+      //             ...week,
+      //             materials: week.materials.filter(material => material.id !== materialId)
+      //           };
+      //         }
+      //         return week;
+      //       });
+      //     });
+      //   });
+
       setCourseWeeks(prevWeeks => {
         return prevWeeks.map(week => {
           if (week.id === weekId) {
@@ -134,6 +209,15 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
   };
 
 
+  useEffect(() => {
+    if (userRole === 'instructor') {
+      // TODO: Fetch student metrics from the backend
+      // fetch('http://localhost:8000/api/metrics/weekly')
+      //   .then(response => response.json())
+      //   .then(data => setStudentMetrics(data));
+    }
+  }, [userRole]);
+
   return (
     <div className="course-materials-page">
       <div className="container">
@@ -147,6 +231,8 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
             }
           </p>
         </div>
+
+        {userRole === 'instructor' && <StudentMetrics metrics={studentMetrics} />}
 
         {/* List of Week Cards */}
         <div className="weeks-list">

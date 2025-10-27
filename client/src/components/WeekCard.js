@@ -162,7 +162,7 @@ const WeekCard = ({
               ariaLabel={showUploadForm ? "Hide upload form" : "Add material to this week"}
               title={showUploadForm ? "Hide upload form" : "Add material"}
             >
-              {showUploadForm ? '✖️ Cancel Upload' : '➕ Add Material'}
+              {showUploadForm ? 'Cancel' : 'Add Material'}
             </Button>
             <Button
               variant="danger"
@@ -171,7 +171,7 @@ const WeekCard = ({
               ariaLabel={`Delete week ${week.title}`}
               title="Delete Week"
             >
-              🗑️ Delete Week
+              Delete Week
             </Button>
           </div>
         )}
@@ -260,8 +260,7 @@ const WeekCard = ({
                 </div>
                 <div className="material-status">
                   <span className={`status-badge ${getStatusBadgeClass(material.status)}`}>
-                    {/* Display text only for non-processed states */}
-                    {material.status !== 'processed' ? material.status : '✔️'} {/* Use checkmark for processed */}
+                    {material.status}
                   </span>
                 </div>
                 <div className="material-actions"> {/* Container for all actions */}
@@ -285,7 +284,7 @@ const WeekCard = ({
                       ariaLabel={`Delete ${material.name} from week ${week.title}`}
                       title="Delete Material"
                     >
-                      ✖️ Delete
+                      Delete
                     </Button>
                   )}
                 </div>

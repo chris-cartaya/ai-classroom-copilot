@@ -26,8 +26,8 @@
 /* input field styling */
 .input-field {
   padding: var(--spacing-md);
-  border: 2px solid var(--border-color); /* Use theme border */
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color); /* Use theme border */
+  border-radius: var(--radius-lg);
   font-size: var(--font-size-base);
   font-family: var(--font-family);
   color: var(--text-primary); /* Use theme text color */
@@ -39,20 +39,20 @@
 /* input focus state */
 .input-field:focus {
   outline: none;
-  border-color: var(--primary-purple);
-  box-shadow: 0 0 0 3px rgba(75, 0, 130, 0.1);
+  border-color: var(--primary-cobalt);
+  box-shadow: 0 0 0 3px rgba(0, 71, 133, 0.1);
 }
 body.theme-dark .input-field:focus {
-  border-color: var(--primary-purple-light);
-  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2); /* Adjusted focus shadow for dark */
+  border-color: var(--primary-cobalt-light);
+  box-shadow: 0 0 0 3px rgba(0, 91, 156, 0.2);
 }
 
 /* input hover state */
 .input-field:hover:not(:disabled) {
-  border-color: var(--primary-purple-light);
+  border-color: var(--primary-cobalt-light);
 }
 body.theme-dark .input-field:hover:not(:disabled) {
-  border-color: var(--primary-purple);
+  border-color: var(--primary-cobalt);
 }
 
 /* disabled input state */
