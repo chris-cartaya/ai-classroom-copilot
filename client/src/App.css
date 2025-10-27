@@ -1,0 +1,251 @@
+/* main application layout styles */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-page); /* use theme variable */
+}
+
+/* header navigation bar */
+.app-header {
+  background-color: var(--header-background); /* use header specific background */
+  color: var(--header-text); /* use header specific text color */
+  padding: var(--spacing-md) 0;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* header buttons (Back and User) */
+.back-button,
+.user-button {
+  background: none;
+  border: none;
+  /* Use the dedicated icon color variable */
+  color: var(--header-icon-color);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s, color 0.3s ease; /* Added color transition */
+  min-width: 44px; /* Ensure touch target size */
+  min-height: 44px;
+}
+
+/* Hover effect should not change the icon color, only background */
+.back-button:hover,
+.user-button:hover {
+  background-color: var(--primary-purple-dark);
+  /* Icon color remains var(--header-icon-color) */
+}
+body.theme-dark .back-button:hover,
+body.theme-dark .user-button:hover {
+   background-color: var(--primary-purple-light);
+   /* Icon color remains var(--header-icon-color) */
+}
+
+
+/* page title in header */
+.page-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  flex-grow: 1;
+  text-align: center;
+  color: var(--header-text); /* Ensure title uses header text color */
+}
+
+/* main content area */
+.main-content {
+  flex: 1;
+  padding: var(--spacing-xl) 0;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* navigation menu for switching between pages */
+.nav-menu {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  padding: 0 var(--spacing-md);
+}
+
+.nav-button {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--background-card); /* use card background */
+  border: 2px solid var(--primary-purple);
+  color: var(--primary-purple);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+body.theme-dark .nav-button {
+  color: var(--primary-purple-light); /* Make text lighter in dark mode */
+  border-color: var(--primary-purple-light);
+}
+
+.nav-button:hover {
+  background-color: var(--primary-purple);
+  color: var(--button-text-primary); /* use button text color for contrast */
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+body.theme-dark .nav-button:hover {
+  background-color: var(--primary-purple-light);
+  color: var(--text-dark); /* Use dark text on light purple button */
+}
+
+.nav-button.active {
+  background-color: var(--primary-purple);
+  color: var(--button-text-primary); /* use button text color for contrast */
+}
+body.theme-dark .nav-button.active {
+  background-color: var(--primary-purple-light);
+  color: var(--text-dark); /* Use dark text on light purple button */
+}
+
+
+/* role selector for switching between student and instructor */
+.role-selector {
+  background-color: var(--background-card); /* use card background */
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin: 0 var(--spacing-md) var(--spacing-xl);
+  text-align: center;
+  border: 1px solid var(--border-color); /* Add border */
+}
+
+.role-selector h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary); /* use theme text color */
+}
+
+.role-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.role-button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: 2px solid var(--border-color); /* use theme border color */
+  background-color: var(--background-card); /* use card background */
+  color: var(--text-primary); /* use theme text color */
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 120px;
+}
+
+.role-button:hover {
+  border-color: var(--primary-purple);
+  color: var(--primary-purple);
+  background-color: var(--background-hover-light); /* subtle hover */
+}
+body.theme-dark .role-button:hover {
+  color: var(--primary-purple-light); /* Lighter purple text on hover */
+  border-color: var(--primary-purple-light);
+}
+
+.role-button.active {
+  background-color: var(--primary-purple);
+  color: var(--button-text-primary); /* Use button text color for contrast */
+  border-color: var(--primary-purple);
+}
+body.theme-dark .role-button.active {
+  background-color: var(--primary-purple-light);
+  color: var(--text-dark); /* Use dark text on light purple button */
+}
+
+/* responsive design for tablets */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .page-title {
+    font-size: var(--font-size-base);
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-content {
+    padding: var(--spacing-lg) 0;
+  }
+}
+
+/* responsive design for mobile phones */
+@media (max-width: 480px) {
+  .role-buttons {
+    flex-direction: column;
+  }
+
+  .role-button {
+    width: 100%;
+  }
+}
+
+/* footer styling */
+.app-footer {
+  background-color: var(--header-background); /* use header specific background */
+  color: var(--header-text); /* use header specific text color */
+  padding: var(--spacing-xl) 0;
+  margin-top: auto;
+  text-align: center;
+}
+
+.app-footer p {
+  margin: var(--spacing-sm) 0;
+  color: inherit; /* Ensure footer text inherits color */
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--header-text);
+  text-decoration: none;
+  padding: 0 var(--spacing-sm);
+  transition: opacity 0.2s;
+}
+
+.footer-links a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}

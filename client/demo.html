@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Classroom Co-Pilot - Demo Version">
+  <title>AI Classroom Co-Pilot - Demo</title>
+  <style>
+    /* global styles and css variables for the ai classroom co-pilot application */
+    :root {
+      --primary-purple: #4B0082;
+      --primary-purple-dark: #3a0066;
+      --primary-purple-light: #6a0dad;
+      --accent-green: #28a745;
+      --accent-green-hover: #218838;
+      --background-white: #ffffff;
+      --background-gray-light: #f5f5f5;
+      --background-gray-medium: #eeeeee;
+      --text-dark: #333333;
+      --text-light: #666666;
+      --border-gray: #dddddd;
+      --error-red: #dc3545;
+      --warning-yellow: #ffc107;
+
+      /* theme-aware variables (default light) */
+      --background-page: var(--background-gray-light);
+      --background-card: var(--background-white);
+      --background-input: var(--background-white);
+      --background-hover-light: rgba(75, 0, 130, 0.05);
+      --text-primary: var(--text-dark);
+      --text-secondary: var(--text-light);
+      --border-color: var(--border-gray);
+      --header-background: var(--primary-purple);
+      --header-text: white;
+      --header-icon-color: white;
+      --button-text-primary: white;
+
+      /* spacing system */
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --spacing-xxl: 3rem;
+
+      /* typography */
+      --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      --font-size-sm-base: 0.875rem;
+      --font-size-base-base: 1rem;
+      --font-size-lg-base: 1.125rem;
+      --font-size-xl-base: 1.5rem;
+      --font-size-xxl-base: 2rem;
+
+      --font-size-sm: var(--font-size-sm-base);
+      --font-size-base: var(--font-size-base-base);
+      --font-size-lg: var(--font-size-lg-base);
+      --font-size-xl: var(--font-size-xl-base);
+      --font-size-xxl: var(--font-size-xxl-base);
+
+      /* border radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      /* shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* rudimentary dark mode simulation (affects variables) */
+    body.theme-dark {
+      --primary-purple: #6a0dad;
+      --primary-purple-dark: #4B0082;
+      --primary-purple-light: #8a2be2;
+      --accent-green: #34c759;
+      --accent-green-hover: #2aa84a;
+      --background-page: #121212;
+      --background-card: #1e1e1e;
+      --background-input: #2c2c2c;
+      --background-gray-medium: #333333;
+      --background-hover-light: rgba(138, 43, 226, 0.15);
+      --text-primary: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --border-color: #444444;
+      --header-background: #4B0082; /* Keep header purple */
+      --header-text: #e0e0e0;
+      --header-icon-color: #e0e0e0; /* Change icon color */
+      --button-text-primary: #e0e0e0;
+    }
+
+    /* reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: var(--font-size-base);
+      color: var(--text-primary);
+      background-color: var(--background-page);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    h1, h2, h3, h4, h5, h6, p, li, label, span, div { color: var(--text-primary); }
+    small, .text-muted { color: var(--text-secondary); }
+
+    /* app container */
+    .app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* header navigation bar matching reference image */
+    .app-header {
+      background-color: var(--header-background);
+      color: var(--header-text);
+      padding: var(--spacing-md) 0;
+      box-shadow: var(--shadow-md);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .header-content {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md);
+    }
+    .back-button, .user-button {
+      background: none; border: none; color: var(--header-icon-color);
+      font-size: var(--font-size-xl); cursor: pointer; padding: var(--spacing-sm);
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm); transition: background-color 0.2s, color 0.3s ease;
+      min-width: 44px; min-height: 44px;
+    }
+    .back-button:hover, .user-button:hover { background-color: var(--primary-purple-dark); }
+    body.theme-dark .back-button:hover, body.theme-dark .user-button:hover { background-color: var(--primary-purple-light); }
+    .page-title {
+      font-size: var(--font-size-lg); font-weight: 600; flex-grow: 1; text-align: center;
+      color: var(--header-text);
+    }
+
+    /* navigation menu */
+    .nav-menu {
+      display: flex; gap: var(--spacing-md); justify-content: center;
+      margin: var(--spacing-xl) auto; flex-wrap: wrap; padding: 0 var(--spacing-md);
+      max-width: 1200px;
+    }
+    .nav-button {
+      padding: var(--spacing-md) var(--spacing-lg); background-color: var(--background-card);
+      border: 2px solid var(--primary-purple); color: var(--primary-purple);
+      border-radius: var(--radius-md); font-size: var(--font-size-base); font-weight: 600;
+      cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    body.theme-dark .nav-button { color: var(--primary-purple-light); border-color: var(--primary-purple-light); }
+    .nav-button:hover {
+      background-color: var(--primary-purple); color: var(--button-text-primary);
+      transform: translateY(-2px); box-shadow: var(--shadow-md);
+    }
+    body.theme-dark .nav-button:hover { background-color: var(--primary-purple-light); color: var(--text-dark); }
+    .nav-button.active { background-color: var(--primary-purple); color: var(--button-text-primary); }
+    body.theme-dark .nav-button.active { background-color: var(--primary-purple-light); color: var(--text-dark); }
+
+    /* role selector */
+    .role-selector {
+      background-color: var(--background-card); padding: var(--spacing-lg);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+      margin: 0 var(--spacing-md) var(--spacing-xl); text-align: center;
+      max-width: 1200px; margin-left: auto; margin-right: auto; /* Centered */
+      border: 1px solid var(--border-color);
+    }
+    .role-selector h3 { margin-bottom: var(--spacing-md); color: var(--text-primary); }
+    .role-buttons { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; }
+    .role-button {
+      padding: var(--spacing-md) var(--spacing-xl); border: 2px solid var(--border-color);
+      background-color: var(--background-card); color: var(--text-primary);
+      border-radius: var(--radius-md); font-size: var(--font-size-base);
+      cursor: pointer; transition: all 0.2s; min-width: 120px;
+    }
+    .role-button:hover { border-color: var(--primary-purple); color: var(--primary-purple); background-color: var(--background-hover-light); }
+    body.theme-dark .role-button:hover { color: var(--primary-purple-light); border-color: var(--primary-purple-light); }
+    .role-button.active { background-color: var(--primary-purple); color: var(--button-text-primary); border-color: var(--primary-purple); }
+    body.theme-dark .role-button.active { background-color: var(--primary-purple-light); color: var(--text-dark); }
+
+    /* main content */
+    .main-content {
+      flex: 1; padding: var(--spacing-xl) var(--spacing-md);
+      max-width: 1200px; width: 100%; margin: 0 auto;
+    }
+
+    /* card component */
+    .card {
+      background-color: var(--background-card); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: var(--spacing-xl);
+      border: 1px solid var(--border-color); transition: background-color 0.3s ease;
+    }
+    .card-body { padding: var(--spacing-lg); }
+
+    /* page header */
+    .page-header { text-align: center; margin-bottom: var(--spacing-xl); }
+    .page-header h2 { font-size: var(--font-size-xxl); color: var(--primary-purple); margin-bottom: var(--spacing-sm); }
+    body.theme-dark .page-header h2 { color: var(--primary-purple-light); }
+    .page-description { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+    /* textarea styling */
+    .textarea-field {
+      width: 100%; padding: var(--spacing-md); border: 2px solid var(--border-color);
+      border-radius: var(--radius-md); font-size: var(--font-size-base);
+      font-family: var(--font-family); color: var(--text-primary);
+      background-color: var(--background-input); resize: vertical; min-height: 100px;
+      transition: border-color 0.2s ease, background-color 0.3s ease;
+    }
+    .textarea-field:focus { outline: none; border-color: var(--primary-purple); box-shadow: 0 0 0 3px rgba(75, 0, 130, 0.1); }
+    body.theme-dark .textarea-field:focus { border-color: var(--primary-purple-light); box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2); }
+    .textarea-field::placeholder { color: var(--text-secondary); opacity: 0.7; }
+
+    /* button styling */
+    .btn {
+      border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;
+      transition: all 0.2s ease; font-family: var(--font-family); display: inline-flex;
+      align-items: center; justify-content: center; gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-lg); font-size: var(--font-size-base);
+      text-decoration: none; line-height: 1.5;
+    }
+    .btn-small { padding: var(--spacing-sm) var(--spacing-md); font-size: var(--font-size-sm); }
+    .btn-large { padding: var(--spacing-lg) var(--spacing-xl); font-size: var(--font-size-lg); }
+
+    .btn-primary { background-color: var(--primary-purple); color: var(--button-text-primary); border: 2px solid var(--primary-purple); }
+    .btn-primary:hover:not(:disabled) { background-color: var(--primary-purple-dark); border-color: var(--primary-purple-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .btn-secondary { background-color: var(--background-card); color: var(--primary-purple); border: 2px solid var(--primary-purple); }
+    .btn-secondary:hover:not(:disabled) { background-color: var(--primary-purple); color: var(--background-card); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .btn-success { background-color: var(--accent-green); color: var(--background-white); border: 2px solid var(--accent-green); }
+    body.theme-dark .btn-success { color: var(--text-dark); }
+    .btn-success:hover:not(:disabled) { background-color: var(--accent-green-hover); border-color: var(--accent-green-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .btn-danger { background-color: transparent; color: var(--error-red); border: 2px solid var(--error-red); }
+    .btn-danger:hover:not(:disabled) { background-color: var(--error-red); color: white; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    body.theme-dark .btn-danger { color: #ff453a; border-color: #ff453a; }
+    body.theme-dark .btn-danger:hover:not(:disabled) { background-color: #ff453a; color: var(--text-dark); }
+
+    .btn-outline { background-color: transparent; color: var(--primary-purple); border: 1px dashed var(--primary-purple); padding: var(--spacing-xs) var(--spacing-md); font-size: var(--font-size-sm); opacity: 0.7; }
+    .btn-outline:hover:not(:disabled) { opacity: 1; background-color: var(--background-hover-light); }
+    body.theme-dark .btn-outline { color: var(--primary-purple-light); border-color: var(--primary-purple-light); }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* conversation display */
+    .conversation-list { display: flex; flex-direction: column; gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
+    .conversation-card { max-height: 600px; overflow-y: auto; }
+    .conversation-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 1px solid var(--border-color); }
+    .conversation-header h3 { margin: 0; }
+    .question-bubble { background-color: var(--primary-purple); color: var(--header-text); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-left: auto; max-width: 80%; }
+    body.theme-dark .question-bubble { background-color: var(--primary-purple-dark); }
+    .answer-bubble { background-color: var(--background-gray-medium); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-right: auto; max-width: 85%; border-left: 4px solid var(--accent-green); border: 1px solid var(--border-color); }
+    body.theme-dark .answer-bubble { background-color: #2c2c2c; }
+    .bubble-header { display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); font-weight: 600; }
+    .bubble-content { color: inherit; }
+    .citations-section { margin-top: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid var(--border-color); }
+    .citations-list { list-style: none; padding: 0; margin-top: var(--spacing-md); display: flex; flex-direction: column; gap: var(--spacing-sm); }
+    .citation-item { background-color: var(--background-card); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 3px solid var(--primary-purple); border: 1px solid var(--border-color); }
+    body.theme-dark .citation-item { border-left-color: var(--primary-purple-light); }
+    .citation-item strong { color: var(--primary-purple); display: block; margin-bottom: var(--spacing-xs); }
+    body.theme-dark .citation-item strong { color: var(--primary-purple-light); }
+    .citation-content { color: var(--text-secondary); font-size: var(--font-size-sm); font-style: italic; }
+
+    /* course materials - week structure */
+    .weeks-list { display: flex; flex-direction: column; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl); }
+    .week-card { margin-bottom: 0; /* Remove bottom margin as gap handles it */ }
+    .week-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 1px solid var(--border-color); }
+    .week-title { margin: 0; font-size: var(--font-size-xl); }
+    .week-actions { display: flex; gap: var(--spacing-sm); }
+    .week-upload-form { margin-top: var(--spacing-md); margin-bottom: var(--spacing-lg); padding: var(--spacing-lg); background-color: var(--background-gray-light); border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+    body.theme-dark .week-upload-form { background-color: rgba(255, 255, 255, 0.03); }
+    .materials-list { display: flex; flex-direction: column; gap: var(--spacing-md); margin-top: var(--spacing-lg); }
+    .material-item { display: flex; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md); background-color: var(--background-gray-medium); border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+    body.theme-dark .material-item { background-color: rgba(255, 255, 255, 0.05); }
+    .material-info { flex-grow: 1; min-width: 0; }
+    .material-name { margin: 0 0 var(--spacing-xs) 0; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .material-meta { display: flex; align-items: center; gap: var(--spacing-sm); font-size: var(--font-size-sm); color: var(--text-secondary); }
+    .material-status { flex-shrink: 0; }
+    .material-actions { flex-shrink: 0; display: flex; gap: var(--spacing-sm); }
+    .status-badge { padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm); font-size: var(--font-size-sm); font-weight: 600; text-transform: capitalize; min-width: 70px; text-align: center; }
+    .status-badge-success { background-color: rgba(40, 167, 69, 0.1); color: var(--accent-green); }
+    body.theme-dark .status-badge-success { background-color: rgba(52, 199, 89, 0.15); color: #34c759; }
+    .status-badge-warning { background-color: rgba(255, 193, 7, 0.1); color: var(--warning-yellow); }
+    body.theme-dark .status-badge-warning { background-color: rgba(255, 193, 7, 0.15); color: #ffd60a; }
+    .status-badge-error { background-color: rgba(220, 53, 69, 0.1); color: var(--error-red); }
+    body.theme-dark .status-badge-error { background-color: rgba(220, 53, 69, 0.15); color: #ff453a; }
+    .no-materials { color: var(--text-secondary); font-style: italic; text-align: center; padding: var(--spacing-md); }
+    .add-week-divider { display: flex; justify-content: center; align-items: center; margin: var(--spacing-sm) 0; }
+    .add-week-divider::before, .add-week-divider::after { content: ''; flex-grow: 1; height: 1px; background-color: var(--border-color); margin: 0 var(--spacing-md); }
+    .add-week-section { text-align: center; margin: var(--spacing-lg) 0 var(--spacing-xl); }
+    .dropzone { border: 3px dashed var(--border-color); border-radius: var(--radius-lg); padding: var(--spacing-xl); text-align: center; transition: all 0.3s ease; background-color: var(--background-gray-medium); cursor: pointer; }
+    body.theme-dark .dropzone { background-color: rgba(255, 255, 255, 0.05); }
+    .dropzone:hover { border-color: var(--primary-purple); background-color: var(--background-hover-light); }
+    .dropzone-active { border-color: var(--accent-green); background-color: rgba(40, 167, 69, 0.1); }
+    body.theme-dark .dropzone-active { background-color: rgba(52, 199, 89, 0.15); }
+    .dropzone-content { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-sm); }
+    .dropzone-icon { font-size: 2.5rem; color: var(--text-secondary); }
+    .dropzone-text { font-size: var(--font-size-base); font-weight: 600; color: var(--text-primary); margin: 0; }
+    .file-input { display: none; }
+    .upload-progress { margin-top: var(--spacing-md); padding: var(--spacing-md); background-color: var(--background-gray-medium); border-radius: var(--radius-md); }
+    body.theme-dark .upload-progress { background-color: rgba(255, 255, 255, 0.05); }
+    .progress-bar { width: 100%; height: 16px; background-color: var(--background-card); border-radius: var(--radius-md); overflow: hidden; margin: var(--spacing-xs) 0; border: 1px solid var(--border-color); }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-green-hover) 100%); transition: width 0.3s ease; }
+    .progress-percentage { font-size: var(--font-size-sm); text-align: right; font-weight: 600; color: var(--accent-green); margin: 0; }
+    .status-message { margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-md); font-weight: 600; font-size: var(--font-size-sm); }
+    .status-success { background-color: rgba(40, 167, 69, 0.1); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    body.theme-dark .status-success { background-color: rgba(52, 199, 89, 0.15); color: #34c759; border-color: #34c759; }
+    .status-error { background-color: rgba(220, 53, 69, 0.1); color: var(--error-red); border: 1px solid var(--error-red); }
+    body.theme-dark .status-error { background-color: rgba(220, 53, 69, 0.15); color: #ff453a; border-color: #ff453a; }
+
+    /* account settings */
+    .settings-card { margin-bottom: var(--spacing-xl); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+    .form-section { margin-bottom: var(--spacing-lg); }
+    .section-label { display: block; font-weight: 600; margin-bottom: var(--spacing-md); }
+    .theme-selector, .font-size-selector { display: flex; gap: var(--spacing-md); }
+    .theme-option, .size-option { flex: 1; padding: var(--spacing-md); border: 2px solid var(--border-color); background-color: var(--background-card); color: var(--text-primary); border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all 0.2s ease; text-align: center; }
+    .theme-option:hover, .size-option:hover { border-color: var(--primary-purple); background-color: var(--background-hover-light); }
+    .theme-option.active, .size-option.active { background-color: var(--primary-purple); color: var(--button-text-primary); border-color: var(--primary-purple); }
+    body.theme-dark .theme-option.active, body.theme-dark .size-option.active { background-color: var(--primary-purple-light); color: var(--text-dark); }
+    .size-option:nth-child(1) { font-size: calc(var(--font-size-sm-base) * 1.1); }
+    .size-option:nth-child(2) { font-size: calc(var(--font-size-base-base) * 1.1); }
+    .size-option:nth-child(3) { font-size: calc(var(--font-size-lg-base) * 1.1); }
+
+    /* footer */
+    .app-footer {
+      background-color: var(--header-background); color: var(--header-text);
+      padding: var(--spacing-xl) 0; margin-top: auto; text-align: center;
+    }
+    .app-footer p { margin: var(--spacing-sm) 0; color: inherit; }
+    .footer-links { display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap; }
+    .footer-links a { color: var(--header-text); text-decoration: none; padding: 0 var(--spacing-sm); transition: opacity 0.2s; }
+    .footer-links a:hover { opacity: 0.8; text-decoration: underline; }
+
+    /* hidden class */
+    .hidden { display: none !important; }
+
+    /* loading spinner */
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .spinner { border: 3px solid var(--background-gray-medium); border-top: 3px solid var(--primary-purple); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: var(--spacing-lg) auto; }
+    body.theme-dark .spinner { border-color: var(--border-color); border-top-color: var(--primary-purple-light); }
+    .spinner-small { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255, 255, 255, 0.3); border-top-color: var(--button-text-primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    body.theme-dark .spinner-small { border-top-color: var(--text-primary); }
+
+
+    /* responsive design */
+    @media (max-width: 768px) {
+      .question-bubble, .answer-bubble { max-width: 95%; }
+      .nav-menu { flex-direction: column; }
+      .nav-button { width: 100%; text-align: center; }
+      .form-grid { grid-template-columns: 1fr; }
+      .week-card-header { flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
+      .week-actions { width: 100%; }
+      .material-item { flex-wrap: wrap; }
+      .material-actions { width: 100%; margin-top: var(--spacing-sm); justify-content: flex-end; }
+    }
+  </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="header-content">
+        <button class="back-button" onclick="goBack()" aria-label="Go back">←</button>
+        <h1 class="page-title" id="pageTitle">Classroom Copilot</h1>
+        <button class="user-button user-profile-button" onclick="showPage('settings')" aria-label="User profile">👤</button>
+      </div>
+    </header>
+
+    <nav class="nav-menu">
+      <button class="nav-button active" onclick="showPage('copilot')" id="nav-copilot">
+        💬 Classroom Copilot
+      </button>
+      <button class="nav-button" onclick="showPage('materials')" id="nav-materials">
+        📚 Course Materials
+      </button>
+      <button class="nav-button" onclick="showPage('settings')" id="nav-settings">
+        ⚙️ Account Settings
+      </button>
+    </nav>
+
+    <div class="role-selector">
+      <h3>Current Role</h3>
+      <div class="role-buttons">
+        <button class="role-button active" onclick="setRole('student')" id="role-student">
+          👨‍🎓 Student
+        </button>
+        <button class="role-button" onclick="setRole('instructor')" id="role-instructor">
+          👨‍🏫 Instructor
+        </button>
+      </div>
+    </div>
+
+    <main class="main-content">
+      <div id="page-copilot">
+        <div class="page-header">
+          <h2>Ask Your AI Classroom Assistant</h2>
+          <p class="page-description">
+            Ask questions about your course materials and get instant answers with citations.
+          </p>
+        </div>
+
+        <div class="card conversation-card" id="conversationCard" style="display: none;">
+          <div class="card-body">
+            <div class="conversation-header">
+                <h3>Conversation History</h3>
+                <button class="btn btn-secondary btn-small" onclick="clearConversation()">Clear History</button>
+            </div>
+            <div class="conversation-list" id="conversationList"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <form onsubmit="askQuestion(event)">
+              <textarea
+                class="textarea-field"
+                id="questionInput"
+                placeholder="Type your question here... (e.g., 'What is the main concept in Week 2?')"
+                rows="4"
+                required
+              ></textarea>
+              <div style="margin-top: var(--spacing-md); text-align: right;">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                  <span>🚀</span>
+                  Ask Question
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, var(--primary-purple-light) 0%, var(--primary-purple) 100%); color: var(--header-text);">
+          <div class="card-body">
+            <h3 style="color: inherit; margin-bottom: var(--spacing-md);">💡 Tips for Better Results</h3>
+            <ul style="list-style: none; padding: 0; color: inherit;">
+              <li style="padding: var(--spacing-sm) 0; position: relative; padding-left: var(--spacing-lg);"><span style="position: absolute; left: 0; color: var(--accent-green)">✓</span> Be specific in your questions for more accurate answers</li>
+              <li style="padding: var(--spacing-sm) 0; position: relative; padding-left: var(--spacing-lg);"><span style="position: absolute; left: 0; color: var(--accent-green)">✓</span> Reference specific weeks or topics when possible</li>
+              <li style="padding: var(--spacing-sm) 0; position: relative; padding-left: var(--spacing-lg);"><span style="position: absolute; left: 0; color: var(--accent-green)">✓</span> Ask follow-up questions to dive deeper into topics</li>
+              <li style="padding: var(--spacing-sm) 0; position: relative; padding-left: var(--spacing-lg);"><span style="position: absolute; left: 0; color: var(--accent-green)">✓</span> Check the citations to verify information in your course materials</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-materials" class="hidden">
+        <div class="page-header">
+          <h2>Course Materials Management</h2>
+          <p class="page-description" id="materialsDescription">
+            View available course materials organized by week.
+          </p>
+        </div>
+
+        <div id="weeksListContainer" class="weeks-list">
+          </div>
+
+        <div class="add-week-section instructor-only" style="display: none;">
+          <button class="btn btn-success btn-large" onclick="addWeek(courseWeeks.length)">
+            ➕ Add Week at End
+          </button>
+        </div>
+
+      </div>
+
+      <div id="page-settings" class="hidden">
+        <div class="page-header">
+          <h2>Account Settings</h2>
+          <p class="page-description">
+            Manage your profile information and application preferences
+          </p>
+        </div>
+
+         <div id="settingsSaveMessage" class="status-message status-success" role="status" style="display: none; margin-bottom: var(--spacing-xl);"></div>
+         <div id="settingsErrorMessage" class="status-message status-error" role="alert" style="display: none; margin-bottom: var(--spacing-xl);"></div>
+
+        <div class="card settings-card">
+          <div class="card-body">
+            <h3>👤 Profile Information</h3>
+             <form onsubmit="saveSettings(event, 'profile')">
+                <div class="form-grid" style="margin-top: var(--spacing-lg);">
+                    <div>
+                        <label for="profileName" class="section-label">Full Name</label>
+                        <input type="text" id="profileName" class="input-field" value="John Doe">
+                    </div>
+                    <div>
+                        <label for="profileEmail" class="section-label">Email Address</label>
+                        <input type="email" id="profileEmail" class="input-field" value="john.doe@university.edu">
+                    </div>
+                     <div>
+                        <label for="profileInstitution" class="section-label">Institution</label>
+                        <input type="text" id="profileInstitution" class="input-field" value="University Name">
+                    </div>
+                    <div>
+                        <label for="profileDepartment" class="section-label">Department</label>
+                        <input type="text" id="profileDepartment" class="input-field" value="Computer Science">
+                    </div>
+                </div>
+                 <div style="text-align: right; margin-top: var(--spacing-lg); border-top: 1px solid var(--border-color); padding-top: var(--spacing-lg);">
+                    <button type="submit" class="btn btn-primary">Save Profile</button>
+                 </div>
+             </form>
+          </div>
+        </div>
+
+        <div class="card settings-card">
+            <div class="card-body">
+                <h3>⚙️ Preferences</h3>
+                 <form onsubmit="saveSettings(event, 'preferences')">
+                     {/* theme selector */}
+                    <div class="form-section">
+                      <label class="section-label">Theme</label>
+                      <div class="theme-selector">
+                        <button type="button" class="theme-option active" id="theme-light" onclick="selectTheme('light')">☀️ Light</button>
+                        <button type="button" class="theme-option" id="theme-dark" onclick="selectTheme('dark')">🌙 Dark</button>
+                      </div>
+                    </div>
+
+                    {/* font size selector */}
+                    <div class="form-section">
+                      <label class="section-label">Font Size</label>
+                      <div class="font-size-selector">
+                        <button type="button" class="size-option" id="font-small" onclick="selectFontSize('small')">A</button>
+                        <button type="button" class="size-option active" id="font-medium" onclick="selectFontSize('medium')">A</button>
+                        <button type="button" class="size-option" id="font-large" onclick="selectFontSize('large')">A</button>
+                      </div>
+                    </div>
+                     <div style="text-align: right; margin-top: var(--spacing-lg); border-top: 1px solid var(--border-color); padding-top: var(--spacing-lg);">
+                        <button type="submit" class="btn btn-primary">Save Preferences</button>
+                     </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card settings-card">
+            <div class="card-body">
+                 <h3>🔒 Change Password</h3>
+                 <form onsubmit="saveSettings(event, 'password')">
+                     <div style="margin-top: var(--spacing-lg);">
+                         <label for="currentPassword" class="section-label">Current Password</label>
+                         <input type="password" id="currentPassword" class="input-field" placeholder="Enter current password" required>
+                     </div>
+                      <div style="margin-top: var(--spacing-md);">
+                         <label for="newPassword" class="section-label">New Password</label>
+                         <input type="password" id="newPassword" class="input-field" placeholder="Enter new password (min 8 characters)" required>
+                     </div>
+                      <div style="margin-top: var(--spacing-md);">
+                         <label for="confirmPassword" class="section-label">Confirm New Password</label>
+                         <input type="password" id="confirmPassword" class="input-field" placeholder="Re-enter new password" required>
+                     </div>
+                      <div style="text-align: right; margin-top: var(--spacing-lg); border-top: 1px solid var(--border-color); padding-top: var(--spacing-lg);">
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                     </div>
+                 </form>
+            </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div>
+        <p>&copy; 2025 AI Classroom Co-Pilot. Built with React and FastAPI.</p>
+        <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-sm);">
+          This is a demo version. For full functionality, use the React application.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <input type="file" id="weekFileInputTemplate" class="file-input" accept=".pptx,.pdf,.docx" multiple style="display: none;">
+
+  <script>
+    // global state
+    let currentRole = 'student';
+    let conversation = [];
+    let courseWeeks = [ // Default sample data
+        {
+          id: 'week-1',
+          title: 'Week 1',
+          materials: [
+            { id: 'mat-1', name: 'Introduction to AI.pptx', size: '2.5 MB', uploadDate: '2023-01-15', status: 'processed' },
+            { id: 'mat-2', name: 'Machine Learning Basics.pdf', size: '1.2 MB', uploadDate: '2023-01-18', status: 'processed' },
+          ],
+        },
+        {
+          id: 'week-2',
+          title: 'Week 2',
+          materials: [
+            { id: 'mat-3', name: 'Advanced AI Concepts.docx', size: '3.1 MB', uploadDate: '2023-01-22', status: 'processed' },
+          ],
+        },
+    ];
+    let currentTheme = 'light';
+    let currentFontSize = 'medium';
+
+    /**
+     * show specific page and hide others
+     */
+    function showPage(pageName) {
+      document.getElementById('page-copilot').classList.add('hidden');
+      document.getElementById('page-materials').classList.add('hidden');
+      document.getElementById('page-settings').classList.add('hidden');
+
+      document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+
+      let title = 'Classroom Copilot'; // Default title
+      if (pageName === 'copilot') {
+        document.getElementById('page-copilot').classList.remove('hidden');
+        document.getElementById('nav-copilot').classList.add('active');
+      } else if (pageName === 'materials') {
+        document.getElementById('page-materials').classList.remove('hidden');
+        document.getElementById('nav-materials').classList.add('active');
+        title = 'Course Materials';
+        renderWeeks(); // Re-render weeks when page is shown
+      } else if (pageName === 'settings') {
+        document.getElementById('page-settings').classList.remove('hidden');
+        document.getElementById('nav-settings').classList.add('active');
+        title = 'Account Settings';
+      }
+      document.getElementById('pageTitle').textContent = title;
+    }
+
+    /**
+     * set user role and update ui visibility
+     */
+    function setRole(role) {
+      currentRole = role;
+      document.getElementById('role-student').classList.toggle('active', role === 'student');
+      document.getElementById('role-instructor').classList.toggle('active', role === 'instructor');
+
+      // Toggle instructor-only elements visibility
+      document.querySelectorAll('.instructor-only').forEach(el => {
+        el.style.display = role === 'instructor' ? '' : 'none';
+      });
+
+      // Update materials page description
+      const materialsDesc = document.getElementById('materialsDescription');
+       if (role === 'instructor') {
+         materialsDesc.textContent = 'Organize your course content into weeks. Upload PPTX, PDF, and DOCX files for each week.';
+       } else {
+         materialsDesc.textContent = 'Explore the course materials organized by your instructor.';
+       }
+
+      // Re-render weeks to show/hide instructor controls within them
+      if (!document.getElementById('page-materials').classList.contains('hidden')) {
+          renderWeeks();
+      }
+    }
+
+     /**
+     * handle question submission
+     */
+    async function askQuestion(event) {
+      event.preventDefault();
+      const questionInput = document.getElementById('questionInput');
+      const question = questionInput.value.trim();
+      if (!question) return;
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-small"></span> Processing...';
+
+      conversation.push({ type: 'question', content: question });
+      updateConversation(); // Show question immediately
+
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate delay
+
+      conversation.push({
+        type: 'answer',
+        content: 'This is a sample AI-generated answer based on course materials. It should reference specific sources.',
+        citations: [
+          { source: 'Week 1, Slide 8', content: 'Relevant excerpt...' },
+          { source: 'Week 2, Page 12', content: 'Additional context...' }
+        ],
+        confidence: 0.92
+      });
+
+      updateConversation();
+      questionInput.value = '';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>🚀</span> Ask Question';
+    }
+
+     /**
+     * update conversation display
+     */
+    function updateConversation() {
+      const conversationCard = document.getElementById('conversationCard');
+      const conversationList = document.getElementById('conversationList');
+      if (conversation.length === 0) {
+        conversationCard.style.display = 'none';
+        return;
+      }
+      conversationCard.style.display = 'block';
+      conversationList.innerHTML = ''; // Clear previous messages
+
+      conversation.forEach(item => {
+        const itemDiv = document.createElement('div');
+        if (item.type === 'question') {
+          itemDiv.className = 'question-bubble';
+          itemDiv.innerHTML = `
+            <div class="bubble-header"><span>❓</span> <span>Your Question</span></div>
+            <p class="bubble-content">${escapeHtml(item.content)}</p>
+          `;
+        } else {
+          itemDiv.className = 'answer-bubble';
+          let citationsHtml = '';
+          if (item.citations && item.citations.length > 0) {
+            citationsHtml = `
+              <div class="citations-section">
+                <h4 style="margin-bottom: var(--spacing-md);">📚 Sources:</h4>
+                <ul class="citations-list">
+                  ${item.citations.map(c => `
+                    <li class="citation-item">
+                      <strong>${escapeHtml(c.source)}</strong>
+                      <p class="citation-content">${escapeHtml(c.content)}</p>
+                    </li>`).join('')}
+                </ul>
+              </div>`;
+          }
+          itemDiv.innerHTML = `
+            <div class="bubble-header">
+              <span>🤖</span> <span>AI Assistant</span>
+              ${item.confidence ? `<span style="margin-left: auto; padding: var(--spacing-xs) var(--spacing-sm); border-radius: var(--radius-sm); background-color: var(--accent-green); color: ${currentTheme === 'dark' ? 'var(--text-dark)' : 'white'}; font-size: var(--font-size-sm); font-weight: 600;">${Math.round(item.confidence * 100)}% confident</span>` : ''}
+            </div>
+            <p class="bubble-content">${escapeHtml(item.content)}</p>
+            ${citationsHtml}
+          `;
+        }
+        conversationList.appendChild(itemDiv);
+      });
+      conversationList.scrollTop = conversationList.scrollHeight; // Scroll to bottom
+    }
+
+    /** clear conversation */
+    function clearConversation() {
+        conversation = [];
+        updateConversation();
+    }
+
+
+    /** Renders the list of week cards */
+    function renderWeeks() {
+        const container = document.getElementById('weeksListContainer');
+        if (!container) return;
+        container.innerHTML = ''; // Clear existing content
+
+        if (courseWeeks.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                  <p>No weeks have been added yet.</p>
+                  ${currentRole === 'instructor' ? '<p>Click "Add Week" below to start organizing your materials.</p>' : ''}
+                </div>`;
+            return;
+        }
+
+        courseWeeks.forEach((week, index) => {
+            // Add "Add Week Here" button/divider before each week
+             if (currentRole === 'instructor') {
+                container.innerHTML += `
+                    <div class="add-week-divider">
+                         <button class="btn btn-outline btn-small" onclick="addWeek(${index})" title="Add week before ${escapeHtml(week.title)}">
+                           ＋ Add Week Here
+                         </button>
+                    </div>`;
+             }
+
+            // Create Week Card HTML
+            const weekCard = document.createElement('div');
+            weekCard.className = 'card week-card';
+            weekCard.dataset.weekId = week.id; // Store week id
+
+            // Header
+            let headerActions = '';
+            if (currentRole === 'instructor') {
+                headerActions = `
+                    <div class="week-actions">
+                        <button class="btn btn-secondary btn-small" onclick="toggleUploadForm('${week.id}')" id="addMaterialBtn-${week.id}" title="Add material">
+                            ➕ Add Material
+                        </button>
+                        <button class="btn btn-danger btn-small" onclick="deleteWeek('${week.id}')" title="Delete Week">
+                            🗑️ Delete Week
+                        </button>
+                    </div>`;
+            }
+            weekCard.innerHTML += `
+                <div class="week-card-header">
+                    <h3 class="week-title">${escapeHtml(week.title)}</h3>
+                    ${headerActions}
+                </div>`;
+
+            // Upload Form (hidden initially)
+             if (currentRole === 'instructor') {
+                weekCard.innerHTML += `
+                    <div class="week-upload-form" id="uploadForm-${week.id}" style="display: none;">
+                        <div class="status-message status-success" id="statusMsg-${week.id}" role="status" style="display: none;"></div>
+                        <div class="status-message status-error" id="errorMsg-${week.id}" role="alert" style="display: none;"></div>
+                        <div class="dropzone" onclick="triggerFileInput('${week.id}')" ondragover="handleDragOver(event, this)" ondragleave="handleDragLeave(event, this)" ondrop="handleDrop(event, this, '${week.id}')">
+                           <div class="dropzone-content">
+                             <span class="dropzone-icon">📁</span>
+                             <p class="dropzone-text">Drag and drop, or click to browse</p>
+                             <input type="file" id="fileInput-${week.id}" class="file-input" accept=".pptx,.pdf,.docx" multiple onchange="handleFileSelect(event, '${week.id}')">
+                           </div>
+                        </div>
+                        <div class="upload-progress" id="progress-${week.id}" style="display: none;">
+                          <p class="progress-text" id="progressText-${week.id}"></p>
+                          <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill-${week.id}" style="width: 0%;"></div>
+                          </div>
+                          <p class="progress-percentage" id="progressPercent-${week.id}">0%</p>
+                        </div>
+                    </div>`;
+             }
+
+             // Materials List
+             let materialsHtml = '';
+             if (week.materials.length === 0) {
+                 materialsHtml = `<p class="no-materials">${currentRole === 'instructor' ? 'No material posted. Click "Add Material" above to upload.' : 'No material posted for this week.'}</p>`;
+             } else {
+                 materialsHtml = '<div class="materials-list">';
+                 week.materials.forEach(mat => {
+                     const statusClass = getStatusBadgeClass(mat.status);
+                     const statusText = mat.status !== 'processed' ? escapeHtml(mat.status) : '✔️';
+                     let actionsHtml = '';
+                     if (mat.status === 'processed') {
+                         actionsHtml += `<button class="btn btn-secondary btn-small" onclick="handleViewMaterial('${escapeJsString(mat.name)}')" title="View Material">👀 View</button>`;
+                     }
+                     if (currentRole === 'instructor') {
+                         actionsHtml += `<button class="btn btn-danger btn-small" onclick="deleteMaterial('${week.id}', '${mat.id}')" title="Delete Material">✖️ Delete</button>`;
+                     }
+
+                     materialsHtml += `
+                        <div class="material-item" data-material-id="${mat.id}">
+                            <div class="material-icon">📄</div>
+                            <div class="material-info">
+                                <h4 class="material-name" title="${escapeHtml(mat.name)}">${escapeHtml(mat.name)}</h4>
+                                <div class="material-meta">
+                                    <span class="material-size">${escapeHtml(mat.size)}</span>
+                                    <span class="material-separator">•</span>
+                                    <span class="material-date">Uploaded ${escapeHtml(mat.uploadDate)}</span>
+                                </div>
+                            </div>
+                            <div class="material-status">
+                                <span class="status-badge ${statusClass}">${statusText}</span>
+                            </div>
+                            <div class="material-actions">${actionsHtml}</div>
+                        </div>`;
+                 });
+                 materialsHtml += '</div>';
+             }
+            weekCard.innerHTML += `<div class="week-materials">${materialsHtml}</div>`;
+
+            container.appendChild(weekCard);
+        });
+    }
+
+    /** Renumbers weeks and updates titles */
+    function renumberWeeks(weeks) {
+        return weeks.map((week, index) => ({
+          ...week,
+          title: `Week ${index + 1}`
+        }));
+    }
+
+    /** Adds a new week at a specific index (or end if null) */
+    function addWeek(index = null) {
+        const newWeek = {
+          id: `week-${Date.now()}`,
+          title: `Week ${index !== null ? index + 1 : courseWeeks.length + 1}`, // temp
+          materials: [],
+        };
+        let updatedWeeks;
+        if (index !== null && index >= 0 && index <= courseWeeks.length) {
+            updatedWeeks = [...courseWeeks.slice(0, index), newWeek, ...courseWeeks.slice(index)];
+        } else {
+            updatedWeeks = [...courseWeeks, newWeek];
+        }
+        courseWeeks = renumberWeeks(updatedWeeks);
+        renderWeeks();
+    }
+
+    /** Deletes a week and re-renders */
+    function deleteWeek(weekId) {
+       if (window.confirm('Are you sure you want to delete this week and all its materials?')) {
+            courseWeeks = courseWeeks.filter(week => week.id !== weekId);
+            courseWeeks = renumberWeeks(courseWeeks); // Renumber after delete
+            renderWeeks();
+       }
+    }
+
+     /** Adds or updates a material in a week and re-renders */
+    function addMaterial(weekId, material, isUpdate = false) {
+        courseWeeks = courseWeeks.map(week => {
+            if (week.id === weekId) {
+                let updatedMaterials;
+                 if (isUpdate) {
+                    updatedMaterials = week.materials.map(m => m.id === material.id ? material : m);
+                 } else {
+                    const exists = week.materials.some(m => m.name === material.name);
+                    updatedMaterials = exists ? week.materials : [...week.materials, material];
+                 }
+                return { ...week, materials: updatedMaterials };
+            }
+            return week;
+        });
+       renderWeeks(); // Re-render needed to show the new/updated material
+    }
+
+    /** Deletes a material from a week and re-renders */
+    function deleteMaterial(weekId, materialId) {
+        if (window.confirm('Are you sure you want to delete this material?')) {
+            courseWeeks = courseWeeks.map(week => {
+                if (week.id === weekId) {
+                    return { ...week, materials: week.materials.filter(m => m.id !== materialId) };
+                }
+                return week;
+            });
+            renderWeeks();
+        }
+    }
+
+    /** Shows/hides the upload form for a week */
+    function toggleUploadForm(weekId) {
+        const form = document.getElementById(`uploadForm-${weekId}`);
+        const button = document.getElementById(`addMaterialBtn-${weekId}`);
+        if (form && button) {
+            const isVisible = form.style.display !== 'none';
+            form.style.display = isVisible ? 'none' : 'block';
+            button.innerHTML = isVisible ? '➕ Add Material' : '✖️ Cancel Upload';
+             // Clear messages when toggling
+            setMessage(`statusMsg-${weekId}`, '');
+            setMessage(`errorMsg-${weekId}`, '');
+            hideProgress(weekId);
+        }
+    }
+
+    /** Triggers the hidden file input for a specific week */
+    function triggerFileInput(weekId) {
+       document.getElementById(`fileInput-${weekId}`)?.click();
+    }
+
+    /** Handles file selection from the input */
+    function handleFileSelect(event, weekId) {
+        handleFileProcessing(weekId, Array.from(event.target.files));
+        event.target.value = ''; // Reset input
+    }
+
+    /** Drag and Drop handlers */
+    function handleDragOver(event, element) { event.preventDefault(); element.classList.add('dropzone-active'); }
+    function handleDragLeave(event, element) { event.preventDefault(); element.classList.remove('dropzone-active'); }
+    function handleDrop(event, element, weekId) {
+        event.preventDefault();
+        element.classList.remove('dropzone-active');
+        handleFileProcessing(weekId, Array.from(event.dataTransfer.files));
+    }
+
+    /** Simulates file processing and updates UI */
+    async function handleFileProcessing(weekId, files) {
+        setMessage(`statusMsg-${weekId}`, '');
+        setMessage(`errorMsg-${weekId}`, '');
+        hideProgress(weekId);
+
+        if (!files || files.length === 0) return;
+
+        // Validation (simplified from React version)
+        const allowedTypes = ['.pptx', '.pdf', '.docx'];
+        const maxSize = 10 * 1024 * 1024;
+        const invalidFiles = files.filter(f => !allowedTypes.includes('.' + f.name.split('.').pop().toLowerCase()));
+        const oversizedFiles = files.filter(f => f.size > maxSize);
+
+        if (invalidFiles.length > 0) {
+            setMessage(`errorMsg-${weekId}`, `Invalid file type(s): ${invalidFiles.map(f=>f.name).join(', ')}`);
+            return;
+        }
+        if (oversizedFiles.length > 0) {
+             setMessage(`errorMsg-${weekId}`, `File(s) too large: ${oversizedFiles.map(f=>f.name).join(', ')}`);
+            return;
+        }
+
+        let allSuccessful = true;
+        for (const file of files) {
+            const tempId = `mat-${Date.now()}-${Math.random()}`;
+            const initialMaterial = {
+                id: tempId, name: file.name, status: 'uploading',
+                size: formatFileSize(file.size), uploadDate: new Date().toISOString().split('T')[0]
+            };
+             addMaterial(weekId, initialMaterial); // Add with uploading status
+             showProgress(weekId, `Uploading ${file.name}...`, 0);
+
+             try {
+                 // Simulate upload
+                for (let i = 0; i <= 100; i += 10) {
+                    await new Promise(r => setTimeout(r, 50));
+                    updateProgress(weekId, i);
+                }
+                 setMessage(`statusMsg-${weekId}`, `Uploaded ${file.name}. Processing...`);
+                 addMaterial(weekId, { ...initialMaterial, status: 'processing' }, true); // Update status
+
+                 // Simulate processing
+                 await new Promise(r => setTimeout(r, 1500));
+                 addMaterial(weekId, { ...initialMaterial, status: 'processed' }, true); // Update status
+                 setMessage(`statusMsg-${weekId}`, `${file.name} processed successfully.`);
+
+             } catch (err) {
+                 console.error("Simulated upload error:", err);
+                 setMessage(`errorMsg-${weekId}`, `Failed to process ${file.name}.`);
+                 addMaterial(weekId, { ...initialMaterial, status: 'error' }, true); // Update status
+                 allSuccessful = false;
+             } finally {
+                 hideProgress(weekId); // Hide after each file attempt
+             }
+        }
+        if (allSuccessful && !document.getElementById(`errorMsg-${weekId}`).textContent) {
+             // Optionally hide form after success, with delay
+             setTimeout(() => {
+                 const form = document.getElementById(`uploadForm-${weekId}`);
+                 const button = document.getElementById(`addMaterialBtn-${weekId}`);
+                 if (form && button && form.style.display !== 'none') {
+                    form.style.display = 'none';
+                    button.innerHTML = '➕ Add Material';
+                    setMessage(`statusMsg-${weekId}`, ''); // Clear message on hide
+                 }
+             }, 2000);
+        }
+    }
+
+    /** Helper to set status/error messages */
+    function setMessage(elementId, text) {
+        const el = document.getElementById(elementId);
+        if (el) {
+            el.textContent = text ? (elementId.startsWith('status') ? '✓ ' : '⚠ ') + text : '';
+            el.style.display = text ? 'block' : 'none';
+        }
+    }
+     /** Helper to show/update progress */
+    function showProgress(weekId, text, percent) {
+         const progressDiv = document.getElementById(`progress-${weekId}`);
+         if (progressDiv) progressDiv.style.display = 'block';
+         updateProgress(weekId, percent, text); // Also update text initially
+    }
+     function updateProgress(weekId, percent, text = null) {
+         const fill = document.getElementById(`progressFill-${weekId}`);
+         const percentText = document.getElementById(`progressPercent-${weekId}`);
+         const progressTextEl = document.getElementById(`progressText-${weekId}`);
+         if (fill) fill.style.width = `${percent}%`;
+         if (percentText) percentText.textContent = `${percent}%`;
+          if (text && progressTextEl) progressTextEl.textContent = text;
+     }
+    /** Helper to hide progress */
+    function hideProgress(weekId) {
+        const progressDiv = document.getElementById(`progress-${weekId}`);
+        if (progressDiv) progressDiv.style.display = 'none';
+    }
+
+    /** Gets the CSS class for status badges */
+    function getStatusBadgeClass(status) {
+        switch (status) {
+          case 'processed': return 'status-badge-success';
+          case 'processing':
+          case 'uploading': return 'status-badge-warning';
+          case 'error': return 'status-badge-error';
+          default: return '';
+        }
+    }
+
+    /** Placeholder for viewing material */
+    function handleViewMaterial(materialName) {
+        alert(`Simulating view for: ${materialName}\n(Full functionality requires backend integration)`);
+    }
+
+    /** Placeholder for saving settings */
+    function saveSettings(event, type) {
+        event.preventDefault();
+        const msgEl = document.getElementById('settingsSaveMessage');
+        const errEl = document.getElementById('settingsErrorMessage');
+        msgEl.style.display = 'none';
+        errEl.style.display = 'none';
+
+        // Add specific logic for password validation if needed
+         if (type === 'password') {
+            const newPass = document.getElementById('newPassword').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+            if (newPass !== confirmPass) {
+                 errEl.textContent = '⚠ New passwords do not match.';
+                 errEl.style.display = 'block';
+                 return;
+            }
+             if (newPass.length < 8) {
+                  errEl.textContent = '⚠ New password must be at least 8 characters.';
+                 errEl.style.display = 'block';
+                 return;
+            }
+         }
+
+        // Simulate save
+        msgEl.textContent = `✓ ${type.charAt(0).toUpperCase() + type.slice(1)} saved successfully (simulated).`;
+        msgEl.style.display = 'block';
+        setTimeout(() => { msgEl.style.display = 'none'; }, 3000);
+
+        // Clear password fields after simulated success
+        if (type === 'password') {
+             document.getElementById('currentPassword').value = '';
+             document.getElementById('newPassword').value = '';
+             document.getElementById('confirmPassword').value = '';
+        }
+    }
+
+    /** Select Theme */
+    function selectTheme(theme) {
+        currentTheme = theme;
+        document.body.classList.toggle('theme-dark', theme === 'dark');
+        document.getElementById('theme-light').classList.toggle('active', theme === 'light');
+        document.getElementById('theme-dark').classList.toggle('active', theme === 'dark');
+        // Update conversation bubbles if visible
+        if (!document.getElementById('page-copilot').classList.contains('hidden')) {
+             updateConversation(); // Re-render to potentially update colors inside bubbles
+        }
+    }
+
+    /** Select Font Size */
+    function selectFontSize(size) {
+        currentFontSize = size;
+        document.body.className = document.body.className.replace(/font-size-\w+/, ''); // remove old size
+        document.body.classList.add(`font-size-${size}`);
+        document.querySelectorAll('.size-option').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`font-${size}`).classList.add('active');
+    }
+
+    /** Helper to escape HTML */
+    function escapeHtml(unsafe) {
+        if (!unsafe) return '';
+        return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+    }
+     /** Helper to escape strings for JS function calls in HTML */
+     function escapeJsString(unsafe) {
+        if (!unsafe) return '';
+        return unsafe.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+     }
+
+    /** go back (placeholder function) */
+    function goBack() {
+      alert('Back navigation would work with full routing in the React version');
+    }
+
+    // initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        setRole('student'); // Set initial role
+        selectTheme(currentTheme); // Apply initial theme
+        selectFontSize(currentFontSize); // Apply initial font size
+        showPage('copilot'); // Show default page
+    });
+  </script>
+</body>
+</html>

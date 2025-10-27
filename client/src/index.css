@@ -1,0 +1,264 @@
+/* global styles and css variables for the ai classroom co-pilot application */
+
+:root {
+  /* color palette - light mode defaults */
+  --primary-purple: #4B0082;
+  --primary-purple-dark: #3a0066;
+  --primary-purple-light: #6a0dad;
+  --accent-green: #28a745;
+  --accent-green-hover: #218838;
+  --background-white: #ffffff;
+  --background-gray-light: #f5f5f5; /* Renamed for clarity */
+  --background-gray-medium: #eeeeee; /* Added medium gray */
+  --text-dark: #333333;
+  --text-light: #666666;
+  --border-gray: #dddddd;
+  --error-red: #dc3545;
+  --warning-yellow: #ffc107;
+
+  /* theme-aware variables (default to light mode) */
+  --background-page: var(--background-gray-light);
+  --background-card: var(--background-white);
+  --background-input: var(--background-white);
+  --background-hover-light: rgba(75, 0, 130, 0.05); /* Light hover background */
+  --text-primary: var(--text-dark);
+  --text-secondary: var(--text-light);
+  --border-color: var(--border-gray);
+  --header-background: var(--primary-purple); /* Specific variable for header */
+  --header-text: white; /* Default header text color */
+  --header-icon-color: white; /* Explicit color for header icons - white in light mode */
+  --button-text-primary: white; /* Text color for primary buttons */
+
+  /* spacing system */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-size-sm-base: 0.875rem; /* 14px */
+  --font-size-base-base: 1rem;    /* 16px */
+  --font-size-lg-base: 1.125rem; /* 18px */
+  --font-size-xl-base: 1.5rem;   /* 24px */
+  --font-size-xxl-base: 2rem;  /* 32px */
+
+  /* default font sizes (medium) */
+  --font-size-sm: var(--font-size-sm-base);
+  --font-size-base: var(--font-size-base-base);
+  --font-size-lg: var(--font-size-lg-base);
+  --font-size-xl: var(--font-size-xl-base);
+  --font-size-xxl: var(--font-size-xxl-base);
+
+  /* border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* dark mode theme variables */
+body.theme-dark {
+  --primary-purple: #6a0dad; /* lighter purple for dark mode */
+  --primary-purple-dark: #4B0082;
+  --primary-purple-light: #8a2be2;
+  --accent-green: #34c759; /* slightly brighter green */
+  --accent-green-hover: #2aa84a;
+
+  --background-page: #121212;
+  --background-card: #1e1e1e;
+  --background-input: #2c2c2c; /* slightly lighter for inputs */
+  --background-gray-medium: #333333; /* Darker medium gray */
+  --background-hover-light: rgba(138, 43, 226, 0.15); /* Purple tint hover */
+
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --border-color: #444444;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3); /* Darker shadows */
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+
+  --header-background: #4B0082; /* Keep header original purple */
+  --header-text: #e0e0e0; /* Slightly off-white for header text */
+  --header-icon-color: #1c1c1e; /* Explicit color for header icons - black/dark in dark mode */
+  --button-text-primary: #e0e0e0; /* Use light text on dark primary buttons */
+}
+
+/* font size classes */
+body.font-size-small {
+  --font-size-sm: calc(var(--font-size-sm-base) * 0.9);
+  --font-size-base: calc(var(--font-size-base-base) * 0.9);
+  --font-size-lg: calc(var(--font-size-lg-base) * 0.9);
+  --font-size-xl: calc(var(--font-size-xl-base) * 0.9);
+  --font-size-xxl: calc(var(--font-size-xxl-base) * 0.9);
+}
+
+body.font-size-medium { /* default */
+  --font-size-sm: var(--font-size-sm-base);
+  --font-size-base: var(--font-size-base-base);
+  --font-size-lg: var(--font-size-lg-base);
+  --font-size-xl: var(--font-size-xl-base);
+  --font-size-xxl: var(--font-size-xxl-base);
+}
+
+body.font-size-large {
+  --font-size-sm: calc(var(--font-size-sm-base) * 1.1);
+  --font-size-base: calc(var(--font-size-base-base) * 1.1);
+  --font-size-lg: calc(var(--font-size-lg-base) * 1.1);
+  --font-size-xl: calc(var(--font-size-xl-base) * 1.1);
+  --font-size-xxl: calc(var(--font-size-xxl-base) * 1.1);
+}
+
+/* reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base); /* use css variable for font size */
+  color: var(--text-primary); /* use css variable for text color */
+  background-color: var(--background-page); /* use css variable for background */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease; /* smooth transitions */
+}
+
+/* Apply theme colors to common elements */
+a {
+  color: var(--primary-purple);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: var(--primary-purple-dark);
+}
+body.theme-dark a {
+  color: var(--primary-purple-light);
+}
+body.theme-dark a:hover {
+  color: #c792ea; /* even lighter purple for dark hover */
+}
+
+/* Headings and paragraphs */
+h1, h2, h3, h4, h5, h6, p, li, label, span, div {
+  color: var(--text-primary); /* Ensure all standard text uses primary text color */
+}
+small, .text-muted, .dropzone-subtext, .file-meta, .character-count, .material-meta { /* Added .material-meta */
+  color: var(--text-secondary); /* Use secondary color for less important text */
+}
+
+/* accessibility: ensure focus is visible for keyboard navigation */
+*:focus-visible { /* use focus-visible for better focus indication */
+  outline: 3px solid var(--primary-purple-light);
+  outline-offset: 2px;
+}
+body.theme-dark *:focus-visible {
+  outline-color: var(--accent-green); /* Use green focus in dark mode for contrast */
+}
+
+/* skip to main content link for screen readers */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-purple);
+  color: var(--header-text);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  z-index: 100;
+}
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* utility classes for common patterns */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+/* responsive typography adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: calc(var(--font-size-base) * 0.95); /* slightly smaller base on tablet */
+  }
+}
+
+/* ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  border: 3px solid var(--background-gray-medium); /* Use medium gray for base */
+  border-top: 3px solid var(--primary-purple);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: var(--spacing-lg) auto;
+}
+body.theme-dark .spinner {
+  border-color: var(--border-color); /* adjust spinner color for dark */
+  border-top-color: var(--primary-purple-light);
+}
+
+
+/* fade in animation for content */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* ensure required indicator color */
+.required-indicator {
+  color: var(--error-red);
+}
+
+/* ensure error message color */
+.error-message {
+  color: var(--error-red);
+}
