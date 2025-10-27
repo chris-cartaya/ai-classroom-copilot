@@ -1,0 +1,77 @@
+/* card component styles for content containers */
+
+.card {
+  background-color: var(--background-card); /* use theme variable */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, background-color 0.3s ease; /* add background transition */
+  border: 1px solid var(--border-color); /* use theme border */
+}
+
+/* subtle hover effect for interactive cards */
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* card header section */
+.card-header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color); /* use theme border */
+  background-color: var(--background-gray-medium); /* use medium gray */
+}
+/* Dark theme adjustment for header background */
+body.theme-dark .card-header {
+   background-color: rgba(255, 255, 255, 0.05); /* subtle dark header */
+}
+
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary); /* use theme text color */
+  margin: 0;
+}
+
+/* card body section - main content area */
+.card-body {
+  padding: var(--spacing-lg);
+}
+
+/* card footer section */
+.card-footer {
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border-color); /* use theme border */
+  background-color: var(--background-gray-medium); /* use medium gray */
+}
+/* Dark theme adjustment for footer background */
+body.theme-dark .card-footer {
+   background-color: rgba(255, 255, 255, 0.05); /* subtle dark footer */
+}
+
+/* card variants for different use cases */
+.card-compact .card-body {
+  padding: var(--spacing-md);
+}
+
+.card-spacious .card-body {
+  padding: var(--spacing-xl);
+}
+
+/* card with no shadow for nested cards */
+.card-flat {
+  box-shadow: none;
+  border: 1px solid var(--border-color); /* use theme border */
+}
+
+/* responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .card-body {
+    padding: var(--spacing-md);
+  }
+
+  .card-header,
+  .card-footer {
+    padding: var(--spacing-md);
+  }
+}

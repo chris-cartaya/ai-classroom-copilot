@@ -1,0 +1,37 @@
+/* header component specific styles */
+/* additional styles beyond what's in App.css */
+
+.app-header {
+  /* ensure header stays on top when scrolling */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ensure buttons have proper touch targets for mobile */
+.back-button,
+.user-button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* hover effects for better user feedback */
+.back-button:active,
+.user-button:active {
+  transform: scale(0.95);
+}
+
+/* ensure header is accessible with high contrast */
+@media (prefers-contrast: high) {
+  .app-header {
+    border-bottom: 2px solid white;
+  }
+}
+
+/* reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .back-button,
+  .user-button {
+    transition: none;
+  }
+}

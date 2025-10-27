@@ -1,0 +1,50 @@
+/* Styles for the "Add Week Here" divider/button */
+.add-week-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--spacing-sm) 0; /* Reduced margin compared to weeks */
+  position: relative; /* For the line */
+}
+
+/* Optional: Add lines extending from the button */
+.add-week-divider::before,
+.add-week-divider::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 0 var(--spacing-md);
+}
+
+/* Style for the 'outline' button variant (needs to be added to Button.css too) */
+.add-week-divider .btn-outline {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  background-color: transparent;
+  border: 1px dashed var(--primary-purple);
+  color: var(--primary-purple);
+  opacity: 0.7;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+.add-week-divider .btn-outline:hover {
+  opacity: 1;
+  background-color: var(--background-hover-light);
+  transform: none; /* No lift effect */
+  box-shadow: none; /* No shadow */
+}
+
+body.theme-dark .add-week-divider .btn-outline {
+  border-color: var(--primary-purple-light);
+  color: var(--primary-purple-light);
+}
+body.theme-dark .add-week-divider .btn-outline:hover {
+   background-color: var(--background-hover-light);
+}
+
+/* Ensure consistent margin for the final "Add Week" button */
+.add-week-section {
+  text-align: center;
+  margin-top: var(--spacing-lg); /* Ensure space above */
+  margin-bottom: var(--spacing-xl);
+}

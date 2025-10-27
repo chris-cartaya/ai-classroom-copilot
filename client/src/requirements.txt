@@ -1,0 +1,12 @@
+fastapi>=0.104.1
+uvicorn>=0.24.0
+langchain>=0.0.350
+langchain-community>=0.0.2
+langchain-chroma>=0.1.0
+langchain-ollama
+chromadb>=0.4.15
+ollama>=0.1.7
+nomic>=1.1.9
+pydantic>=2.5.0
+pytest>=7.0.0
+cryptography>=42.0.0
