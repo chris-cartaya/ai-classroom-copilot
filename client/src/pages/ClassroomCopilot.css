@@ -221,20 +221,191 @@
 
 /* responsive design for tablets */
 @media (max-width: 768px) {
+
   .question-bubble,
   .answer-bubble {
     max-width: 95%;
   }
-  
+
   .conversation-header {
     flex-direction: column;
     gap: var(--spacing-md);
     align-items: flex-start;
   }
-  
+
   .submit-button {
     width: 100%;
   }
+}
+
+/* file upload section styling */
+.upload-card {
+  margin-bottom: var(--spacing-xl);
+}
+
+.upload-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.upload-header h3 {
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.upload-header p {
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* drag and drop zone */
+.upload-dropzone {
+  border: 2px dashed var(--border-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: var(--background-gray);
+  position: relative;
+}
+
+.upload-dropzone.active {
+  border-color: var(--primary-purple);
+  background-color: var(--primary-purple-light);
+}
+
+.upload-dropzone.uploading {
+  border-color: var(--accent-green);
+  background-color: var(--accent-green-light);
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.upload-icon {
+  font-size: var(--font-size-xxl);
+  opacity: 0.7;
+}
+
+.upload-content p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: var(--font-size-base);
+}
+
+.file-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.upload-button {
+  background-color: var(--primary-purple);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.upload-button:hover {
+  background-color: var(--primary-purple-dark);
+}
+
+/* spinner for upload loading */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: var(--primary-purple);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* upload error styling */
+.upload-error {
+  background-color: var(--error-red-light);
+  border: 1px solid var(--error-red);
+  color: var(--error-red-dark);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.error-icon {
+  font-size: var(--font-size-lg);
+}
+
+/* uploaded files list */
+.uploaded-files {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 2px solid var(--border-gray);
+}
+
+.uploaded-files h4 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-dark);
+  font-size: var(--font-size-base);
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  background-color: var(--background-gray);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-green);
+}
+
+.file-icon {
+  font-size: var(--font-size-lg);
+}
+
+.file-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.file-name {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: var(--font-size-sm);
+}
+
+.file-chunks {
+  color: var(--text-light);
+  font-size: var(--font-size-xs);
+}
+
+.file-status {
+  font-size: var(--font-size-lg);
+}
+
+.file-status.success {
+  color: var(--accent-green);
 }
 
 /* responsive design for mobile */
@@ -242,11 +413,21 @@
   .page-header h2 {
     font-size: var(--font-size-xl);
   }
-  
+
   .question-bubble,
   .answer-bubble {
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .upload-dropzone {
+    padding: var(--spacing-lg);
+  }
+
+  .file-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
   }
 }

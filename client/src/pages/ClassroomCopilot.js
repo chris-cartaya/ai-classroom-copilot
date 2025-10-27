@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Card from '../components/Card';
 import TextArea from '../components/TextArea';
 import Button from '../components/Button';
+import Input from '../components/Input';
 import './ClassroomCopilot.css';
 
 /**
@@ -12,15 +13,21 @@ import './ClassroomCopilot.css';
 const ClassroomCopilot = () => {
   // state for the current question being typed
   const [question, setQuestion] = useState('');
-  
+
   // state for loading status while waiting for ai response
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // state for storing conversation history (questions and answers)
   const [conversation, setConversation] = useState([]);
-  
+
   // state for error messages
   const [error, setError] = useState('');
+
+  // state for file upload
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const [dragActive, setDragActive] = useState(false);
 
   /**
    * handle question submission
@@ -29,64 +36,66 @@ const ClassroomCopilot = () => {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // validate that question is not empty
     if (!question.trim()) {
       setError('Please enter a question');
       return;
     }
-    
+
     // clear any previous errors
     setError('');
-    
+
     // set loading state
     setIsLoading(true);
-    
+
     try {
-      // TODO: replace with actual api call to backend
-      // const response = await fetch('/api/ask', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ question })
-      // });
-      // const data = await response.json();
-      
-      // simulate api call with mock data for demonstration
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // mock response data
-      const mockResponse = {
-        answer: 'This is a sample AI-generated answer based on your course materials. The concept you asked about is covered in detail in the referenced materials.',
-        citations: [
-          { source: 'Module 2, Slide 8', content: 'Relevant excerpt from the slide...' },
-          { source: 'Module 3, Page 12', content: 'Additional context from the document...' }
-        ],
-        confidence: 0.92
-      };
-      
-      // add question and answer to conversation history
-      setConversation([
-        ...conversation,
-        {
-          type: 'question',
-          content: question,
-          timestamp: new Date().toISOString()
-        },
-        {
-          type: 'answer',
-          content: mockResponse.answer,
-          citations: mockResponse.citations,
-          confidence: mockResponse.confidence,
-          timestamp: new Date().toISOString()
-        }
-      ]);
-      
-      // clear the question input
-      setQuestion('');
-      
+      // Make real API call to FastAPI backend
+      const formData = new FormData();
+      formData.append('question', question);
+
+      const response = await fetch('http://localhost:8000/ask', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.status === 'success') {
+        // Format citations from the API response
+        const citations = []; // The API doesn't return citations in this format yet
+
+        // add question and answer to conversation history
+        setConversation([
+          ...conversation,
+          {
+            type: 'question',
+            content: question,
+            timestamp: new Date().toISOString()
+          },
+          {
+            type: 'answer',
+            content: data.answer,
+            citations: citations,
+            confidence: 0.85, // Default confidence since API doesn't provide it yet
+            timestamp: new Date().toISOString()
+          }
+        ]);
+
+        // clear the question input
+        setQuestion('');
+
+      } else {
+        throw new Error(data.detail || 'Unknown error occurred');
+      }
+
     } catch (err) {
       // handle errors gracefully (fr-5)
-      setError('Failed to get response. Please try again.');
+      setError(`Failed to get response: ${err.message}`);
       console.error('Error submitting question:', err);
     } finally {
       // reset loading state
@@ -101,6 +110,97 @@ const ClassroomCopilot = () => {
     setConversation([]);
     setQuestion('');
     setError('');
+  };
+
+  /**
+   * handle file upload
+   */
+  const handleFileUpload = async (files) => {
+    if (!files || files.length === 0) return;
+
+    setIsUploading(true);
+    setUploadError('');
+
+    try {
+      const formData = new FormData();
+
+      // Add all files to FormData
+      Array.from(files).forEach((file, index) => {
+        formData.append(`files`, file);
+      });
+
+      const response = await fetch('http://localhost:8000/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.total_uploaded > 0) {
+        // Update uploaded files state
+        const newFiles = data.uploaded_files.map(file => ({
+          name: file.filename,
+          chunks: file.chunks_created,
+          status: 'success',
+          timestamp: new Date().toISOString()
+        }));
+
+        setUploadedFiles(prev => [...prev, ...newFiles]);
+
+        // Show success message or update UI
+        console.log(`Successfully uploaded ${data.total_uploaded} files`);
+      }
+
+      if (data.total_failed > 0) {
+        console.warn(`Failed to upload ${data.total_failed} files:`, data.failed_files);
+        setUploadError(`Failed to upload ${data.total_failed} files`);
+      }
+
+    } catch (err) {
+      setUploadError(`Upload failed: ${err.message}`);
+      console.error('Error uploading files:', err);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  /**
+   * handle drag and drop events
+   */
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true);
+    } else if (e.type === 'dragleave') {
+      setDragActive(false);
+    }
+  };
+
+  /**
+   * handle file drop
+   */
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files);
+    }
+  };
+
+  /**
+   * handle file input change
+   */
+  const handleFileInputChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFileUpload(e.target.files);
+    }
   };
 
   return (
@@ -119,20 +219,20 @@ const ClassroomCopilot = () => {
           <Card className="conversation-card">
             <div className="conversation-header">
               <h3>Conversation History</h3>
-              <Button 
-                variant="secondary" 
-                size="small" 
+              <Button
+                variant="secondary"
+                size="small"
                 onClick={handleClearConversation}
                 ariaLabel="Clear conversation history"
               >
                 Clear History
               </Button>
             </div>
-            
+
             <div className="conversation-list" role="log" aria-live="polite">
               {conversation.map((item, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={`conversation-item ${item.type}`}
                   role="article"
                 >
@@ -156,7 +256,7 @@ const ClassroomCopilot = () => {
                         )}
                       </div>
                       <p className="bubble-content">{item.content}</p>
-                      
+
                       {/* citations display (fr-1.3) */}
                       {item.citations && item.citations.length > 0 && (
                         <div className="citations-section">
@@ -179,6 +279,75 @@ const ClassroomCopilot = () => {
           </Card>
         )}
 
+        {/* file upload section */}
+        <Card className="upload-card">
+          <div className="upload-header">
+            <h3>📁 Upload Course Materials</h3>
+            <p>Add your course documents (PDF, TXT, DOCX) to ask questions about them.</p>
+          </div>
+
+          {/* drag and drop area */}
+          <div
+            className={`upload-dropzone ${dragActive ? 'active' : ''} ${isUploading ? 'uploading' : ''}`}
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+          >
+            <div className="upload-content">
+              {isUploading ? (
+                <>
+                  <span className="spinner"></span>
+                  <p>Uploading files...</p>
+                </>
+              ) : (
+                <>
+                  <span className="upload-icon">📄</span>
+                  <p>Drag and drop files here, or click to browse</p>
+                  <input
+                    type="file"
+                    multiple
+                    accept=".pdf,.txt,.docx,.doc"
+                    onChange={handleFileInputChange}
+                    className="file-input"
+                    id="file-upload"
+                  />
+                  <label htmlFor="file-upload" className="upload-button">
+                    Choose Files
+                  </label>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* upload error display */}
+          {uploadError && (
+            <div className="upload-error">
+              <span className="error-icon">⚠️</span>
+              {uploadError}
+            </div>
+          )}
+
+          {/* uploaded files list */}
+          {uploadedFiles.length > 0 && (
+            <div className="uploaded-files">
+              <h4>Uploaded Files ({uploadedFiles.length})</h4>
+              <div className="files-list">
+                {uploadedFiles.map((file, index) => (
+                  <div key={index} className="file-item">
+                    <span className="file-icon">📄</span>
+                    <div className="file-info">
+                      <span className="file-name">{file.name}</span>
+                      <span className="file-chunks">{file.chunks} chunks</span>
+                    </div>
+                    <span className="file-status success">✓</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </Card>
+
         {/* question input form */}
         <Card className="question-card">
           <form onSubmit={handleSubmit}>
@@ -193,7 +362,7 @@ const ClassroomCopilot = () => {
               maxLength={1000}
               disabled={isLoading}
             />
-            
+
             <div className="form-actions">
               <Button
                 type="submit"

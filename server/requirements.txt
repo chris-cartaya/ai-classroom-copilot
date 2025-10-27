@@ -1,0 +1,15 @@
+# Core web framework
+fastapi==0.120.0
+uvicorn==0.38.0
+python-multipart==0.0.20
+
+# LangChain + RAG stack
+langchain==1.0.2
+langchain-community==0.4
+langchain-chroma==1.0.0
+langchain-ollama==1.0.0
+
+# Performance / dev utilities
+httptools==0.7.1
+watchfiles==1.1.1
+websockets==15.0.1
