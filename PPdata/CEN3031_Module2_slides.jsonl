@@ -1,0 +1,263 @@
+[
+ {
+  "id": "CEN3031_Module2::slide0001::chunk0001",
+  "document": "CEN 3031 Software Engineering Fundamentals\nModule 2 – Requirements and UML – Part 1\nGoals\nExamine requirements workflow\nOverview\nRequirement Elicitation & Analysis\nDocumenting Requirements\nFunctional vs. Non-Functional Requirements\nWriting Good Requirements\nUse Cases (UML)\nUser Stories (Agile)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 1,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0002::chunk0001",
+  "document": "Determining What the Client Needs\nMisconception  “We must determine what the client wants”\n“I know you believe you understood what you think I said, but I am not sure you realize that what you heard is not what I meant!”\nWe must determine what the client needs",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 2,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0003::chunk0001",
+  "document": "Overview - Requirements Workflow\nFirst, gain an understanding of application domain (or domain, for short) — specific environment in which target product is to operate\nSecond, build a business model — model client’s business processes\nThird, use business model to determine the client’s requirements\nIterate steps 1–3",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 3,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0004::chunk0001",
+  "document": "Definitions\nDiscovering the client’s requirements — Requirements elicitation (or requirements capture)\nMethods include interviews and surveys\nRefining and extending the initial requirements — Requirements analysis",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 4,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0005::chunk0001",
+  "document": "Interviewing\nRequirements team meet with client and users to extract all relevant information\nTwo types of questions:\nClose-ended — require a specific answer\nOpen-ended — to encourage person being interviewed to speak out",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 5,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0006::chunk0001",
+  "document": "Other Techniques\nInterviewing: primary technique\nQuestionnaire: useful when opinions of hundreds of individuals need to be determined\nExamination of business forms shows how client currently does business\nDirect observation of employees while they perform their duties (e.g., cameras). But employees may view it as an unwarranted invasion of privacy",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 6,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0007::chunk0001",
+  "document": "Initial Requirements\nThe initial requirements are based on the initial business model\nThen they are refined\nThe requirements are dynamic — there are frequent changes",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 7,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0008::chunk0001",
+  "document": "Documenting Requirements\nNatural language text via the “big document” approach, also known as the Software Requirements Specification (SRS) — “shall” statements (or similar). See for example ISO/IEC/IEEE 29148-2011 International Standard\nNatural language via the user story / use case approach\nFormal Methods (not covered) — algebraic specifications, finite state machines, etc.",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 8,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0009::chunk0001",
+  "document": "Types of Requirements\nTwo categories of requirements\nFunctional requirement — specifies an action that the software product must be able to perform (often expressed in terms of inputs and outputs)\nNonfunctional requirement — specifies properties of the software product itself, such as platform constraints, response times, reliability, usability, …",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 9,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0010::chunk0001",
+  "document": "The LIBSYS system — Example\nA library system that provides a single interface to a number of databases of articles in different libraries\nUsers can search for, download, and print these articles for personal study\n(I. Somerville, Software Engineering, eighth edition)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 10,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0011::chunk0001",
+  "document": "Guidelines for writing requirements\nNumber each requirement for traceability\nInvent a standard format and use it for all requirements\nUse language in a consistent way\nUse shall for mandatory requirements, should for desirable requirements\n(I. Somerville, Software Engineering, eighth edition)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 11,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0012::chunk0001",
+  "document": "Examples of Functional Requirements\nThe user shall be able to search either all of the initial set of databases or select a subset from it.\nThe system shall provide appropriate viewers for the user to read documents in the document store.\nEvery order shall be allocated a unique identifier (ORDER_ID) which the user shall be able to copy to the account’s permanent storage area.\n(I. Somerville, Software Engineering, eighth edition)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 12,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0013::chunk0001",
+  "document": "Requirements imprecision\nProblems arise when requirements are not precisely stated\nAmbiguous requirements may be interpreted in different ways by developers and users\nConsider the term “appropriate viewers”:\nUser intention — special purpose viewer for each different document type\nDeveloper interpretation — provide a text viewer that shows the contents of the document\n(I. Somerville, Software Engineering, eighth edition)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 13,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0014::chunk0001",
+  "document": "Best Practices\nBad: The system shall be completely reliable. The system will be fast. Errors shall be less than ninety nine percent.\nBetter: Response times for all level one actions will be less than one hundred milliseconds. Ninety five percent of the transactions shall be processed in less than one second. Mean time between failures shall be one hundred hours of continuous operation.",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 14,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0015::chunk0001",
+  "document": "Requirements completeness and consistency\nIn principle, requirements should be both complete and consistent\nComplete — include descriptions of all facilities required\nConsistent — no conflicts or contradictions in the descriptions of the system facilities\nIn practice, it is nearly impossible to produce a complete and consistent requirements document\n(I. Somerville, Software Engineering, eighth edition)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 15,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0016::chunk0001",
+  "document": "Non-functional requirements examples\nNine point three point two — The system development process and deliverable documents shall conform to the process and deliverables defined in X Y Z …\nSeven point six point five — The system shall not disclose any personal information about customers apart from their name and reference number to the operators of the system.\n(I. Somerville, Software Engineering, eighth edition)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 16,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0017::chunk0001",
+  "document": "Writing Good Requirements\nIs the requirement correct?\nIs the requirement complete?\nIs the requirement clear?\nIs the requirement consistent?\nIs the requirement verifiable?\nIs the requirement traceable?\nIs the requirement feasible?\nIs the requirement design independent?\nIs the requirement atomic?",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 17,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0018::chunk0001",
+  "document": "Use cases, user stories\nIntroduce:\nUse cases — part of Unified Modeling Language (U M L)\nUser stories — part of Agile processes",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 18,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0019::chunk0001",
+  "document": "Use Cases (U M L)\nA use case models an interaction between the software product itself and the users (actors)\nUse case names begin with a strong verb\nExample: A use-case diagram depicts a set of use cases (with the respective actors)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 19,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0020::chunk0001",
+  "document": "Use Cases (continued) — Actors\nActor = a member of the world outside the software product\nUsually, find the nouns in requirements and some will be the actors\nIt is usually easy to identify an actor\nAn actor is frequently a user of the software product\nIn general, an actor plays a role with regard to the software product: as a user; as an initiator; or as someone who plays a critical part in the use case",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 20,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0021::chunk0001",
+  "document": "Use Cases (continued) — Roles and multiplicity\nA user of the system can play more than one role\nExample: A customer of the bank can be a Borrower or a Lender\nConversely, an actor can participate in multiple use cases\nExample: A Borrower may be an actor in the Borrow Money use case and the Repay Loan Principal use case\nActor Borrower may stand for many thousands of bank customers\nAn actor need not be a human being; it could be an E-commerce system",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 21,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0022::chunk0001",
+  "document": "Example of a Use Case Iteration\nExample project: M S G Foundation provides low cost mortgage loans to young couples\nFirst we identify the actors and use cases and outline them quickly — here is an example of one use case and its brief description",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 22,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0023::chunk0001",
+  "document": "Example Detailed Description of Use Case\nMany iterations where we find and eliminate duplicate use cases or split one use case into two, etc.\nFinally, we choose some use cases for the next iteration and write a detailed step-by-step description\nWriting a scenario helps with this",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 23,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0024::chunk0001",
+  "document": "User Stories\nUser stories are the most basic unit of requirements in most agile methodologies\nEach user story represents a feature desired by the customer\nTraditionally written by the customer or user on index cards (can be automated via wikis or other tools)\nAssumes a lot of interaction with customer or user\nCapture basic ideas → brainstorming → user stories → fixing gaps and adding clarity using customer feedback",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 24,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0025::chunk0001",
+  "document": "User Stories — Examples",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 25,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0026::chunk0001",
+  "document": "User Story Template\nTemplate: As a (who wants to accomplish something) I want to (what they want to accomplish) so that (why they want to accomplish that thing)\nExamples:\nAs a bank customer I want to withdraw money from an A T M so that I am not constrained by open hours or lines\nAs a bookstore customer I want to search by title so I can find a book with that title",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 26,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0027::chunk0001",
+  "document": "User Story — Discuss\nAs a developer I want a G U I layer so the user can interact with the system",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 27,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0028::chunk0001",
+  "document": "User stories ‘I N V E S T’\nGood User Stories are:\nI — Independent\nN — Negotiable\nV — Valuable\nE — Estimable\nS — Small\nT — Testable\nSee: http://xp123.com/articles/invest-in-good-stories-and-smart-tasks/",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 28,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2::slide0029::chunk0001",
+  "document": "Summary\nExamined requirements workflow — Overview, Elicitation and Analysis, Documenting requirements\nFunctional vs. Non-Functional requirements\nWriting Good Requirements\nUse Cases (U M L)\nUser Stories (Agile)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 1 (1).pptx",
+   "slide_index": 29,
+   "chunk_index": 1
+  }
+ }
+]

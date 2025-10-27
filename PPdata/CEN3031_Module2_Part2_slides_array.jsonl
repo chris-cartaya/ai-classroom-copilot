@@ -1,0 +1,218 @@
+[
+ {
+  "id": "CEN3031_Module2_Part2::slide0001::chunk0001",
+  "document": "CEN 3031 Software Engineering Fundamentals\nModule two – Requirements and U M L – Part two\nLecture Goals\nDefine U M L\nIntroduce U M L diagrams and their purpose\nUse case\nClass\nSequence\nCollaboration\nState\nLook into Use cases and Use Case Diagram (some slides might overlap with the requirements lecture)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 1,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0002::chunk0001",
+  "document": "What is U M L?\nUnified Modeling Language\nNow under the control of Object Management Group (O M G)\nCheck for updates at O M G site www.omg.org\nWorld-wide standard\nManual for Version two point zero of U M L is about one thousand two hundred pages long\nComplete coverage not possible",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 2,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0003::chunk0001",
+  "document": "U M L Is Not a Methodology\nU M L is a language, not a methodology; it can be used with any methodology\nEnglish language has over one hundred thousand words; we can manage fine with just a subset\nWe will see U M L in many parts in this course, e.g., use cases and class diagram",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 3,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0004::chunk0001",
+  "document": "Goals of U M L and O M G\nProvide users with a ready-to-use, expressive visual modeling language to develop and exchange meaningful models\nIndependent of particular programming languages and development processes\nProvide formal basis for understanding the modeling language\nEncourage growth of object-oriented tools market\nSupport higher-level development concepts (collaborations, frameworks, patterns, components)\nIntegrate best practices",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 4,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0005::chunk0001",
+  "document": "U M L Diagrams\nSeveral diagrams provide views of a software system from different perspectives, in different detail levels, for different uses and users\nTypes of diagrams:\nUse case\nSequence\nCollaboration\nClass\nActivity\nState\n(see also Wikipedia: U M L diagram overview)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 5,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0006::chunk0001",
+  "document": "U M L Diagrams (overview)\nUse Case diagram: relationship among actors and use cases; external view of the system\nClass diagram: class structure and contents using classes, packages, and objects; internal structure and design\nInteraction diagrams\nSequence: time sequence of objects in the interaction (vertical: time; horizontal: objects)\nCollaboration: interaction organized around the objects and their links to one another",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 6,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0007::chunk0001",
+  "document": "U M L Diagrams we will not see in this course\nState Diagram: sequences of states an object goes through during its life in response to received stimuli, plus its responses and actions\nActivity Diagram: special state diagram; most states are action states, most transitions are triggered by completion of actions",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 7,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0008::chunk0001",
+  "document": "Use Case Diagrams\nSeveral actors: users or another system interacting with the system to model\nUse case: represents some action a user might perform to complete a task (external view)\nGoal: identify functionality of the system",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 8,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0009::chunk0001",
+  "document": "Use Case Diagram Tips\nActors usually correspond to nouns in requirements\nUse case names begin with a strong verb\nIn general, an actor plays a role with regard to the software product:\nas a user, or\nas an initiator, or\nas someone who plays a critical part in the use case",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 9,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0010::chunk0001",
+  "document": "Use Cases (actors)\nA user of the system can play more than one role\nExample: a customer of the bank can be a borrower or a lender\nConversely, an actor can participate in multiple use cases\nExample: a borrower may be an actor in the Borrow Money use case and the Repay Loan Principal use case\nThe actor Borrower may stand for many thousands of bank customers\nAn actor need not be a human being; it could be, for example, an e-commerce system",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 10,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0011::chunk0001",
+  "document": "Use Case Diagram — Example\n(Example diagram illustrating actors and use cases)",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 11,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0012::chunk0001",
+  "document": "How do you find the actors?\nHelpful questions:\nWho will supply, use, or remove information from the system?\nWho will use the system?\nWho is interested in a certain feature or service provided by the system?\nWho will support and maintain the system?\nWhat are the system's external resources?\nWhat other systems will need to interact with the system under development?",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 12,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0013::chunk0001",
+  "document": "How do you find the use cases?\nConsider what each actor requires of the system; what is their goal?\nFocus on understanding what the actor considers a valuable result\nDo not think of implementation details; think high-level functionality — what the system does versus how it does it\nIncorrect example: “enter password in dialog box”",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 13,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0014::chunk0001",
+  "document": "Correct vs Incorrect\nIncorrect example explanation: these are all behaviors that a camera has, but no photographer would ever pick up their camera, open the shutter, and then put it down, satisfied with their photographic session for the day",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 14,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0015::chunk0001",
+  "document": "Also incorrect\nDo not try to show sequence of events or actions in the use case diagram\nDo not try to have associations or lines between actors in the use case diagram\nThese can be shown in other diagrams, for example a sequence diagram, if they are important or relevant\nAgain, think of goals of the actor — what they want to get out of the system",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 15,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0016::chunk0001",
+  "document": "Draw the Use Case Diagram — Exercise\nConsider an automated library circulation system.\nEvery book has a bar code, and every borrower has a card bearing a bar code.\nWhen a borrower wishes to check out a book, the librarian scans the bar codes on the book and the borrower’s card and enters C at the computer terminal.\nSimilarly, when a book is returned, it is again scanned and the librarian enters R.\nLibrarians can add books to the library collection or remove them.\nBorrowers can determine all the books in the library by a particular author, all the books with a specific title, or all the books in a particular subject area.\nIf a borrower wants a book currently checked out, the librarian can place a hold on the book so that when it is returned it will be held for the borrower who requested it.\nFirst identify the actors, then think of what functionality they will use. Finally draw the use case diagram.\nAre implementation or other details part of the use case?",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 16,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0017::chunk0001",
+  "document": "Use case iteration\nA team usually brainstorms and starts with brief use cases such as the ones in the previous slide.\nThen they select some use cases and add a few details and re-iterate.\nSome use cases might be eliminated or merged, or new ones might be added.\nAfter several iterations, the team agrees on the use cases, which now also have a detailed step-by-step description for each one.",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 17,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0018::chunk0001",
+  "document": "Example of a Use Case Iteration\nExample project: M S G Foundation provides low cost mortgage loans to young couples.\nFirst identify the actors and use cases and outline them quickly; provide one use case and its brief description as an example.",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 18,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0019::chunk0001",
+  "document": "Click to edit Master title style",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 19,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0020::chunk0001",
+  "document": "Scenarios\nA scenario is a specific sequence of actions and interactions between actors and system.\nA specific instance of a use case — a single path of using the system.\nExample in a point-of-sale system: purchasing ten items with cash.",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 20,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0021::chunk0001",
+  "document": "Use case example with scenarios\nUse an A T M to withdraw cash:\none) all goes well and the customer gets their cash\ntwo) the user is informed that their P I N is invalid",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 21,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0022::chunk0001",
+  "document": "From use cases to implementation\nUse-case-driven design.\nUse cases are realized via collaborations — classes, interfaces, subsystems, or other elements that cooperate to achieve some behavior.\nCollaborations have two aspects:\nStructural part — describes the static structure of the system\nBehavioral part — specifies the dynamics of how the elements interact to accomplish the result\nWe will see these later in the course.",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 22,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0023::chunk0001",
+  "document": "Leffingwell and Widrig, Managing Software Requirements — A use case approach, Addison-Wesley, second edition.",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 23,
+   "chunk_index": 1
+  }
+ },
+ {
+  "id": "CEN3031_Module2_Part2::slide0024::chunk0001",
+  "document": "Material used\nU M L resource page: http://www.uml.org\nLeffingwell and Widrig, Managing Software Requirements — A use case approach, Addison-Wesley, second edition\nSchach, Object-Oriented and Classical Software Engineering, McGraw-Hill, eighth edition\nGoogle searches\nWikipedia\nAdditional resources on use case diagrams and actor identification",
+  "metadata": {
+   "file_name": "CEN3031_Module 2_Requirements and UML - Part 2.pptx",
+   "slide_index": 24,
+   "chunk_index": 1
+  }
+ }
+]

@@ -1,0 +1,198 @@
+{
+ "id": "CEN3031_Module1_Part3::slide0001::chunk0001",
+ "document": "CEN 3031 Software Engineering Fundamentals\nIntroduction – Part 3 – SDLC Models\nGoals\nIntroduce SDLC (Software Development Life-cycle) Models Code-and-fix Waterfall Spiral life-cycle model Iterative & incremental Agile processes … Summarize SDLC Life-cycle Models",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0002::chunk0001",
+ "document": "Ideal SDLC development - Reality\nWhat happens in reality? Mistakes or bad decisions Changes in requirements As a result… Moving target problem Feature creep …",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0003::chunk0001",
+ "document": "SW Life-cycle Models\nWe will see several models in this class: Code-and-fix Waterfall Spiral … Your goal as we find out more about these models: What are their strengths/weaknesses? How are they similar to each other? How are they different? How to apply them Question: Why do you think different models exist?",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0004::chunk0001",
+ "document": "Code-and-Fix Model\nNo design No specifications =… Maintenance nightmare Easiest and most expensive",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0005::chunk0001",
+ "document": "Waterfall Model\nThe linear life cycle model with feedback loops Documentation-driven",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0006::chunk0001",
+ "document": "Waterfall\nLinear",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0007::chunk0001",
+ "document": "Waterfall Model (cont’d)\nDocument-driven: e.g. specs must be finished before moving to design Feasible for a specialized domain with well-understood (and infrequently changed) requirements Often difficult for the customer to state all requirements explicitly Detailed Specs doc is good to have but would you build a house with a 500-page text-based doc only? Customers/end users may not get to see and provide feedback until (too) late in the process",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0008::chunk0001",
+ "document": "Rapid Prototyping Model\nFigure 2.10",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0009::chunk0001",
+ "document": "Spiral Model\nFull Spiral Model\nPrecede each phase by Alternatives Risk analysis Follow each phase by Evaluation Planning of the next phase",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0010::chunk0001",
+ "document": "Full Spiral Model (cont’d)\nAnalysis of the Spiral Model\nStrengths Handles risk, less likely project will fail at the end No distinction is made between development and maintenance Weaknesses Applies to large-scale software only Complex Needs expertise in risk analysis",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0011::chunk0001",
+ "document": "Iteration and Incrementation\nIn real life, we cannot speak about “the analysis phase” Instead, the operations of the analysis phase are spread out over the life cycle The basic software development process is iterative Each successive version is intended to be closer to its target than its predecessor",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0012::chunk0001",
+ "document": "Iteration and Incrementation (cont’d)\nIterative and Incremental model\nWe can consider the project as a whole as a set of mini projects (increments) Each mini project extends the Requirements artifacts Analysis artifacts Design artifacts Implementation artifacts Testing artifacts The final set of artifacts is the complete product *Note: artifact = component of SW product (e.g. specs doc, or code, or manual)",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0013::chunk0001",
+ "document": "Iterative and Incremental model (cont’d)\nDelivers software in small but usable pieces, called “increments”. The first increment is often a core product. Short iteration lengths Two to six weeks Rapid feedback and adaptation Long iterations increase project risk If deadline seems difficult to achieve, then de-scope Remove tasks or requirements from the iteration but include them in a future iteration",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0014::chunk0001",
+ "document": "Iterative and Incremental model (cont’d)\nCentered and driven by change = responds well to requirement changes Focuses on the delivery of an operational product with each increment Client/user can give feedback constantly Need to be careful about feature creep Agile methods such as XP and SCRUM as a type of this",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0015::chunk0001",
+ "document": "Agile Processes\n17 SW developers (later dubbed the “Agile Alliance”) met at Utah ski resort for two days in 2001 & produced Manifesto for Agile Software Development Did not prescribe a specific life-cycle model Instead, they laid out a group of underlying principles XP: one of number of paradigms collectively referred to as agile processes",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0016::chunk0001",
+ "document": "Agile Processes (cont’d)\nExample: Extreme Programming (XP) User Stories (features, as said by the client/user) – we will see more about this in Requirements Build is broken down into tasks Test Driven Development (TDD) = write tests first Pair programming = more than one person responsible for part of project/software Continuous integration of tasks",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0017::chunk0001",
+ "document": "Agile Processes (cont’d)\nAgile processes are collection of paradigms characterized by: Less emphasis on analysis and design Earlier implementation (working software is considered more important than documentation) Responsiveness to change Close collaboration with the client",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0018::chunk0001",
+ "document": "Agile Processes (cont’d)\nA principle in the Manifesto is Deliver working software frequently Ideally every 2 or 3 weeks One way of achieving this: use timeboxing Used for many years as a time-management technique Another common feature: stand-up meetings Short meetings at regular time/day Attendance required Participants stand in a circle Lasts not more than 15 min",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0019::chunk0001",
+ "document": "Evaluating Agile Processes\nStand-up meetings & timeboxing both successful management techniques Basic principles that underlie all agile methods: Communication; Satisfying the client’s needs as quickly as possible Agile processes are good when requirements are vague or changing Now seem to be adopted by a wide range of companies/government etc. for a variety of projects",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0020::chunk0001",
+ "document": "Comparison of Life-Cycle Models\nDifferent life-cycle models have been presented Each with its own strengths and weaknesses Criteria for deciding on a model include: The organization Its management The skills of the employees The nature of the product",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0021::chunk0001",
+ "document": "SDLC Models Questions\nA prototype is used in the rapid prototyping model and the spiral model. What is the purpose of each prototype? Which model would you choose for the following: Air traffic control system Application with new innovative idea for user interaction Small product with somewhat vague requirements",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3031_Module1_Part3::slide0022::chunk0001",
+ "document": "Summary\nIntroduced SW Life-cycle Models Code-and-fix Waterfall Spiral life-cycle model Iterative & incremental Agile processes … Summarized SW Life-cycle Models",
+ "metadata": {
+  "file_name": "CEN3031_Module 1_intro - Part 3.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
