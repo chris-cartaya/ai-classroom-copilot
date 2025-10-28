@@ -30,7 +30,7 @@ To maintain a clean and reliable codebase, all contributions **must** be made vi
 
 ---
 
-## 🧰 Development Environment Setup
+## 🧰 Backend Setup Instructions
 
 > 🐍 **Requires Python 3.12 or higher**  
 > 💡 **Requires pip 24.0+** for proper dependency resolution.  
@@ -39,7 +39,15 @@ To maintain a clean and reliable codebase, all contributions **must** be made vi
 > python -m pip install --upgrade pip
 > ```
 
-### 1️⃣ Create and activate a virtual environment
+### 1️⃣ Clone this repo and ```cd``` into ```server``` directory
+```bash
+git clone https://github.com/chris-cartaya/ai-classroom-copilot.git
+
+# server directory is backend folder
+cd ai-classroom-copilot/server
+```
+
+### 2️⃣ Create and activate a virtual environment (venv)
 ```bash
 # Windows (Git Bash or PowerShell)
 python -m venv venv
@@ -49,20 +57,22 @@ source venv/Scripts/activate
 python3 -m venv venv
 source venv/bin/activate
 ```
-### 2️⃣ Install dependencies
+**Hint**. Command to stop virtual environment: `deactivate`
+
+### 3️⃣ Install dependencies (after you activate venv)
 ```bash
 pip install -r requirements.txt
 ```
-### 3️⃣ Launch the FastAPI server
+### 4️⃣ Launch the FastAPI server
 ```bash
 python -m uvicorn main:app --reload
 ```
 
-Once running, open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)  
+Once running, open [http://127.0.0.1:8000](http://127.0.0.1:8000) to view the "Root endpoint" (server homepage) or open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 
 to explore the interactive Swagger API documentation.
 
-### 4️⃣ (Optional) Developer Notes
-* It’s recommended to **use a separate venv per Python version** (e.g., `venv312`) for clarity.
+### 5️⃣ (Optional) Developer Notes
+* It’s recommended to **use a separate venv per Python version** (e.g., `venv312`) for clarity, but `venv` is most common.
 * `pip` is not listed as a dependency in `requirements.txt`, but **pip ≥ 24.0** is recommended.
 * If any dependency issues occur, ensure both your **Python** and **pip** are up to date.
 
@@ -84,7 +94,7 @@ to explore the interactive Swagger API documentation.
 
 | Milestone | Date |
 |:-----------|:------|
-| **Prototype Presentation** | Monday, October 27, 2025 |
+| **Prototype Presentation** | Monday, October 27, 2025 ✅ | 
 | **Final Presentation** | November 24 or December 1, 2025 *(TBD)* |
 
 *(Deadlines subject to instructor confirmation)*
