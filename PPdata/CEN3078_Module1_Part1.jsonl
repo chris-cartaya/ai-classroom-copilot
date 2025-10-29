@@ -1,0 +1,315 @@
+{
+ "id": "CEN3078_Module1_Part1::slide0001::chunk0001",
+ "document": "CEN 3078 Computer Security\nModule 1 – Application and Network Analysis",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0002::chunk0001",
+ "document": "Module 1\nNetwork and application layers – security concepts\nPacket sniffing and spoofing\nIntrusion detection systems\nLegal and ethical issues",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0003::chunk0001",
+ "document": "Module 1 Discussion Topics\nNetwork and application layers – security concepts\nNetworking and Computing Today\nConfidentiality, Integrity, Availability (CIA) Triad\nStandard Definitions\nPassive and Active Attacks\nAttack Surfaces and Attack Trees\nThreat Modeling\nFundamental Security Design Principles\nApplication Case Studies: Manufacturing, Special Education\nPacket sniffing and spoofing\nIntrusion detection systems\nLegal and ethical issues",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0004::chunk0001",
+ "document": "Model of Internet Layers for User / Device Communications",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0005::chunk0001",
+ "document": "Transmission Control Protocol / Internet Protocol (TCP/IP) Communication",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0006::chunk0001",
+ "document": "Transmission Control Protocol / Internet Protocol Communication (two)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0007::chunk0001",
+ "document": "Diverse Computing and Data Deluge Enabling New Cybersecurity Challenges",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0008::chunk0001",
+ "document": "Virtual Machines in Today’s Computing\nWith Virtualization\nWithout Virtualization",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0009::chunk0001",
+ "document": "Identifying Types of Threats\nMalware – malicious software\nSecurity breaches\nDenial of Service (DoS) attacks\nWeb attacks\nSession hijacking\nInsider threats\nDNS poisoning\nNew attacks – doxing",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0010::chunk0001",
+ "document": "Malware\nSoftware with a malicious purpose\nViruses\nTrojan horses\nSpyware\nLogic bombs",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0011::chunk0001",
+ "document": "Malware – Viruses\nOne of the two most common types of malware\nDesigned to replicate and spread\nUsually spreads through email\nUses system resources and causes network slowdowns or stoppage",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0012::chunk0001",
+ "document": "Malware – Trojan Horses\nAnother common type of malware\nNamed after the wooden horse of ancient history\nAppears benign but downloads malware onto a computer from within",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0013::chunk0001",
+ "document": "Malware – Spyware and Logic Bombs\nSpyware is rapidly growing\nCookies\nKey loggers\nLogic bombs – lay dormant until a condition is met (e.g. a date)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0014::chunk0001",
+ "document": "Types of Hackers\nWhite Hat – authorized to find and fix vulnerabilities\nBlack Hat – non-ethical hacking for malicious gain\nGrey Hat – hack without malicious intent but often without permission",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0015::chunk0001",
+ "document": "Basic Security Terminology\nDevices:\n• Firewall – filters network traffic\n• Proxy server – disguises internal host IP\n• Intrusion Detection System – monitors traffic for attacks\nActivities:\n• Authentication\n• Auditing",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0016::chunk0001",
+ "document": "Exercise – Respond During an Intrusion\nScenario: Your PC responds slowly; gateway shows high network activity though no network apps are open.\n• What types of malware could cause these symptoms?\n• How might it have gained access?\n• What steps can confirm infection?\n• If malware is confirmed, how do you restore safe operation?",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0017::chunk0001",
+ "document": "In-Class Exercise – Responses\n• Likely malware: virus, worm\n• Access method: phishing email or malicious link/attachment\n• Check logs, antivirus reports, or use Wireshark to inspect traffic\n• Identify abnormal destinations or services in use",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0018::chunk0001",
+ "document": "Restoring Safe Operation\n• Isolate infected machine from networks\n• Attempt data backup (may include infected files)\n• Rebuild system or recover from clean backup\n• If no backup: try antivirus cleanup\n• Moral: plan ahead, know risks, maintain backups and insurance",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0019::chunk0001",
+ "document": "Cybersecurity Definition (NIST 7298)\n“Measures and controls ensuring confidentiality, integrity, and availability of information-system assets including hardware, software, firmware, and information being processed, stored, and communicated.”\nKey questions:\n1. What assets need protection?\n2. How are they threatened?\n3. What countermeasures are appropriate?",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0020::chunk0001",
+ "document": "CIA Triad (Information Assurance)\nConfidentiality – prevent unauthorized disclosure\nIntegrity – ensure data and systems change only as authorized\nAvailability – ensure systems operate promptly and reliably for authorized users",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0021::chunk0001",
+ "document": "Security Goals and Threats\n• Confidentiality loss → Disclosure of sensitive data\n• Integrity loss → Unauthorized modification or destruction\n• Availability loss → Denial of service to legitimate users",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0022::chunk0001",
+ "document": "Types of Attacks\n• Passive – eavesdropping on communications (traffic analysis, data interception)\n• Active – modifying or disrupting communication (stream modification, DoS, spoofing)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0023::chunk0001",
+ "document": "Attack Surfaces and Attack Trees\n• Attack surface – all points where an adversary can try to enter or extract data\n• Attack tree – hierarchical representation of possible attack paths to a goal\nUsed for threat modeling and defense prioritization.",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 23,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0024::chunk0001",
+ "document": "Threat Modeling\n• Identify assets\n• Determine potential threats and vulnerabilities\n• Estimate risk and impact\n• Prioritize mitigation strategies",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 24,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0025::chunk0001",
+ "document": "Fundamental Security Design Principles\n1. Least Privilege\n2. Fail-Safe Defaults\n3. Economy of Mechanism\n4. Complete Mediation\n5. Open Design\n6. Separation of Privilege\n7. Least Common Mechanism\n8. Psychological Acceptability",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 25,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0026::chunk0001",
+ "document": "Case Study – Manufacturing System\n• Attack surface includes controllers, sensors, and remote connections\n• Threats: malware, supply-chain tampering, insider manipulation\n• Mitigations: network segmentation, access control, integrity checks",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 26,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0027::chunk0001",
+ "document": "Case Study – Special Education Applications\n• Sensitive student data requires strict confidentiality\n• Threats: improper access controls, phishing, ransomware\n• Mitigations: encryption, user training, secure backups",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 27,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0028::chunk0001",
+ "document": "Packet Sniffing and Spoofing\n• Sniffing – capturing network traffic (e.g., Wireshark)\n• Spoofing – faking source addresses to mislead targets\n• Both common in network attacks and defense testing",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 28,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0029::chunk0001",
+ "document": "Intrusion Detection Systems (IDS)\n• Monitor traffic for malicious activity\n• Signature-based and anomaly-based methods\n• Examples: Snort, Suricata\n• Complement to firewalls and antivirus",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 29,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0030::chunk0001",
+ "document": "Legal and Ethical Issues\n• Computer Fraud and Abuse Act (CFAA)\n• Privacy laws and data-protection regulations\n• Ethical responsibility of security professionals\n• Penetration-testing authorization requirements",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 30,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0031::chunk0001",
+ "document": "Review Questions\n1. What is the CIA Triad?\n2. How do attack surfaces and threat models differ?\n3. Give examples of active and passive attacks.\n4. Why is least privilege important?",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 31,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0032::chunk0001",
+ "document": "Summary\n• Network and application layers pose distinct security risks\n• Threat modeling and attack trees aid risk assessment\n• CIA Triad guides design and policy\n• Ethical hacking and IDS are key defenses",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 32,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0033::chunk0001",
+ "document": "Next Topics\n• Application-layer protocols\n• Secure communication mechanisms\n• Hands-on lab: Packet analysis with Wireshark",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 33,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0034::chunk0001",
+ "document": "References\n• NIST SP 800-12 Rev. 1 – An Introduction to Information Security\n• RFC 2196 – Site Security Handbook\n• Whitman & Mattord, Principles of Information Security",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 34,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part1::slide0035::chunk0001",
+ "document": "End of Module 1 – Part 1",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 1.pptx",
+  "slide_index": 35,
+  "chunk_index": 1
+ }
+}

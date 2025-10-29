@@ -1,0 +1,135 @@
+{
+ "id": "CEN3078_Module1_Part3::slide0001::chunk0001",
+ "document": "CEN 3078 – Computer Security\nModule 1 – Application and Network Analysis – Part 3",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0002::chunk0001",
+ "document": "Module 1 – Part 3 Topics\n• Security Monitoring and Logging\n• Network Forensics\n• Incident Response Tools\n• Case Studies and Best Practices",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0003::chunk0001",
+ "document": "Security Monitoring\n• Continuous collection of data for detecting security events\n• Sources: network devices, servers, firewalls, IDS/IPS, endpoints\n• Objectives: identify abnormal patterns and correlate activity",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0004::chunk0001",
+ "document": "Logging Fundamentals\n• Logs provide detailed records of system and user activity\n• Must be accurate, timestamped, and centralized\n• Types of logs: system, application, network, audit, and security",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0005::chunk0001",
+ "document": "Centralized Log Management\n• Collect logs from multiple sources\n• Store in a secure, tamper-proof system\n• Use tools like syslog, ELK stack, or Splunk\n• Enables correlation and long-term analysis",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0006::chunk0001",
+ "document": "Network Forensics\n• Capturing, recording, and analyzing network traffic for evidence\n• Used for post-incident analysis and attack reconstruction\n• Tools: Wireshark, tcpdump, Zeek (Bro), NetworkMiner",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0007::chunk0001",
+ "document": "Wireshark Overview\n• Popular open-source packet analyzer\n• Displays captured packets in detail\n• Filters traffic for protocols, IPs, and payloads\n• Essential for diagnosing network security issues",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0008::chunk0001",
+ "document": "Incident Response Tools\n• Antivirus and EDR (Endpoint Detection and Response)\n• Log analyzers and forensic suites\n• Network scanners (Nmap, Nessus)\n• Memory analysis tools (Volatility, Autopsy)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0009::chunk0001",
+ "document": "SIEM (Security Information and Event Management)\n• Combines log management, monitoring, and analytics\n• Correlates events from multiple sources\n• Supports real-time alerting and dashboards\n• Example: Splunk, IBM QRadar, Elastic Security",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0010::chunk0001",
+ "document": "Indicators of Compromise (IoCs)\n• Evidence that a system has been breached\n• Examples: unusual outbound traffic, failed logins, file hash changes\n• Collected via IDS, SIEM, and endpoint logs",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0011::chunk0001",
+ "document": "Case Study: Phishing Attack Detection\n• Employee reports suspicious email\n• Logs show login attempt from foreign IP\n• Network capture confirms credential exfiltration\n• Response: block IP, reset credentials, enhance MFA policy",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0012::chunk0001",
+ "document": "Best Practices for Monitoring\n• Enable detailed logging for critical systems\n• Regularly review logs and alerts\n• Automate correlation using SIEM rules\n• Retain logs for compliance (HIPAA, PCI-DSS, etc.)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0013::chunk0001",
+ "document": "Network Hardening Checklist\n• Disable unused ports and services\n• Patch and update systems regularly\n• Enforce strong password and MFA policies\n• Implement network segmentation and least privilege",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0014::chunk0001",
+ "document": "Summary\n• Monitoring and forensics are essential for security visibility\n• Logging and SIEM tools detect early signs of compromise\n• Effective incident response minimizes damage\n• Continuous improvement through lessons learned",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part3::slide0015::chunk0001",
+ "document": "End of Module 1 – Part 3",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 3.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}

@@ -1,0 +1,315 @@
+{
+ "id": "CEN3078_Module2_Part6::slide0001::chunk0001",
+ "document": "CEN 3078 Computer Security\nModule 2 – Application and Network Attacks",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0002::chunk0001",
+ "document": "Module 2 Topics\nTCP fundamental attacks on the TCP protocol\nDenial-of-Service attack\nSQL injection attack\nCross-site scripting attack\nMiscellaneous: Heartbleed, ransomware, cryptojacking",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0003::chunk0001",
+ "document": "The Heartbleed Bug and Attack\nVulnerability in OpenSSL's TLS Heartbeat extension\nOpenSSL underpins HTTPS for banking and secure transactions\nIntroduced 2012; publicly disclosed 2014",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0004::chunk0001",
+ "document": "Background: the Heartbeat Protocol\nTLS/SSL provides secure channels\nHeartbeat implements keep-alive to maintain sessions when idle\nMechanism: request → copy payload of declared length L → reply\nBug: implementation trusts declared length (L) instead of actual payload size",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0005::chunk0001",
+ "document": "How the Response Packet Is Constructed\nThe amount copied depends on the length field\nIf the declared length exceeds actual payload size, extra memory is copied into the response",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0006::chunk0001",
+ "document": "Attack Launch – Concept\nSend a heartbeat request with an inflated payload length\nReceiver copies more bytes than present → memory disclosure in response packet\nLeaked data may include credentials, keys, or user info",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0007::chunk0001",
+ "document": "Attack Launch – Normal Length Example\nLength field set to match actual payload (e.g., 0x0016 for 22 bytes)\nNo extra data leaked when lengths match exactly",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0008::chunk0001",
+ "document": "Launch the Heartbleed Attack – Oversized Length\nIncrease declared length (e.g., 0x4000 = 16 KB > 22 bytes)\nReceiver copies excess memory into the response\nRepeated requests may reveal different memory regions over time",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0009::chunk0001",
+ "document": "Attack Results\nServer memory is exfiltrated in heartbeat responses\nLeaked data depends on what resides in affected buffers at time of request\nMultiple attempts can yield different secrets",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0010::chunk0001",
+ "document": "Fixing the Heartbleed Bug\nUpdate OpenSSL to patched versions\nApply bounds checking to validate declared length against actual record size before copying",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0011::chunk0001",
+ "document": "Fixing Heartbleed – Bounds Checking Logic\nIf (declared_length + overhead) > actual_record_length → drop packet, no reply\nConstants: 1 (type) + 2 (length) + 16 (min padding) = 19 bytes overhead\nPrevents memcpy from over-reading memory buffers",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0012::chunk0001",
+ "document": "Story: Bounds Checking and Game Design\nIllustrative analogy on how strict bounds checks prevent logic exploits\nSecurity lesson: validate untrusted lengths and sizes before processing",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0013::chunk0001",
+ "document": "Cryptojacking – Definition\nUnauthorized use of a victim’s CPU/GPU to mine cryptocurrency\nTwo routes: malware (via social engineering) and browser-based scripts (malvertising/injected JS)\nSymptoms: overheating, high CPU, sluggish performance",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0014::chunk0001",
+ "document": "How Cryptojacking Works\nAttacker injects a mining script in a website or ad\nWhen loaded, the script runs mining code in the browser tab\nOften no files written to disk; runs as long as page/tab remains open\nPools aggregate mined shares over many victims",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0015::chunk0001",
+ "document": "Preventing Cryptojacking\nUse VPN and up-to-date web filtering\nTrain users to resist phishing\nAd-blocking/anti-cryptomining extensions\nEndpoint protection for known coin miners\nMaintain browser extensions; MDM for mobile controls",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0016::chunk0001",
+ "document": "DNS and Attacks – Overview\nDNS is the Internet’s phonebook (name → IP)\nWe cover hierarchy, zones, servers, queries, and attack surfaces\nAttacks include DoS and spoofing/cache poisoning",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0017::chunk0001",
+ "document": "DNS Domain Hierarchy\nTree-like structure with ROOT (“.”) at top\nTLDs (e.g., .com) followed by second-level domains (e.g., example.com)\nIANA oversees root zone; DNS maps names to IPs for hosts/services",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0018::chunk0001",
+ "document": "DNS Zones vs Domains\nZone groups contiguous domains/subdomains under one management authority\nA domain can be split into multiple zones for scalability\nSubdomains may maintain their own zones on different name servers",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0019::chunk0001",
+ "document": "Authoritative Name Servers\nEach zone has authoritative servers (master/primary and slave/secondary)\nMaster stores original zone records; slaves maintain synchronized copies\nThese provide definitive answers for records in their zones",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0020::chunk0001",
+ "document": "DNS ROOT Servers\n13 logical root name servers (anycasted globally)\nThey serve delegations to TLD servers\nIf root servers were down, DNS resolution would be severely impacted",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0021::chunk0001",
+ "document": "Top-Level Domains (TLDs)\nInfrastructure (.arpa), Generic (.com, .net), Sponsored (.edu, .gov, .mil, .travel), Country-code (.au, .cn, .fr)\nReserved TLDs: .example, .test, .localhost, .invalid",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0022::chunk0001",
+ "document": "DNS Query Process\nLocal files (/etc/hosts, /etc/resolv.conf) checked first\nLocal resolver queries recursive DNS which iteratively consults ROOT → TLD → authoritative\nCaching used with TTL to reduce load and latency",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0023::chunk0001",
+ "document": "Local DNS Files\n/etc/hosts stores static name→IP entries\n/etc/resolv.conf configures the local DNS server IP\nDHCP often supplies resolver info automatically",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 23,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0024::chunk0001",
+ "document": "Local DNS Server and Iterative Querying\nStarts at ROOT when it lacks cached answers\nReceives referrals down the hierarchy (.net → example.net) until it reaches the authoritative server with the answer",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 24,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0025::chunk0001",
+ "document": "Emulating a Local DNS Server – Step 1\nQuery a ROOT server directly\nROOT replies with referrals (no direct answer) to relevant TLD name servers",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 25,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0026::chunk0001",
+ "document": "Steps 2–3: Ask TLD and Authoritative Servers\nAsk a .net nameserver\nAsk the example.net authoritative server\nFinally obtain the answer (IP) and cache it with TTL",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 26,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0027::chunk0001",
+ "document": "DNS Cache\nLocal DNS servers cache answers to speed resolution\nEntries expire based on TTL values to ensure freshness",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 27,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0028::chunk0001",
+ "document": "How Does Local DNS Learn Root IPs?\nAnswer: the root hints (zone file) preconfigured in resolvers\nUsed to bootstrap iterative queries to ROOT",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 28,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0029::chunk0001",
+ "document": "DNS Attacks – Overview\nDenial-of-Service: overwhelm local/authoritative servers → name resolution fails\nDNS Spoofing: provide fraudulent IPs to redirect victims to attacker-controlled hosts",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 29,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0030::chunk0001",
+ "document": "Attack Surfaces in DNS\nMultiple packets in queries/replies create spoofing points\nPotential targets: user host, local resolver, TLD servers, authoritative servers\nDoS can target each point; cache poisoning targets resolvers",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 30,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0031::chunk0001",
+ "document": "Attacks on Compromised Machines\nIf root is obtained on host:\nModify /etc/resolv.conf to point to malicious DNS\nModify /etc/hosts to override selected domains (e.g., bank site → attacker IP)",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 31,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0032::chunk0001",
+ "document": "Spoofing DNS Replies (LAN) and Cache Poisoning\nAttacks on users: send spoofed replies appearing from local DNS before real replies\nAttacks on resolvers: inject spoofed iterative replies to poison cache with attacker-controlled IPs",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 32,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0033::chunk0001",
+ "document": "Attacks on Nameservers – UltraDNS (2004)\nDoS against a major DNS provider supporting Amazon, Walmart, Expedia\nOutage lasted about an hour; highlighted DNS provider risk concentration",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 33,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0034::chunk0001",
+ "document": "Attacks on Nameservers – DNSPod (2009)\nDDoS on Chinese DNS provider targeting Baofeng.com\nWhen caches expired, Baofeng clients spammed DNS due to a software bug\nImpact: network congestion across ~20 provinces (major incident)",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 34,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part6::slide0035::chunk0001",
+ "document": "Attacks on Nameservers – Dyn (2016)\nLarge DDoS against DNS provider for many major sites (CNN, BBC, HBO, PayPal)\nBotnets of IoT devices (e.g., cameras, baby monitors) used\nResult: broad Internet service outages",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 6.pptx",
+  "slide_index": 35,
+  "chunk_index": 1
+ }
+}

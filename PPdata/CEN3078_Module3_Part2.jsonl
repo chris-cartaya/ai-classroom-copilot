@@ -1,0 +1,225 @@
+{
+ "id": "CEN3078_Module3_Part2::slide0001::chunk0001",
+ "document": "CEN 3078 Computer Security\nModule 3 – Defense Architectures and Design",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0002::chunk0001",
+ "document": "Module 3 – Defense Architectures and Design\nNetwork Scanning and Vulnerability Scanning\nDigital Forensics\nCybersecurity Engineering\nSecurity Policies\nFirewalls\nAuthentication and Access Controls\nFederated Trust\nIoT/Cloud Middleware",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0003::chunk0001",
+ "document": "Objectives\nUnderstand basic systems engineering concepts\nIntegrate systems engineering into cybersecurity\nUtilize engineering tools in cybersecurity\nExplain standards used in cybersecurity engineering",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0004::chunk0001",
+ "document": "Introduction\nCybersecurity is rapidly evolving and multidisciplinary.\nPracticed across business, computer science, and engineering.\nCybersecurity can be viewed as a sub-discipline of systems engineering, which considers a system from concept to disposal.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0005::chunk0001",
+ "document": "Defining Cybersecurity Engineering\nCybersecurity involves technology, processes, and people.\nSystems engineering provides a structured life-cycle approach.\nIt starts from concept → design → implementation → operation → disposal.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0006::chunk0001",
+ "document": "Applying Engineering to Cybersecurity\nDefine project requirements using SMART:\nSpecific, Measurable, Achievable, Realistic, Timely.\nUse a Work Breakdown Structure (WBS) to break down tasks into manageable components.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0007::chunk0001",
+ "document": "Work Breakdown Structure (WBS)\nOrganizes a project into smaller components.\nDefines hierarchy of deliverables and dependencies.\nHelps in cost estimation and task tracking.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0008::chunk0001",
+ "document": "Standards in Cybersecurity Engineering\nKey frameworks:\n- RMF: Risk Management Framework (NIST SP 800-37)\n- ISO 27001: Information Security Management Systems (ISMS)\n- ISO 27004: Security metrics and measurement\n- NIST SP 800-63B: Digital Identity Guidelines",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0009::chunk0001",
+ "document": "Modeling in Cybersecurity\nModeling identifies and evaluates threats systematically.\nCommon threat modeling methodologies:\n- STRIDE: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege\n- PASTA: Process for Attack Simulation and Threat Analysis (risk-centric)\n- DREAD: Damage, Reproducibility, Exploitability, Affected Users, Discoverability (deprecated)",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0010::chunk0001",
+ "document": "Summary\nCybersecurity engineering applies systems engineering discipline.\nFocus on methodical design, testing, and maintenance.\nModeling helps identify and mitigate system-specific threats.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0011::chunk0001",
+ "document": "IT Security Management Controls\nSecurity controls reduce or prevent risks.\nDefined as actions or procedures that minimize or detect security incidents.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0012::chunk0001",
+ "document": "Control Classifications\n1. Management Controls – Policies, guidelines, planning, and risk management.\n2. Operational Controls – Human and procedural mechanisms (training, incident response).\n3. Technical Controls – Implemented via hardware/software (encryption, access control).",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0013::chunk0001",
+ "document": "NIST SP 800-53 Security Controls\nDefines security and privacy controls for federal information systems.\nIncludes families such as Access Control (AC), Audit and Accountability (AU), Security Assessment (CA), and more.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0014::chunk0001",
+ "document": "Detailed Security Controls (1)\nExamples:\n- AC-2: Account Management\n- AC-17: Remote Access\n- AU-6: Audit Review, Analysis, and Reporting\n- SC-7: Boundary Protection",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0015::chunk0001",
+ "document": "Detailed Security Controls (2)\n- IR-4: Incident Handling\n- PE-3: Physical Access Control\n- PL-2: System and Communications Protection\n- SI-3: Malicious Code Protection",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0016::chunk0001",
+ "document": "Detailed Security Controls (3)\n- CM-3: Configuration Change Control\n- MP-4: Media Storage\n- CP-2: Contingency Plan\n- SA-11: Developer Security Testing",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0017::chunk0001",
+ "document": "Technical Security Controls\nFocus on preventing unauthorized access.\nImplement encryption, network segmentation, and secure protocols.\nFirewalls and IDS are examples of technical safeguards.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0018::chunk0001",
+ "document": "IT Security Plan\nSpecifies actions to mitigate risks.\nIncludes:\n- Tasks and timelines\n- Required resources\n- Responsible parties\nEnsures identified deficiencies are addressed.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0019::chunk0001",
+ "document": "Security Plan Implementation (1)\nImplement corrective actions from the IT security plan.\nMonitor completion of each task.\nDocument progress and report to management.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0020::chunk0001",
+ "document": "Security Plan Implementation (2)\nCoordinate implementation across IT teams.\nEnsure policies align with standards (e.g., ISO 27001, NIST 800-53).\nEstablish verification mechanisms for each control.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0021::chunk0001",
+ "document": "Security Plan Follow-Up\nSecurity is an ongoing process.\nMonitor implemented controls.\nReassess risks after system or environment changes.\nUpdate documentation regularly.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0022::chunk0001",
+ "document": "Security Management Lifecycle\nCycle: Plan → Implement → Monitor → Evaluate → Adjust.\nAdapt continuously to technology and threat landscape changes.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0023::chunk0001",
+ "document": "Security Plan Maintenance\nMaintain and update controls.\nEnsure effectiveness and relevance over time.\nPeriodic reviews prevent security decay and ensure compliance.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 23,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0024::chunk0001",
+ "document": "Summary\nSecurity management is continuous.\nControls must be implemented, monitored, and improved.\nRegular reviews sustain an organization’s security posture.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 24,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part2::slide0025::chunk0001",
+ "document": "End of Module 3 – Defense Architectures and Design – Part 2",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 2.pptx",
+  "slide_index": 25,
+  "chunk_index": 1
+ }
+}
