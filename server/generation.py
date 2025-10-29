@@ -28,17 +28,17 @@ class AnswerGenerator:
         # Build prompt that emphasizes citation and accuracy
         prompt = f"""You are an AI teaching assistant. Use the following course materials to answer the student's question.
 
-{context}
+        {context}
 
-STUDENT QUESTION: {question}
+        STUDENT QUESTION: {question}
 
-INSTRUCTIONS:
-1. Answer clearly and concisely using ONLY the provided course materials
-2. If the materials don't contain relevant information, say "I cannot answer based on the course materials"
-3. Reference specific modules and slides in your answer (e.g., "As mentioned in Module 3, Slide 5...")
-4. Keep your answer focused and educational
+        INSTRUCTIONS:
+        1. Answer clearly and concisely using ONLY the provided course materials
+        2. If the materials don't contain relevant information, say "I cannot answer based on the course materials"
+        3. Reference specific modules and slides in your answer (e.g., "As mentioned in Module 3, Slide 5...")
+        4. Keep your answer focused and educational
 
-ANSWER:"""
+        ANSWER:"""
 
         try:
             # Generate answer using local LLM
