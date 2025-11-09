@@ -43,13 +43,50 @@ app.add_middleware(
 rag_system = RetrievalAugmentedGeneration()
 
 # Supported file types for upload
-SUPPORTED_EXTENSIONS = {'.pdf', '.txt', '.docx', '.doc'}
+SUPPORTED_EXTENSIONS = {'.pdf', '.txt', '.docx', '.doc', '.pptx'}
 UPLOAD_DIR = Path("./uploaded_files")
 CHROMA_DIR = Path("./chroma_db")
 
 # Create directories if they don't exist
 UPLOAD_DIR.mkdir(exist_ok=True)
 CHROMA_DIR.mkdir(exist_ok=True)
+
+class PPTXLoader:
+    """Simple PowerPoint loader using python-pptx"""
+
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+
+    def load(self) -> List[Document]:
+        """Load PowerPoint file and return documents"""
+        from pptx import Presentation
+
+        try:
+            prs = Presentation(self.file_path)
+            text_content = []
+
+            # Extract text from all slides
+            for slide_number, slide in enumerate(prs.slides, 1):
+                slide_text = []
+
+                # Extract text from shapes
+                for shape in slide.shapes:
+                    if hasattr(shape, "text") and shape.text:
+                        slide_text.append(shape.text)
+
+                if slide_text:
+                    text_content.append(f"Slide {slide_number}:\n" + "\n".join(slide_text))
+
+            full_text = "\n\n".join(text_content)
+
+            if not full_text.strip():
+                return [Document(page_content="No text content found in PowerPoint file.")]
+            else:
+                return [Document(page_content=full_text)]
+
+        except Exception as e:
+            logger.error(f"Error loading PPTX file {self.file_path}: {e}")
+            return [Document(page_content=f"Error loading PowerPoint file: {str(e)}")]
 
 def get_file_loader(file_path: Path):
     """Get appropriate document loader based on file extension"""
@@ -61,6 +98,8 @@ def get_file_loader(file_path: Path):
         return TextLoader(str(file_path))
     elif extension in ['.docx', '.doc']:
         return Docx2txtLoader(str(file_path))
+    elif extension == '.pptx':
+        return PPTXLoader(str(file_path))
     else:
         raise ValueError(f"Unsupported file type: {extension}")
 
@@ -123,16 +162,55 @@ async def ask_question(question: str = Form(...)):
         # Use RAG system to get answer
         result = rag_system.ask_question(question)
 
+        # Extract citations from retrieved documents
+        citations = [{"source": doc.metadata.get('source', 'Unknown')} for doc, score in result.get('documents', [])]
+
         return {
             "question": result["question"],
             "answer": result["answer"],
             "documents_retrieved": result["documents_retrieved"],
+            "citations": citations,
             "status": "success"
         }
 
     except Exception as e:
         logger.error(f"Error processing question: {e}")
         raise HTTPException(status_code=500, detail=f"Error processing question: {str(e)}")
+
+@app.post("/chat")
+async def chat_direct(question: str = Form(...)):
+    """
+    Direct chat with LLM (bypasses RAG system)
+    For testing basic LLM communication without document retrieval
+    """
+    try:
+        if not question.strip():
+            raise HTTPException(status_code=400, detail="Question cannot be empty")
+
+        logger.info(f"Direct chat question: {question}")
+
+        # Direct LLM call without retrieval
+        import ollama
+        response = ollama.generate(
+            model="phi3:3.8b",
+            prompt=question,
+            options={
+                'temperature': 0.7,
+                'top_p': 0.9,
+            }
+        )
+
+        return {
+            "question": question,
+            "answer": response['response'],
+            "model": "phi3:3.8b",
+            "mode": "direct_llm",
+            "status": "success"
+        }
+
+    except Exception as e:
+        logger.error(f"Error in direct chat: {e}")
+        raise HTTPException(status_code=500, detail=f"Error processing chat: {str(e)}")
 
 @app.post("/upload")
 async def upload_files(files: List[UploadFile] = File(...)):
@@ -209,6 +287,54 @@ async def upload_files(files: List[UploadFile] = File(...)):
     except Exception as e:
         logger.error(f"Upload error: {e}")
         raise HTTPException(status_code=500, detail=f"Upload failed: {str(e)}")
+
+@app.get("/documents")
+async def list_documents():
+    """List all documents currently stored in the vector database"""
+    try:
+        from retrieval import SlideRetriever
+        retriever = SlideRetriever()
+
+        # Get all documents from the database
+        all_docs = retriever.vector_store.get()
+
+        if not all_docs or not all_docs['ids']:
+            return {
+                "total_chunks": 0,
+                "sources": [],
+                "documents": [],
+                "status": "empty"
+            }
+
+        # Group documents by source
+        sources = {}
+        for metadata in all_docs['metadatas']:
+            source = metadata.get('source', 'Unknown')
+            if source not in sources:
+                sources[source] = 0
+            sources[source] += 1
+
+        # Prepare document list
+        documents = []
+        for i, (doc_id, metadata) in enumerate(zip(all_docs['ids'], all_docs['metadatas'])):
+            documents.append({
+                "id": doc_id,
+                "source": metadata.get('source', 'Unknown'),
+                "chunk_index": metadata.get('chunk_index', 0),
+                "content_preview": all_docs['documents'][i][:200] + "..." if len(all_docs['documents'][i]) > 200 else all_docs['documents'][i]
+            })
+
+        return {
+            "total_chunks": len(all_docs['ids']),
+            "total_sources": len(sources),
+            "sources": sources,
+            "documents": documents[:50],  # Limit to first 50 for performance
+            "status": "success"
+        }
+
+    except Exception as e:
+        logger.error(f"Error listing documents: {e}")
+        raise HTTPException(status_code=500, detail=f"Error listing documents: {str(e)}")
 
 @app.delete("/documents")
 async def clear_documents():

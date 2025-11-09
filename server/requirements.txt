@@ -9,6 +9,11 @@ langchain-community==0.4
 langchain-chroma==1.0.0
 langchain-ollama==1.0.0
 
+# Document processing
+docx2txt==0.8
+pypdf==4.0.1
+python-pptx==0.6.23
+
 # Performance / dev utilities
 httptools==0.7.1
 watchfiles==1.1.1

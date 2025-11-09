@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 class AnswerGenerator:
-    def __init__(self, model: str = "gpt-oss"):
+    def __init__(self, model: str = "phi3:3.8b"):
         """Initialize the answer generator with local LLM"""
         self.model = model
         self.client = ollama.Client(host='http://localhost:11434')

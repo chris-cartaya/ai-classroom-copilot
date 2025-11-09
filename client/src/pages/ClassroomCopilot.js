@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Card from '../components/Card';
 import TextArea from '../components/TextArea';
 import Button from '../components/Button';
-import Input from '../components/Input';
 import './ClassroomCopilot.css';
 
 /**
@@ -50,11 +49,11 @@ const ClassroomCopilot = () => {
     setIsLoading(true);
 
     try {
-      // Make real API call to FastAPI backend
+      // Make real API call to FastAPI backend (using /chat for direct LLM testing)
       const formData = new FormData();
       formData.append('question', question);
 
-      const response = await fetch('http://localhost:8000/ask', {
+      const response = await fetch('http://localhost:8000/chat', {
         method: 'POST',
         body: formData
       });
@@ -67,7 +66,7 @@ const ClassroomCopilot = () => {
 
       if (data.status === 'success') {
         // Format citations from the API response
-        const citations = []; // The API doesn't return citations in this format yet
+        const citations = data.citations || [];
 
         // add question and answer to conversation history
         setConversation([
