@@ -1,0 +1,105 @@
+/* student dashboard styles - clean chat-focused interface */
+
+.student-dashboard {
+  min-height: 100vh;
+  background-color: var(--background-gray);
+  padding: var(--spacing-xl) 0;
+}
+
+.dashboard-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* dashboard header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.dashboard-header h1 {
+  font-size: var(--font-size-xxl);
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+}
+
+.dashboard-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* chat container - full width for chat interface */
+.chat-container {
+  background-color: var(--background-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* dashboard footer with navigation */
+.dashboard-footer {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--primary-purple);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-link:hover {
+  background-color: var(--primary-purple-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  color: white;
+}
+
+/* responsive design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .dashboard-header h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .dashboard-subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .nav-link {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* dark mode styles */
+[data-theme="dark"] .student-dashboard {
+  background-color: var(--background-gray);
+}
+
+[data-theme="dark"] .chat-container {
+  background-color: var(--background-white);
+}
+
+[data-theme="dark"] .dashboard-header h1 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .dashboard-subtitle {
+  color: var(--text-light);
+}

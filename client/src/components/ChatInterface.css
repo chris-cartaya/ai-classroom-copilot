@@ -1,0 +1,297 @@
+/* chat interface component styles - pure chat functionality */
+
+.chat-interface {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* conversation history card */
+.conversation-card {
+  margin-bottom: var(--spacing-lg);
+}
+
+.conversation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.conversation-header h3 {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: var(--font-size-xl);
+}
+
+.conversation-list {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: var(--spacing-md);
+}
+
+.conversation-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.conversation-list::-webkit-scrollbar-track {
+  background: var(--background-gray);
+  border-radius: 3px;
+}
+
+.conversation-list::-webkit-scrollbar-thumb {
+  background: var(--border-gray);
+  border-radius: 3px;
+}
+
+.conversation-list::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-purple);
+}
+
+/* conversation items */
+.conversation-item {
+  margin-bottom: var(--spacing-lg);
+}
+
+.conversation-item.question {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.conversation-item.answer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* message bubbles */
+.question-bubble,
+.answer-bubble {
+  max-width: 80%;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.question-bubble {
+  background-color: var(--primary-purple);
+  color: white;
+  margin-left: auto;
+}
+
+.answer-bubble {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+  border-left: 4px solid var(--accent-green);
+}
+
+.bubble-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.bubble-icon {
+  font-size: var(--font-size-lg);
+}
+
+.bubble-label {
+  color: inherit;
+  opacity: 0.9;
+}
+
+.confidence-badge {
+  margin-left: auto;
+  background-color: var(--accent-green);
+  color: white;
+  padding: 2px var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.bubble-content {
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* citations section */
+.citations-section {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-gray);
+}
+
+.citations-title {
+  font-size: var(--font-size-base);
+  color: var(--text-dark);
+  margin: 0 0 var(--spacing-md) 0;
+  font-weight: 600;
+}
+
+.citations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.citation-item {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--background-gray);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--primary-purple);
+}
+
+.citation-item strong {
+  display: block;
+  color: var(--primary-purple);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+}
+
+.citation-content {
+  margin: 0;
+  color: var(--text-light);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+/* question input card */
+.question-card {
+  margin-bottom: var(--spacing-lg);
+}
+
+.question-card .form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+}
+
+.submit-button {
+  min-width: 200px;
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-md) var(--spacing-xl);
+}
+
+.submit-button .spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: var(--spacing-sm);
+}
+
+/* tips card */
+.tips-card {
+  background-color: var(--background-gray);
+  border-left: 4px solid var(--accent-green);
+}
+
+.tips-card h3 {
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tips-list li {
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-md);
+  position: relative;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.tips-list li:before {
+  content: "💡";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* responsive design */
+@media (max-width: 768px) {
+  .chat-interface {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .question-bubble,
+  .answer-bubble {
+    max-width: 90%;
+  }
+
+  .conversation-list {
+    max-height: 400px;
+  }
+
+  .submit-button {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* dark mode styles */
+[data-theme="dark"] .question-bubble {
+  background-color: var(--primary-purple-dark);
+}
+
+[data-theme="dark"] .answer-bubble {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .conversation-header {
+  border-bottom-color: var(--border-gray);
+}
+
+[data-theme="dark"] .conversation-header h3 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .citations-section {
+  border-top-color: var(--border-gray);
+}
+
+[data-theme="dark"] .citations-title {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .citation-item {
+  background-color: var(--background-gray);
+  border-left-color: var(--primary-purple);
+}
+
+[data-theme="dark"] .citation-item strong {
+  color: var(--primary-purple);
+}
+
+[data-theme="dark"] .citation-content {
+  color: var(--text-light);
+}
+
+[data-theme="dark"] .tips-card {
+  background-color: var(--background-gray);
+  border-left-color: var(--accent-green);
+}
+
+[data-theme="dark"] .tips-card h3 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .tips-list li {
+  color: var(--text-light);
+}

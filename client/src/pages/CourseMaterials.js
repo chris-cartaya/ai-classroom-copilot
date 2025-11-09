@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import './CourseMaterials.css';
@@ -9,6 +9,9 @@ import './CourseMaterials.css';
  * implements fr-2: allow instructors to upload supported file types
  */
 const CourseMaterials = ({ userRole }) => {
+  // ref for file input
+  const fileInputRef = useRef(null);
+
   // state for uploaded files list
   const [uploadedFiles, setUploadedFiles] = useState([
     // mock data for demonstration
@@ -16,16 +19,16 @@ const CourseMaterials = ({ userRole }) => {
     { id: 2, name: 'Module 2 - Core Concepts.pdf', size: '1.8 MB', uploadDate: '2025-10-16', status: 'processed' },
     { id: 3, name: 'Module 3 - Advanced Topics.docx', size: '856 KB', uploadDate: '2025-10-18', status: 'processing' }
   ]);
-  
+
   // state for drag and drop
   const [isDragging, setIsDragging] = useState(false);
-  
+
   // state for upload progress
   const [uploadProgress, setUploadProgress] = useState(null);
-  
+
   // state for status messages
   const [statusMessage, setStatusMessage] = useState('');
-  
+
   // state for error messages
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -212,18 +215,20 @@ const CourseMaterials = ({ userRole }) => {
                 </p>
                 <input
                   type="file"
-                  id="file-input"
+                  ref={fileInputRef}
                   className="file-input"
                   accept=".pptx,.pdf,.docx"
                   multiple
                   onChange={handleFileSelect}
                   aria-label="Upload course materials"
                 />
-                <label htmlFor="file-input" className="file-input-label">
-                  <Button variant="success" size="large">
-                    Browse Files
-                  </Button>
-                </label>
+                <Button
+                  variant="success"
+                  size="large"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  Browse Files
+                </Button>
               </div>
             </div>
 

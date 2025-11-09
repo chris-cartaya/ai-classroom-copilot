@@ -1,0 +1,210 @@
+/* instructor dashboard styles - admin-focused interface */
+
+.instructor-dashboard {
+  min-height: 100vh;
+  background-color: var(--background-gray);
+  padding: var(--spacing-xl) 0;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* dashboard header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.dashboard-header h1 {
+  font-size: var(--font-size-xxl);
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+}
+
+.dashboard-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* admin tools grid */
+.admin-tools {
+  display: grid;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* admin section */
+.admin-section {
+  background-color: var(--background-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.section-header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-gray);
+  background-color: var(--background-gray);
+}
+
+.section-header h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-dark);
+  margin: 0 0 var(--spacing-sm) 0;
+  font-weight: 600;
+}
+
+.section-header p {
+  color: var(--text-light);
+  margin: 0;
+  font-size: var(--font-size-base);
+}
+
+.section-content {
+  padding: var(--spacing-lg);
+}
+
+/* quick actions */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background-color: var(--primary-purple);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.action-button:hover {
+  background-color: var(--primary-purple-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  color: white;
+}
+
+.action-button.secondary {
+  background-color: var(--background-gray);
+  color: var(--text-dark);
+  border: 2px solid var(--border-gray);
+}
+
+.action-button.secondary:hover {
+  background-color: var(--border-gray);
+  color: var(--text-dark);
+}
+
+/* dashboard footer with navigation */
+.dashboard-footer {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--accent-green);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-link:hover {
+  background-color: var(--accent-green-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  color: white;
+}
+
+/* responsive design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .dashboard-header h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .dashboard-subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .action-button {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .nav-link {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* dark mode styles */
+[data-theme="dark"] .instructor-dashboard {
+  background-color: var(--background-gray);
+}
+
+[data-theme="dark"] .admin-section {
+  background-color: var(--background-white);
+}
+
+[data-theme="dark"] .section-header {
+  background-color: var(--background-gray);
+  border-bottom-color: var(--border-gray);
+}
+
+[data-theme="dark"] .section-header h2 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .section-header p {
+  color: var(--text-light);
+}
+
+[data-theme="dark"] .dashboard-header h1 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .dashboard-subtitle {
+  color: var(--text-light);
+}
+
+[data-theme="dark"] .action-button.secondary {
+  background-color: var(--background-gray);
+  border-color: var(--border-gray);
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .action-button.secondary:hover {
+  background-color: var(--border-gray);
+}

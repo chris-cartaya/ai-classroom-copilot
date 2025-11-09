@@ -65,10 +65,6 @@
   display: none;
 }
 
-.file-input-label {
-  cursor: pointer;
-}
-
 /* upload progress indicator */
 .upload-progress {
   margin-top: var(--spacing-lg);
