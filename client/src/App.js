@@ -75,10 +75,12 @@ function AppContent({ userRole, setUserRole, theme, setTheme }) {
   return (
     <>
       {/* header component with navigation */}
-      <Header 
+      <Header
         title={pageTitle}
         onBack={handleBack}
         onUserClick={handleUserClick}
+        theme={theme}
+        onThemeChange={handleThemeChange}
       />
 
       {/* main navigation menu */}

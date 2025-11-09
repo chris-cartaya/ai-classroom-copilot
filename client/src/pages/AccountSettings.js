@@ -292,27 +292,6 @@ const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange }) => {
         {/* preferences card (nfr-18) */}
         <Card className="settings-card" title="⚙️ Preferences">
           <form onSubmit={handleSavePreferences}>
-            {/* theme selector */}
-            <div className="form-section">
-              <label className="section-label">Theme</label>
-              <div className="theme-selector">
-                <button
-                  type="button"
-                  className={`theme-option ${preferences.theme === 'light' ? 'active' : ''}`}
-                  onClick={() => handlePreferenceChange('theme', 'light')}
-                >
-                  ☀️ Light
-                </button>
-                <button
-                  type="button"
-                  className={`theme-option ${preferences.theme === 'dark' ? 'active' : ''}`}
-                  onClick={() => handlePreferenceChange('theme', 'dark')}
-                >
-                  🌙 Dark
-                </button>
-              </div>
-            </div>
-
             {/* font size selector */}
             <div className="form-section">
               <label className="section-label">Font Size</label>

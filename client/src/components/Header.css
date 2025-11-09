@@ -10,7 +10,8 @@
 
 /* ensure buttons have proper touch targets for mobile */
 .back-button,
-.user-button {
+.user-button,
+.theme-toggle-button {
   min-width: 44px;
   min-height: 44px;
 }

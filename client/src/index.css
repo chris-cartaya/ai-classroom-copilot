@@ -162,3 +162,150 @@ html {
 .fade-in {
   animation: fadeIn 0.3s ease-in;
 }
+
+/* ===== DARK MODE STYLES ===== */
+
+[data-theme="dark"] {
+  /* dark mode color overrides */
+  --primary-purple: #5a2d82;
+  --primary-purple-dark: #4a2569;
+  --primary-purple-light: #7a4a9e;
+  --background-white: #2a2a2a;
+  --background-gray: #1a1a1a;
+  --text-dark: #e0e0e0;
+  --text-light: #b0b0b0;
+  --border-gray: #404040;
+  --error-red: #ff6b6b;
+  --warning-yellow: #ffd93d;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--background-gray);
+  color: var(--text-dark);
+}
+
+/* dark mode navigation and buttons */
+[data-theme="dark"] .nav-button {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+  border-color: var(--primary-purple);
+}
+
+[data-theme="dark"] .nav-button:hover,
+[data-theme="dark"] .nav-button.active {
+  background-color: var(--primary-purple);
+  color: white;
+}
+
+/* dark mode role selector */
+[data-theme="dark"] .role-selector {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .role-selector h3 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .role-button {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+  border-color: var(--border-gray);
+}
+
+[data-theme="dark"] .role-button:hover,
+[data-theme="dark"] .role-button.active {
+  background-color: var(--primary-purple);
+  color: white;
+  border-color: var(--primary-purple);
+}
+
+/* dark mode footer */
+[data-theme="dark"] .app-footer {
+  background-color: var(--primary-purple);
+}
+
+/* dark mode cards and forms */
+[data-theme="dark"] .card {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .card h3 {
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--background-gray);
+  color: var(--text-dark);
+  border-color: var(--border-gray);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 3px rgba(90, 45, 130, 0.2);
+}
+
+/* dark mode status messages */
+[data-theme="dark"] .status-message {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .status-success {
+  border-left-color: var(--accent-green);
+}
+
+[data-theme="dark"] .status-error {
+  border-left-color: var(--error-red);
+}
+
+/* dark mode buttons */
+[data-theme="dark"] .btn-primary {
+  background-color: var(--primary-purple);
+  color: white;
+  border-color: var(--primary-purple);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: var(--primary-purple-dark);
+  border-color: var(--primary-purple-dark);
+}
+
+[data-theme="dark"] .btn-secondary {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+  border-color: var(--border-gray);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: var(--background-gray);
+  border-color: var(--primary-purple);
+  color: var(--primary-purple);
+}
+
+/* dark mode chat messages */
+[data-theme="dark"] .message.user {
+  background-color: var(--primary-purple);
+}
+
+[data-theme="dark"] .message.assistant {
+  background-color: var(--background-white);
+  color: var(--text-dark);
+}
+
+/* dark mode citations */
+[data-theme="dark"] .citation {
+  background-color: var(--background-gray);
+  border-left-color: var(--primary-purple);
+  color: var(--text-dark);
+}
+
+/* smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
