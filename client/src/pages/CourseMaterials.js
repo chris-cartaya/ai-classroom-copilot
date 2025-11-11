@@ -12,6 +12,37 @@ import '../components/WeekCard.css'; // Also import WeekCard styles for global a
  * receives courseWeeks state and setter function from parent (App.js)
  */
 const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
+<<<<<<< Updated upstream
+=======
+  const [studentMetrics, setStudentMetrics] = useState([]);
+
+  useEffect(() => {
+    // Fetch course materials from the backend when the component mounts
+    const fetchMaterials = async () => {
+      try {
+        const res = await fetch('http://localhost:8000/materials');
+        if (!res.ok) return; // keep current state on error
+        const weeks = await res.json();
+        // Map size_bytes -> human readable size
+        const mapped = (weeks || []).map((week) => ({
+          id: week.id,
+          title: week.title,
+          materials: (week.materials || []).map((m) => ({
+            id: m.id,
+            name: m.name,
+            size: typeof m.size_bytes === 'number' ? formatFileSize(m.size_bytes) : (m.size || '0 Bytes'),
+            uploadDate: m.uploadDate || '',
+            status: m.status || 'processed'
+          }))
+        }));
+        setCourseWeeks(renumberWeeks(mapped));
+      } catch (e) {
+        // ignore fetch errors for now
+      }
+    };
+    fetchMaterials();
+  }, [setCourseWeeks]);
+>>>>>>> Stashed changes
 
   // Utility function to format file size for display
   const formatFileSize = (bytes) => {
