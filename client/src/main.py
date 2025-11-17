@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import UploadFile, File, Form
 from pydantic import BaseModel
-from generation import RetrievalAugmentedGeneration
-from ingest import ingest_pptx_to_chroma
+from .generation import RetrievalAugmentedGeneration
+from .ingest import ingest_pptx_to_chroma, pptx_to_documents
 import logging
 import os
 import sqlite3
@@ -178,11 +178,21 @@ async def upload_material(file: UploadFile = File(...), week_title: str = Form("
 
     save_path = os.path.join(UPLOADS_DIR, original_name)
     try:
+        # Read content into memory to check size
+        content = await file.read()
+        size_bytes = len(content)
+
+        # Enforce a 25 MB file size limit
+        if size_bytes > 25 * 1024 * 1024:
+            error_msg = "File exceeds 25MB limit."
+            logger.warning(
+                f"Upload failed for '{original_name}': size ({size_bytes / 1024 / 1024:.2f}MB) is over the limit."
+            )
+            return {"error": error_msg}
+
         # Save file to disk
         with open(save_path, "wb") as f:
-            content = await file.read()
             f.write(content)
-        size_bytes = os.path.getsize(save_path)
 
         # Ingest into Chroma with metadata linking to week/module and slide number
         num_docs = ingest_pptx_to_chroma(save_path, week_title=week_title, persist_directory=CHROMA_DIR)
@@ -194,10 +204,12 @@ async def upload_material(file: UploadFile = File(...), week_title: str = Form("
             "INSERT INTO materials (filename, week_title, uploaded_at, size_bytes) VALUES (?, ?, ?, ?)",
             (original_name, week_title, datetime.utcnow().isoformat(), size_bytes),
         )
+        material_id = cur.lastrowid
         conn.commit()
         conn.close()
 
         return {
+            "id": material_id,
             "status": "processed",
             "filename": original_name,
             "week_title": week_title,
@@ -207,6 +219,52 @@ async def upload_material(file: UploadFile = File(...), week_title: str = Form("
     except Exception as e:
         logger.error(f"Failed to process upload {original_name}: {e}")
         return {"error": f"Failed to upload/process file: {str(e)}"}
+
+
+@app.get("/materials/{material_id}/view")
+async def view_material_content(material_id: int):
+    """
+    Retrieves the extracted text content of a specified material.
+    """
+    conn = _get_db_conn()
+    cur = conn.cursor()
+    cur.execute("SELECT filename, week_title FROM materials WHERE id = ?", (material_id,))
+    row = cur.fetchone()
+    conn.close()
+
+    if not row:
+        return {"error": "Material not found."}
+
+    filename = row["filename"]
+    week_title = row["week_title"]
+    file_path = os.path.join(UPLOADS_DIR, filename)
+
+    if not os.path.exists(file_path):
+        logger.error(f"File not found for material {material_id}: {file_path}")
+        return {"error": "File not found on server."}
+
+    try:
+        # Extract documents (slides) from the PPTX file
+        documents = pptx_to_documents(file_path, week_title=week_title)
+        
+        # Convert Document objects to a more JSON-friendly format
+        extracted_content = [
+            {
+                "slide": doc.metadata.get("slide", -1),
+                "content": doc.page_content,
+            }
+            for doc in documents
+        ]
+        
+        return {
+            "filename": filename,
+            "week_title": week_title,
+            "content": extracted_content
+        }
+
+    except Exception as e:
+        logger.error(f"Failed to extract content from {filename}: {e}")
+        return {"error": f"Failed to extract content from file: {str(e)}"}
 
 
 @app.get("/")

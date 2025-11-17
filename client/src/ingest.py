@@ -23,7 +23,7 @@ def _init_vector_store(persist_directory: str = "./chroma_db") -> Tuple[Chroma, 
     return vector_store, embeddings
 
 
-def _pptx_to_documents(file_path: str, week_title: str) -> List[Document]:
+def pptx_to_documents(file_path: str, week_title: str) -> List[Document]:
     if Presentation is None:
         raise RuntimeError("python-pptx is not installed. Please add python-pptx to requirements and install it.")
     prs = Presentation(file_path)
@@ -53,7 +53,7 @@ def _pptx_to_documents(file_path: str, week_title: str) -> List[Document]:
 
 def ingest_pptx_to_chroma(file_path: str, week_title: str, persist_directory: str = "./chroma_db") -> int:
     vector_store, _ = _init_vector_store(persist_directory=persist_directory)
-    documents = _pptx_to_documents(file_path=file_path, week_title=week_title)
+    documents = pptx_to_documents(file_path=file_path, week_title=week_title)
     if not documents:
         return 0
     # Upsert by content+metadata; Chroma add_documents handles dedup by ids if provided. Keep simple here.
