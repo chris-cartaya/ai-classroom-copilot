@@ -15,7 +15,60 @@ The team is currently in the **Setup and Architecture** phase.
 
 ---
 
-## 🚀 Key Documentation & Workflow
+## 🚀 Getting Started
+
+To run the application locally, you will need to run both the backend server and the frontend client in two separate terminals.
+
+### 1. Backend Setup (Terminal 1)
+
+The backend is a Python server powered by FastAPI.
+
+1.  **Navigate to Project Root**:
+    ```bash
+    cd /path/to/ai-classroom-copilot
+    ```
+
+2.  **Activate Virtual Environment**:
+    ```powershell
+    # On Windows
+    .\.venv\Scripts\activate
+    ```
+
+3.  **Install Dependencies**:
+    ```bash
+    pip install -r client/src/requirements.txt
+    ```
+
+4.  **Run the Server**:
+    ```bash
+    # This will start the server with auto-reload on port 8000
+    uvicorn client.src.main:app --reload
+    ```
+    Keep this terminal open.
+
+### 2. Frontend Setup (Terminal 2)
+
+The frontend is a React application.
+
+1.  **Navigate to Client Directory**: Open a new terminal and navigate into the `client` folder.
+    ```bash
+    cd /path/to/ai-classroom-copilot/client
+    ```
+
+2.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Run the Client**:
+    ```bash
+    npm start
+    ```
+    This will open the application in your browser, typically at `http://localhost:3000`.
+
+---
+
+## 📚 Key Documentation & Workflow
 
 ### Documentation
 * **Software Requirements Specification (SRS):** [View SRS Documentation](/docs/SRS.md)
