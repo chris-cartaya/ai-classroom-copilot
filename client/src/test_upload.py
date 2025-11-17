@@ -134,3 +134,45 @@ def test_view_material_content(mock_pptx_to_docs, mock_ingest):
     # --- 4. Verify mocks were called ---
     saved_path = os.path.join(UPLOADS_DIR, small_file_name)
     mock_pptx_to_docs.assert_called_once_with(saved_path, week_title="Test View Week")
+
+
+@patch("main.ingest_pptx_to_chroma")
+def test_delete_material(mock_ingest):
+    """
+    Test that the delete endpoint successfully removes a material.
+    """
+    mock_ingest.return_value = 1
+    
+    # 1. Upload a file to ensure it exists
+    file_content = b"content to be deleted"
+    file_name = "test_delete_file.pptx"
+    file = (file_name, io.BytesIO(file_content), "application/vnd.openxmlformats-officedocument.presentationml.presentation")
+
+    upload_response = client.post("/upload", files={"file": file}, data={"week_title": "Delete Test"})
+    assert upload_response.status_code == 200
+    upload_json = upload_response.json()
+    material_id = upload_json["id"]
+    
+    # Verify the file was physically saved
+    saved_path = os.path.join(UPLOADS_DIR, file_name)
+    assert os.path.exists(saved_path)
+
+    # 2. Delete the material
+    delete_response = client.delete(f"/materials/{material_id}")
+    assert delete_response.status_code == 204
+
+    # 3. Verify deletion
+    # Check that the physical file is gone
+    assert not os.path.exists(saved_path)
+
+    # Check that the material is no longer in the database (via the /materials endpoint)
+    materials_response = client.get("/materials")
+    assert materials_response.status_code == 200
+    weeks = materials_response.json()
+    found = False
+    for week in weeks:
+        for mat in week["materials"]:
+            if mat["id"] == material_id:
+                found = True
+                break
+    assert not found, "Material record was not deleted from the database."

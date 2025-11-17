@@ -1,14 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import UploadFile, File, Form
-from pydantic import BaseModel
+from fastapi import UploadFile, File, Form, Response, status
+from pydantic import BaseModel, EmailStr
+from langchain_chroma import Chroma
+from langchain_community.embeddings import OllamaEmbeddings
 from .generation import RetrievalAugmentedGeneration
 from .ingest import ingest_pptx_to_chroma, pptx_to_documents
+from .profile import get_profile, update_profile
 import logging
 import os
 import sqlite3
 from datetime import datetime
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Literal, Optional
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -27,6 +30,30 @@ app.add_middleware(
 
 class QuestionRequest(BaseModel):
     question: str
+
+
+# --- Profile Management Models ---
+
+class NotificationPreferences(BaseModel):
+    newMaterial: bool = True
+    newReply: bool = True
+
+class ProfilePreferences(BaseModel):
+    theme: Literal["light", "dark"] = "dark"
+    fontSize: Literal["small", "medium", "large"] = "medium"
+    notifications: NotificationPreferences = NotificationPreferences()
+
+class Profile(BaseModel):
+    name: str = "Alex Doe"
+    email: EmailStr = "alex.doe@example.com"
+    role: Literal["student", "instructor"] = "student"
+    preferences: ProfilePreferences = ProfilePreferences()
+
+class ProfileUpdateRequest(BaseModel):
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    role: Optional[Literal["student", "instructor"]] = None
+    preferences: Optional[ProfilePreferences] = None
 
 # Initialize the RAG system
 rag_system = RetrievalAugmentedGeneration()
@@ -265,6 +292,84 @@ async def view_material_content(material_id: int):
     except Exception as e:
         logger.error(f"Failed to extract content from {filename}: {e}")
         return {"error": f"Failed to extract content from file: {str(e)}"}
+
+
+# --- Profile Management Endpoints ---
+
+@app.get("/profile", response_model=Profile)
+async def get_current_profile():
+    """Retrieves the current user's profile."""
+    return get_profile()
+
+@app.put("/profile", response_model=Profile)
+async def update_current_profile(profile_update: ProfileUpdateRequest):
+    """Updates the current user's profile."""
+    # .dict(exclude_unset=True) is crucial to only pass the fields that were actually set in the request
+    update_data = profile_update.dict(exclude_unset=True)
+    return update_profile(update_data)
+
+
+@app.delete("/materials/{material_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_material(material_id: int):
+    """
+    Deletes a material: the physical file, its vector embeddings, and its database record.
+    """
+    # 1. Get filename from the database
+    conn = _get_db_conn()
+    cur = conn.cursor()
+    cur.execute("SELECT filename FROM materials WHERE id = ?", (material_id,))
+    row = cur.fetchone()
+    if not row:
+        conn.close()
+        # Even if it doesn't exist, returning 204 is idempotent
+        logger.warning(f"Deletion requested for non-existent material ID: {material_id}")
+        return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+    filename = row["filename"]
+    logger.info(f"Starting deletion for material ID: {material_id}, filename: {filename}")
+
+    # 2. Delete from ChromaDB
+    try:
+        # Initialize a Chroma client to interact with the collection
+        embedding_function = OllamaEmbeddings(model="nomic-embed-text", base_url="http://localhost:11434")
+        vector_store = Chroma(
+            persist_directory=CHROMA_DIR,
+            embedding_function=embedding_function
+        )
+        
+        docs_to_delete = vector_store.get(where={"source": filename})
+        if docs_to_delete and docs_to_delete.get('ids'):
+            logger.info(f"Found {len(docs_to_delete['ids'])} vector embeddings to delete for source: {filename}")
+            vector_store.delete(ids=docs_to_delete['ids'])
+            logger.info(f"Successfully deleted embeddings.")
+        else:
+            logger.warning(f"No embeddings found in ChromaDB for source: {filename}")
+
+    except Exception as e:
+        logger.error(f"Error deleting from ChromaDB for source {filename}: {e}")
+
+    # 3. Delete the physical file
+    file_path = os.path.join(UPLOADS_DIR, filename)
+    if os.path.exists(file_path):
+        try:
+            os.remove(file_path)
+            logger.info(f"Successfully deleted physical file: {file_path}")
+        except OSError as e:
+            logger.error(f"Error deleting file {file_path}: {e}")
+    else:
+        logger.warning(f"Physical file not found for deletion: {file_path}")
+
+    # 4. Delete the record from the materials table
+    try:
+        cur.execute("DELETE FROM materials WHERE id = ?", (material_id,))
+        conn.commit()
+        logger.info(f"Successfully deleted record from 'materials' table for ID: {material_id}")
+    except sqlite3.Error as e:
+        logger.error(f"Error deleting from materials table for ID {material_id}: {e}")
+    finally:
+        conn.close()
+
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @app.get("/")
