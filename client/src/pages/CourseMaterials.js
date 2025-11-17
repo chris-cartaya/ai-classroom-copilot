@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useEffect } from 'react';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import WeekCard from '../components/WeekCard'; // Import the WeekCard component
@@ -12,8 +13,6 @@ import '../components/WeekCard.css'; // Also import WeekCard styles for global a
  * receives courseWeeks state and setter function from parent (App.js)
  */
 const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
-<<<<<<< Updated upstream
-=======
   const [studentMetrics, setStudentMetrics] = useState([]);
 
   useEffect(() => {
@@ -42,7 +41,6 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
     };
     fetchMaterials();
   }, [setCourseWeeks]);
->>>>>>> Stashed changes
 
   // Utility function to format file size for display
   const formatFileSize = (bytes) => {

@@ -43,25 +43,26 @@ const ClassroomCopilot = () => {
     setIsLoading(true);
     
     try {
-      // TODO: replace with actual api call to backend
-      // const response = await fetch('/api/ask', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ question })
-      // });
-      // const data = await response.json();
+      //
+      const response = await fetch('http://localhost:8000/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'An unknown error occurred.');
+      }
       
-      // simulate api call with mock data for demonstration
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // mock response data
-      const mockResponse = {
-        answer: 'This is a sample AI-generated answer based on your course materials. The concept you asked about is covered in detail in the referenced materials.',
-        citations: [
-          { source: 'Module 2, Slide 8', content: 'Relevant excerpt from the slide...' },
-          { source: 'Module 3, Page 12', content: 'Additional context from the document...' }
-        ],
-        confidence: 0.92
+      // transform backend response to frontend format
+      const formattedResponse = {
+        answer: data.answer,
+        citations: (data.documents || []).map(doc => ({
+          source: doc[0].metadata?.title ? `${doc[0].metadata.title}, Slide ${doc[0].metadata?.slide_number || 'N/A'}` : 'Unknown Source',
+          content: doc[0].page_content
+        })),
+        confidence: data.confidence_score // assuming the backend provides this
       };
       
       // add question and answer to conversation history
@@ -74,9 +75,9 @@ const ClassroomCopilot = () => {
         },
         {
           type: 'answer',
-          content: mockResponse.answer,
-          citations: mockResponse.citations,
-          confidence: mockResponse.confidence,
+          content: formattedResponse.answer,
+          citations: formattedResponse.citations,
+          confidence: formattedResponse.confidence,
           timestamp: new Date().toISOString()
         }
       ]);
