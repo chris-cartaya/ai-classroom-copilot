@@ -4,9 +4,9 @@ from fastapi import UploadFile, File, Form, Response, status
 from pydantic import BaseModel, EmailStr
 from langchain_chroma import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
-from .generation import RetrievalAugmentedGeneration
-from .ingest import ingest_pptx_to_chroma, pptx_to_documents
-from .profile import get_profile, update_profile
+from generation import RetrievalAugmentedGeneration
+from ingest import ingest_pptx_to_chroma, pptx_to_documents
+from profile import get_profile, update_profile
 import logging
 import os
 import sqlite3

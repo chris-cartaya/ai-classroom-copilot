@@ -246,3 +246,4 @@ src/chroma_db/
 client/node_modules/
 .env
 outputs/
+server/.venv/

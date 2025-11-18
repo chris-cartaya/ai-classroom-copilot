@@ -6,13 +6,13 @@ Responsible for taking retrieved context and generating answers with citations
 import ollama
 from typing import List, Dict, Any
 import logging
-from .retrieval import SlideRetriever
+from retrieval import SlideRetriever
 
 logger = logging.getLogger(__name__)
 
 
 class AnswerGenerator:
-    def __init__(self, model: str = "llama3"):
+    def __init__(self, model: str = "llama3:8b"):
         """Initialize the answer generator with local LLM"""
         self.model = model
         self.client = ollama.Client(host='http://localhost:11434')

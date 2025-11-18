@@ -1,117 +1,82 @@
 # 🤖 AI Classroom Copilot
 
-> 📘 *An intelligent RAG-based AI assistant designed to help students and instructors query course materials with citation-backed responses.*
+> 📘 _An intelligent RAG-based AI assistant for querying course materials with citation-backed responses._
 
-This is the repository for the **Retrieval-Augmented Generation (RAG) AI Classroom Copilot** being developed for a Computer Security course.
+## 🚀 Quick Start
 
-The system's goal is to serve as an intelligent assistant, answering student queries using the professor's course materials as its primary knowledge source, thereby enhancing study and review efficiency.
+### Prerequisites
 
----
+- Python 3.12
+- Node.js 18+
+- Ollama installed ([ollama.ai](https://ollama.ai))
 
-## 🛠️ Project Status & Team Structure
+### Backend Setup
 
-The team is currently in the **Setup and Architecture** phase.
+```bash
+cd server
+python -m venv .venv --prompt .venv
+source .venv/Scripts/activate  # On Windows
+pip install -r requirements.txt
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
 
+### Frontend Setup (New Terminal)
 
----
+```bash
+cd client
+npm install
+npm start  # Opens http://localhost:3000
+```
 
-## 🚀 Getting Started
+## 📁 Project Structure
 
-To run the application locally, you will need to run both the backend server and the frontend client in two separate terminals.
+```
+ai-classroom-copilot/
+├── server/                 # Backend (FastAPI)
+├── client/                 # Frontend (React)
+├── docs/                   # SRS documentation
+├── PPdata/                 # Processed slide data
+├── outputs/                # Generated files
+├── README.md
+├── CONTRIBUTING.md
+├── LICENSE
+└── .gitignore
+```
 
-### 1. Backend Setup (Terminal 1)
+## 🌟 Features
 
-The backend is a Python server powered by FastAPI.
+- **RAG Q&A**: Answer questions with citations from course slides
+- **Local LLM**: Ollama integration with Llama 3.8B + NomIc embeddings
+- **File Upload**: Instructor-only document upload
+- **Chroma Vector DB**: Persistent document embeddings
+- **Responsive UI**: React frontend with theme support
 
-1.  **Navigate to Project Root**:
-    ```bash
-    cd /path/to/ai-classroom-copilot
-    ```
+## 🛠 Tech Stack
 
-2.  **Activate Virtual Environment**:
-    ```powershell
-    # On Windows
-    .\.venv\Scripts\activate
-    ```
+| Component         | Technology            |
+| :---------------- | :-------------------- |
+| **Backend**       | FastAPI + Python 3.12 |
+| **Frontend**      | React 18              |
+| **LLM**           | Ollama (Llama 3.8B)   |
+| **Embeddings**    | Ollama (Nomic)        |
+| **Vector DB**     | ChromaDB              |
+| **Retrieval**     | LangChain             |
+| **File Handling** | PyTorch PPTX          |
 
-3.  **Install Dependencies**:
-    ```bash
-    pip install -r client/src/requirements.txt
-    ```
+## 🧪 Test It
 
-4.  **Run the Server**:
-    ```bash
-    # This will start the server with auto-reload on port 8000
-    uvicorn client.src.main:app --reload
-    ```
-    Keep this terminal open.
+1. Role switch to "👨‍🎓 Student"
+2. Go to "💬 Classroom Copilot"
+3. Ask: "What is machine learning?"
+4. See cited response from CEN3031/CEN3078 slides
 
-### 2. Frontend Setup (Terminal 2)
+## 📚 Docs
 
-The frontend is a React application.
+- **SRS**: [docs/SRS.md](docs/SRS.md)
+- **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md)
 
-1.  **Navigate to Client Directory**: Open a new terminal and navigate into the `client` folder.
-    ```bash
-    cd /path/to/ai-classroom-copilot/client
-    ```
+## 👥 Team
 
-2.  **Install Dependencies**:
-    ```bash
-    npm install
-    ```
-
-3.  **Run the Client**:
-    ```bash
-    npm start
-    ```
-    This will open the application in your browser, typically at `http://localhost:3000`.
-
----
-
-## 📚 Key Documentation & Workflow
-
-### Documentation
-* **Software Requirements Specification (SRS):** [View SRS Documentation](/docs/SRS.md)
-* **Contribution Guidelines:** Read the [CONTRIBUTING.md](CONTRIBUTING.md) file **first** for Git commit and branch standards.
-
-### Contribution Workflow
-
-To maintain a clean and reliable codebase, all contributions **must** be made via the Pull Request (PR) process:
-
-1.  Clone the repository using the official new URL.
-2.  Create a **feature branch** for all work.
-3.  Submit a **Pull Request** and ensure it follows the **Conventional Commits** standard.
-4.  All PRs require **1 approval** before merging into the main branch.
-
-
----
-
-### 📅 Project Timeline (Summary)
-
-- **Prototype Presentation:** Monday, October 27, 2025  
-- **Final Presentation:** November 24 or December 1, 2025 *(TBD)* 
-
-*(Deadlines subject to instructor confirmation)*
-
----
-
-### 🧠 Tech Stack (Planned)
-
-| Layer | Technology |
-|:------|:------------|
-| **Frontend** | React (+ Material UI optional) |
-| **Backend** | Python (FastAPI or Flask) |
-| **LLM Layer** | Ollama (local models) |
-| **Retrieval Framework** | LangChain |
-| **Vector Database** | Chroma / FAISS |
-| **Metadata Store** | PostgreSQL / SQLite (optional) |
-
----
-
-### 💡 Acknowledgements
-
-Developed as part of **CEN 3031 – Software Engineering Fundamentals** at  
-**Florida Gulf Coast University**, instructed by **Dr. Chengyi Qu**.
-
----
-
+Developed for CEN 3031 - Software Engineering Fundamentals  
+Florida Gulf Coast University  
+Instructed by Dr. Chengyi Qu
