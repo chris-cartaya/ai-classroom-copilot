@@ -1,436 +1,237 @@
 import React, { useState } from 'react';
 import Card from '../components/Card';
-import Input from '../components/Input';
 import Button from '../components/Button';
+import Input from '../components/Input';
 import './AccountSettings.css';
 
 /**
- * account settings page - user profile and preferences management
- * allows users to update their profile information, theme, and font size
- * implements nfr-18: customization options for font size and theme
+ * account settings page component
+ * allows user to manage preferences (theme, font size) and perform account actions.
+ * @param {string} userRole - the current role of the user ('student' or 'instructor')
+ * @param {function} onRoleChange - callback function to update the user's role
+ * @param {string} theme - the current theme ('light' or 'dark')
+ * @param {function} onThemeChange - callback function to update the theme
+ * @param {string} fontSize - the current font size ('small', 'medium', or 'large')
+ * @param {function} onFontSizeChange - callback function to update the font size
+ * @param {function} onLogout - callback function to handle user logout
  */
-const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange, fontSize, onFontSizeChange }) => {
-  // state for user profile information
-  const [profile, setProfile] = useState({
-    name: 'John Doe',
-    email: 'john.doe@university.edu',
-    role: userRole,
-    institution: 'University Name',
-    department: 'Computer Science'
-  });
+const AccountSettings = ({
+  userRole,
+  onRoleChange,
+  theme,
+  onThemeChange,
+  fontSize,
+  onFontSizeChange,
+  onLogout, // <-- accept logout function
+}) => {
+  // state for profile inputs (mock data)
+  const [profileName, setProfileName] = useState('Chris Cartaya');
+  const [profileEmail, setProfileEmail] = useState('chris@university.edu');
+  const [isSavingProfile, setIsSavingProfile] = useState(false);
+  const [profileSaveStatus, setProfileSaveStatus] = useState('');
 
-  // state for preferences - now uses props for theme and font size
-  const [preferences, setPreferences] = useState({
-    notifications: true,
-    emailUpdates: false
-  });
+  // state for password inputs
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [passwordChangeStatus, setPasswordChangeStatus] = useState('');
 
-  // state for password change
-  const [passwordData, setPasswordData] = useState({
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
-  });
-
-  // state for form submission
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveMessage, setSaveMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
-  /**
-   * handle profile field changes
-   */
-  const handleProfileChange = (field, value) => {
-    setProfile({
-      ...profile,
-      [field]: value
-    });
-  };
-
-  /**
-   * handle preference changes (for checkboxes)
-   */
-  const handleCheckboxChange = (field, value) => {
-    setPreferences({
-      ...preferences,
-      [field]: value
-    });
-  };
-
-  /**
-   * handle password field changes
-   */
-  const handlePasswordChange = (field, value) => {
-    setPasswordData({
-      ...passwordData,
-      [field]: value
-    });
-  };
-
-  /**
-   * save profile changes
-   */
-  const handleSaveProfile = async (e) => {
+  // mock profile update handler
+  const handleProfileUpdate = (e) => {
     e.preventDefault();
-    setIsSaving(true);
-    setSaveMessage('');
-    setErrorMessage('');
+    setIsSavingProfile(true);
+    setProfileSaveStatus('');
 
-    try {
-      // TODO: replace with actual api call
-      // await fetch('/api/profile', {
-      //   method: 'PUT',
-      //   headers: { 'content-type': 'application/json' },
-      //   body: json.stringify(profile)
-      // });
-
-      // simulate api call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      setSaveMessage('Profile updated successfully!');
-
-      // update role if changed
-      if (profile.role !== userRole && onRoleChange) {
-        onRoleChange(profile.role);
-      }
-
-    } catch (err) {
-      setErrorMessage('Failed to update profile. Please try again.');
-      console.error('Profile update error:', err);
-    } finally {
-      setIsSaving(false);
-    }
+    // api call simulation
+    setTimeout(() => {
+      setIsSavingProfile(false);
+      // in a real app, you'd check the api response here
+      setProfileSaveStatus('Profile updated successfully!');
+      setTimeout(() => setProfileSaveStatus(''), 3000);
+    }, 1500);
   };
 
-  /**
-   * save preferences (only notifications for now)
-   */
-  const handleSavePreferences = async (e) => {
+  // mock password change handler
+  const handleChangePassword = (e) => {
     e.preventDefault();
-    setIsSaving(true);
-    setSaveMessage('');
-    setErrorMessage('');
+    setPasswordChangeStatus('');
 
-    try {
-      // TODO: replace with actual api call for preferences (theme/font size handled directly)
-      // await fetch('/api/preferences', {
-      //   method: 'PUT',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(preferences) // send only notification prefs
-      // });
-
-      // simulate api call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      setSaveMessage('Preferences saved successfully!');
-
-    } catch (err) {
-      setErrorMessage('Failed to save preferences. Please try again.');
-      console.error('Preferences save error:', err);
-    } finally {
-      setIsSaving(false);
-    }
-  };
-
-  /**
-   * change password
-   */
-  const handleChangePassword = async (e) => {
-    e.preventDefault();
-    setIsSaving(true);
-    setSaveMessage('');
-    setErrorMessage('');
-
-    // validate password fields
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      setErrorMessage('New passwords do not match.');
-      setIsSaving(false);
+    if (newPassword !== confirmPassword) {
+      setPasswordChangeStatus('Error: New passwords do not match.');
       return;
     }
 
-    if (passwordData.newPassword.length < 8) {
-      setErrorMessage('Password must be at least 8 characters long.');
-      setIsSaving(false);
-      return;
-    }
-
-    try {
-      // TODO: replace with actual api call
-      // await fetch('/api/change-password', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     currentPassword: passwordData.currentPassword,
-      //     newPassword: passwordData.newPassword
-      //   })
-      // });
-
-      // simulate api call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      setSaveMessage('Password changed successfully!');
-      setPasswordData({
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-      });
-
-    } catch (err) {
-      setErrorMessage('Failed to change password. Please check your current password.');
-      console.error('Password change error:', err);
-    } finally {
-      setIsSaving(false);
+    if (oldPassword === 'password' && newPassword.length >= 6) { // mock check
+      setIsChangingPassword(true);
+      // api call simulation
+      setTimeout(() => {
+        setIsChangingPassword(false);
+        setPasswordChangeStatus('Password changed successfully!');
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setTimeout(() => setPasswordChangeStatus(''), 3000);
+      }, 1500);
+    } else {
+      setPasswordChangeStatus('Error: Invalid old password or new password is too short (min 6 chars).');
     }
   };
+
+  // NOTE: isActiveAndLight and the className logic is removed from this file.
 
   return (
     <div className="account-settings">
-      <div className="container">
-        {/* page header */}
-        <div className="page-header">
-          <h2>Account Settings</h2>
-          <p className="page-description">
-            Manage your profile information and application preferences
-          </p>
+      {/* profile management card */}
+      <Card title="Profile Management" className="settings-card">
+        <form onSubmit={handleProfileUpdate} className="settings-form">
+          <Input
+            label="Full Name"
+            value={profileName}
+            onChange={(e) => setProfileName(e.target.value)}
+            id="profile-name"
+          />
+          <Input
+            label="Email Address"
+            type="email"
+            value={profileEmail}
+            onChange={(e) => setProfileEmail(e.target.value)}
+            id="profile-email"
+            disabled // email is usually non-editable
+          />
+          <div className="form-actions mt-lg">
+            <Button
+              type="submit"
+              variant="primary"
+              disabled={isSavingProfile}
+            >
+              {isSavingProfile ? 'Saving...' : 'Update Profile'}
+            </Button>
+            {profileSaveStatus && (
+              <span className={`status-message ${profileSaveStatus.startsWith('Error') ? 'status-error' : 'status-success'} ml-md`}>
+                {profileSaveStatus}
+              </span >
+            )}
+          </div>
+        </form>
+      </Card>
+
+      {/* password change card */}
+      <Card title="Change Password" className="settings-card">
+        <form onSubmit={handleChangePassword} className="settings-form">
+          <Input
+            label="Old Password"
+            type="password"
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+            required
+            id="old-password"
+          />
+          <Input
+            label="New Password (min 6 chars)"
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            required
+            id="new-password"
+          />
+          <Input
+            label="Confirm New Password"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            id="confirm-password"
+          />
+          <div className="form-actions mt-lg">
+            <Button
+              type="submit"
+              variant="primary" /* CHANGED: from secondary to primary for consistency */
+              disabled={isChangingPassword}
+            >
+              {isChangingPassword ? 'Processing...' : 'Change Password'}
+            </Button>
+            {passwordChangeStatus && (
+              <span className={`status-message ${passwordChangeStatus.startsWith('Error') ? 'status-error' : 'status-success'} ml-md`}>
+                {passwordChangeStatus}
+              </span >
+            )}
+          </div>
+        </form>
+      </Card>
+
+      {/* display/preference settings card (Restructuring markup for CSS style) */}
+      <Card title="Display Preferences" className="settings-card">
+        <div className="setting-group">
+          <label className="setting-label">Theme</label>
+          {/* Apply class 'full-width-options' for horizontal full-width layout */}
+          <div className="setting-options full-width-options theme-options"> 
+            <Button
+              variant={theme === 'light' ? 'primary' : 'secondary'}
+              onClick={() => onThemeChange('light')}
+            >
+              Light ☀️
+            </Button>
+            <Button
+              variant={theme === 'dark' ? 'primary' : 'secondary'}
+              onClick={() => onThemeChange('dark')}
+            >
+              Dark 🌙
+            </Button>
+          </div>
         </div>
 
-        {/* status messages */}
-        {saveMessage && (
-          <div className="status-message status-success" role="status">
-            ✓ {saveMessage}
-          </div>
-        )}
-
-        {errorMessage && (
-          <div className="status-message status-error" role="alert">
-            ⚠ {errorMessage}
-          </div>
-        )}
-
-        {/* profile information card */}
-        <Card className="settings-card" title="👤 Profile Information">
-          <form onSubmit={handleSaveProfile}>
-            <div className="form-grid">
-              <Input
-                label="Full Name"
-                value={profile.name}
-                onChange={(e) => handleProfileChange('name', e.target.value)}
-                placeholder="Enter your full name"
-                required
-              />
-
-              <Input
-                type="email"
-                label="Email Address"
-                value={profile.email}
-                onChange={(e) => handleProfileChange('email', e.target.value)}
-                placeholder="your.email@university.edu"
-                required
-              />
-
-              <Input
-                label="Institution"
-                value={profile.institution}
-                onChange={(e) => handleProfileChange('institution', e.target.value)}
-                placeholder="Your university or institution"
-              />
-
-              <Input
-                label="Department"
-                value={profile.department}
-                onChange={(e) => handleProfileChange('department', e.target.value)}
-                placeholder="Your department"
-              />
-            </div>
-
-            {/* role selector */}
-            <div className="form-section">
-              <label className="section-label">User Role</label>
-              <div className="role-selector-inline">
-                <label className="radio-option">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="student"
-                    checked={profile.role === 'student'}
-                    onChange={(e) => handleProfileChange('role', e.target.value)}
-                  />
-                  <span>Student</span>
-                </label>
-                <label className="radio-option">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="instructor"
-                    checked={profile.role === 'instructor'}
-                    onChange={(e) => handleProfileChange('role', e.target.value)}
-                  />
-                  <span>Instructor</span>
-                </label>
-              </div>
-            </div>
-
-            <div className="form-actions">
-              <Button
-                type="submit"
-                variant="primary"
-                disabled={isSaving}
-              >
-                {isSaving ? 'Saving...' : 'Save Profile'}
-              </Button>
-            </div>
-          </form>
-        </Card>
-
-        {/* preferences card (nfr-18) */}
-        <Card className="settings-card" title="⚙️ Preferences">
-          <form onSubmit={handleSavePreferences}>
-            {/* theme selector */}
-            <div className="form-section">
-              <label className="section-label">Theme</label>
-              <div className="theme-selector">
-                <button
-                  type="button"
-                  className={`theme-option ${theme === 'light' ? 'active' : ''}`}
-                  onClick={() => onThemeChange('light')}
-                  aria-pressed={theme === 'light'}
-                >
-                  ☀️ Light
-                </button>
-                <button
-                  type="button"
-                  className={`theme-option ${theme === 'dark' ? 'active' : ''}`}
-                  onClick={() => onThemeChange('dark')}
-                  aria-pressed={theme === 'dark'}
-                >
-                  🌙 Dark
-                </button>
-              </div>
-            </div>
-
-            {/* font size selector */}
-            <div className="form-section">
-              <label className="section-label">Font Size</label>
-              <div className="font-size-selector">
-                <button
-                  type="button"
-                  className={`size-option ${fontSize === 'small' ? 'active' : ''}`}
-                  onClick={() => onFontSizeChange('small')}
-                  aria-pressed={fontSize === 'small'}
-                >
-                  A
-                </button>
-                <button
-                  type="button"
-                  className={`size-option ${fontSize === 'medium' ? 'active' : ''}`}
-                  onClick={() => onFontSizeChange('medium')}
-                  aria-pressed={fontSize === 'medium'}
-                >
-                  A
-                </button>
-                <button
-                  type="button"
-                  className={`size-option ${fontSize === 'large' ? 'active' : ''}`}
-                  onClick={() => onFontSizeChange('large')}
-                  aria-pressed={fontSize === 'large'}
-                >
-                  A
-                </button>
-              </div>
-            </div>
-
-            {/* notification preferences */}
-            <div className="form-section">
-              <label className="section-label">Notifications</label>
-              <div className="checkbox-group">
-                <label className="checkbox-option">
-                  <input
-                    type="checkbox"
-                    checked={preferences.notifications}
-                    onChange={(e) => handleCheckboxChange('notifications', e.target.checked)}
-                  />
-                  <span>Enable in-app notifications</span>
-                </label>
-                <label className="checkbox-option">
-                  <input
-                    type="checkbox"
-                    checked={preferences.emailUpdates}
-                    onChange={(e) => handleCheckboxChange('emailUpdates', e.target.checked)}
-                  />
-                  <span>Receive email updates</span>
-                </label>
-              </div>
-            </div>
-
-            <div className="form-actions">
-              <Button
-                type="submit"
-                variant="primary"
-                disabled={isSaving}
-              >
-                {isSaving ? 'Saving...' : 'Save Preferences'}
-              </Button>
-            </div>
-          </form>
-        </Card>
-
-        {/* password change card */}
-        <Card className="settings-card" title="🔒 Change Password">
-          <form onSubmit={handleChangePassword}>
-            <Input
-              type="password"
-              label="Current Password"
-              value={passwordData.currentPassword}
-              onChange={(e) => handlePasswordChange('currentPassword', e.target.value)}
-              placeholder="Enter your current password"
-              required
-            />
-
-            <Input
-              type="password"
-              label="New Password"
-              value={passwordData.newPassword}
-              onChange={(e) => handlePasswordChange('newPassword', e.target.value)}
-              placeholder="Enter new password (min 8 characters)"
-              required
-            />
-
-            <Input
-              type="password"
-              label="Confirm New Password"
-              value={passwordData.confirmPassword}
-              onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)}
-              placeholder="Re-enter new password"
-              required
-            />
-
-            <div className="form-actions">
-              <Button
-                type="submit"
-                variant="primary"
-                disabled={isSaving}
-              >
-                {isSaving ? 'Changing...' : 'Change Password'}
-              </Button>
-            </div>
-          </form>
-        </Card>
-
-        {/* account actions card */}
-        <Card className="settings-card danger-card" title="⚠️ Account Actions">
-          <p className="danger-text">
-            These actions are permanent and cannot be undone.
-          </p>
-          <div className="danger-actions">
-            <Button variant="secondary">
-              Export My Data
+        <div className="setting-group mt-lg">
+          <label className="setting-label">Font Size</label>
+          {/* Apply class 'full-width-options' for horizontal full-width layout */}
+          <div className="setting-options full-width-options font-size-options">
+            <Button
+              variant={fontSize === 'small' ? 'primary' : 'secondary'}
+              onClick={() => onFontSizeChange('small')}
+            >
+              Small A
             </Button>
-            <Button variant="secondary">
+            <Button
+              variant={fontSize === 'medium' ? 'primary' : 'secondary'}
+              onClick={() => onFontSizeChange('medium')}
+            >
+              Medium A
+            </Button>
+            <Button
+              variant={fontSize === 'large' ? 'primary' : 'secondary'}
+              onClick={() => onFontSizeChange('large')}
+            >
+              Large A
+            </Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* account actions card (Simplified markup for buttons next to each other) */}
+      <Card title="Account Actions" className="settings-card danger-zone">
+        
+        {/* Logout and Delete Button Group */}
+        <div className="setting-group account-actions-group">
+          
+          <div className="action-buttons-row">
+            {/* Logout Button (Red, next to Delete) */}
+            <Button
+              variant="danger" // Set to danger as requested
+              onClick={onLogout} 
+            >
+              Logout
+            </Button>
+
+            {/* Delete Account Button */}
+            <Button
+              variant="danger"
+              onClick={() => console.log('delete account clicked')}
+            >
               Delete Account
             </Button>
           </div>
-        </Card>
-      </div>
+        </div>
+      </Card>
     </div>
   );
 };

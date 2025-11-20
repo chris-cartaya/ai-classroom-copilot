@@ -7,6 +7,7 @@
   background-color: var(--background-page); /* use theme variable */
 }
 
+
 /* header navigation bar */
 .app-header {
   background-color: var(--header-background); /* use header specific background */
@@ -49,12 +50,12 @@
 /* Hover effect should not change the icon color, only background */
 .back-button:hover,
 .user-button:hover {
-  background-color: var(--primary-purple-dark);
+  background-color: var(--primary-cobalt-dark);
   /* Icon color remains var(--header-icon-color) */
 }
 body.theme-dark .back-button:hover,
-body.theme-dark .user-button:hover {
-   background-color: var(--primary-purple-light);
+body.user-button:hover {
+   background-color: var(--primary-cobalt-light);
    /* Icon color remains var(--header-icon-color) */
 }
 
@@ -90,8 +91,8 @@ body.theme-dark .user-button:hover {
 .nav-button {
   padding: var(--spacing-md) var(--spacing-lg);
   background-color: var(--background-card); /* use card background */
-  border: 2px solid var(--primary-purple);
-  color: var(--primary-purple);
+  border: 2px solid var(--primary-cobalt);
+  color: var(--primary-cobalt);
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
   font-weight: 600;
@@ -101,32 +102,32 @@ body.theme-dark .user-button:hover {
   display: inline-block;
 }
 body.theme-dark .nav-button {
-  color: var(--primary-purple-light); /* Make text lighter in dark mode */
-  border-color: var(--primary-purple-light);
+  color: var(--primary-cobalt-light); /* Make text lighter in dark mode */
+  border-color: var(--primary-cobalt-light);
 }
 
 .nav-button:hover {
-  background-color: var(--primary-purple);
+  background-color: var(--primary-cobalt);
   color: var(--button-text-primary); /* use button text color for contrast */
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 body.theme-dark .nav-button:hover {
-  background-color: var(--primary-purple-light);
-  color: var(--text-dark); /* Use dark text on light purple button */
+  background-color: var(--primary-cobalt-light);
+  color: var(--text-dark); /* Use dark text on light cobalt button */
 }
 
 .nav-button.active {
-  background-color: var(--primary-purple);
+  background-color: var(--primary-cobalt);
   color: var(--button-text-primary); /* use button text color for contrast */
 }
 body.theme-dark .nav-button.active {
-  background-color: var(--primary-purple-light);
-  color: var(--text-dark); /* Use dark text on light purple button */
+  background-color: var(--primary-cobalt-light);
+  color: var(--text-dark); /* Use dark text on light cobalt button */
 }
 
 
-/* role selector for switching between student and instructor */
+/* role selector for switching between pages */
 .role-selector {
   background-color: var(--background-card); /* use card background */
   padding: var(--spacing-lg);
@@ -162,24 +163,25 @@ body.theme-dark .nav-button.active {
 }
 
 .role-button:hover {
-  border-color: var(--primary-purple);
-  color: var(--primary-purple);
+  border-color: var(--primary-cobalt);
+  color: var(--primary-cobalt);
   background-color: var(--background-hover-light); /* subtle hover */
 }
 body.theme-dark .role-button:hover {
-  color: var(--primary-purple-light); /* Lighter purple text on hover */
-  border-color: var(--primary-purple-light);
+  color: var(--primary-cobalt-light); /* Lighter cobalt text on hover */
+  border-color: var(--primary-cobalt-light);
 }
 
 .role-button.active {
-  background-color: var(--primary-purple);
-  color: var(--button-text-primary); /* Use button text color for contrast */
-  border-color: var(--primary-purple);
+  background-color: var(--primary-cobalt);
+  color: var(--button-text-primary); /* use button text color for contrast */
+  border-color: var(--primary-cobalt);
 }
 body.theme-dark .role-button.active {
-  background-color: var(--primary-purple-light);
-  color: var(--text-dark); /* Use dark text on light purple button */
+  background-color: var(--primary-cobalt-light);
+  color: var(--text-dark); /* Use dark text on light cobalt button */
 }
+
 
 /* responsive design for tablets */
 @media (max-width: 768px) {

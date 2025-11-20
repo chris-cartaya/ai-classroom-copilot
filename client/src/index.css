@@ -2,11 +2,11 @@
 
 :root {
   /* color palette - light mode defaults */
-  --primary-purple: #4B0082;
-  --primary-purple-dark: #3a0066;
-  --primary-purple-light: #6a0dad;
-  --accent-green: #28a745;
-  --accent-green-hover: #218838;
+  --primary-cobalt: #004785;
+  --primary-cobalt-dark: #00335E;
+  --primary-cobalt-light: #005B9C;
+  --accent-green: #007749;
+  --accent-green-hover: #004F31;
   --background-white: #ffffff;
   --background-gray-light: #f5f5f5; /* Renamed for clarity */
   --background-gray-medium: #eeeeee; /* Added medium gray */
@@ -20,11 +20,11 @@
   --background-page: var(--background-gray-light);
   --background-card: var(--background-white);
   --background-input: var(--background-white);
-  --background-hover-light: rgba(75, 0, 130, 0.05); /* Light hover background */
+  --background-hover-light: rgba(0, 71, 133, 0.05); /* Light hover background */
   --text-primary: var(--text-dark);
   --text-secondary: var(--text-light);
   --border-color: var(--border-gray);
-  --header-background: var(--primary-purple); /* Specific variable for header */
+  --header-background: var(--primary-cobalt); /* Specific variable for header */
   --header-text: white; /* Default header text color */
   --header-icon-color: white; /* Explicit color for header icons - white in light mode */
   --button-text-primary: white; /* Text color for primary buttons */
@@ -54,42 +54,42 @@
   --font-size-xxl: var(--font-size-xxl-base);
 
   /* border radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
 
   /* shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* dark mode theme variables */
 body.theme-dark {
-  --primary-purple: #6a0dad; /* lighter purple for dark mode */
-  --primary-purple-dark: #4B0082;
-  --primary-purple-light: #8a2be2;
-  --accent-green: #34c759; /* slightly brighter green */
-  --accent-green-hover: #2aa84a;
+  --primary-cobalt: #005B9C;
+  --primary-cobalt-dark: #004785;
+  --primary-cobalt-light: #006FFF;
+  --accent-green: #007749;
+  --accent-green-hover: #004F31;
 
   --background-page: #121212;
   --background-card: #1e1e1e;
-  --background-input: #2c2c2c; /* slightly lighter for inputs */
-  --background-gray-medium: #333333; /* Darker medium gray */
-  --background-hover-light: rgba(138, 43, 226, 0.15); /* Purple tint hover */
+  --background-input: #2c2c2c;
+  --background-gray-medium: #333333;
+  --background-hover-light: rgba(0, 91, 156, 0.15);
 
   --text-primary: #e0e0e0;
   --text-secondary: #a0a0a0;
   --border-color: #444444;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3); /* Darker shadows */
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.3);
 
-  --header-background: #4B0082; /* Keep header original purple */
-  --header-text: #e0e0e0; /* Slightly off-white for header text */
-  --header-icon-color: #1c1c1e; /* Explicit color for header icons - black/dark in dark mode */
-  --button-text-primary: #e0e0e0; /* Use light text on dark primary buttons */
+  --header-background: #00335E;
+  --header-text: #e0e0e0;
+  --header-icon-color: #e0e0e0;
+  --button-text-primary: #e0e0e0;
 }
 
 /* font size classes */
@@ -126,61 +126,43 @@ body.font-size-large {
 
 body {
   font-family: var(--font-family);
-  font-size: var(--font-size-base); /* use css variable for font size */
-  color: var(--text-primary); /* use css variable for text color */
-  background-color: var(--background-page); /* use css variable for background */
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background-color: var(--background-page);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease; /* smooth transitions */
+  transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease;
 }
 
 /* Apply theme colors to common elements */
 a {
-  color: var(--primary-purple);
+  color: var(--primary-cobalt);
   text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
-  color: var(--primary-purple-dark);
+  color: var(--primary-cobalt-dark);
 }
 body.theme-dark a {
-  color: var(--primary-purple-light);
+  color: var(--primary-cobalt-light);
 }
 body.theme-dark a:hover {
-  color: #c792ea; /* even lighter purple for dark hover */
+  color: #c792ea;
 }
 
 /* Headings and paragraphs */
 h1, h2, h3, h4, h5, h6, p, li, label, span, div {
-  color: var(--text-primary); /* Ensure all standard text uses primary text color */
-}
-small, .text-muted, .dropzone-subtext, .file-meta, .character-count, .material-meta { /* Added .material-meta */
-  color: var(--text-secondary); /* Use secondary color for less important text */
+  color: var(--text-primary);
 }
 
 /* accessibility: ensure focus is visible for keyboard navigation */
-*:focus-visible { /* use focus-visible for better focus indication */
-  outline: 3px solid var(--primary-purple-light);
+*:focus-visible {
+  outline: 3px solid var(--primary-cobalt-light);
   outline-offset: 2px;
 }
 body.theme-dark *:focus-visible {
-  outline-color: var(--accent-green); /* Use green focus in dark mode for contrast */
-}
-
-/* skip to main content link for screen readers */
-.skip-to-main {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--primary-purple);
-  color: var(--header-text);
-  padding: var(--spacing-sm) var(--spacing-md);
-  text-decoration: none;
-  z-index: 100;
-}
-.skip-to-main:focus {
-  top: 0;
+  outline-color: var(--accent-green);
 }
 
 /* utility classes for common patterns */
@@ -207,7 +189,7 @@ body.theme-dark *:focus-visible {
 /* responsive typography adjustments */
 @media (max-width: 768px) {
   body {
-    font-size: calc(var(--font-size-base) * 0.95); /* slightly smaller base on tablet */
+    font-size: calc(var(--font-size-base) * 0.95);
   }
 }
 
@@ -229,8 +211,8 @@ html {
 }
 
 .spinner {
-  border: 3px solid var(--background-gray-medium); /* Use medium gray for base */
-  border-top: 3px solid var(--primary-purple);
+  border: 3px solid var(--background-gray-medium);
+  border-top: 3px solid var(--primary-cobalt);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -238,8 +220,8 @@ html {
   margin: var(--spacing-lg) auto;
 }
 body.theme-dark .spinner {
-  border-color: var(--border-color); /* adjust spinner color for dark */
-  border-top-color: var(--primary-purple-light);
+  border-color: var(--border-color);
+  border-top-color: var(--primary-cobalt-light);
 }
 
 

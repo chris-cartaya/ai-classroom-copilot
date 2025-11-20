@@ -7,6 +7,12 @@
   margin-bottom: var(--spacing-md);
 }
 
+/* wrapper for input and possible toggle button */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 /* label styling */
 .input-label {
   font-size: var(--font-size-base);
@@ -36,23 +42,58 @@
   width: 100%;
 }
 
+/* padding adjustment when toggle button is present */
+.input-field.input-with-toggle {
+  padding-right: 40px; /* Space for the eye icon */
+}
+
+/* password toggle button styling */
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.password-toggle-btn:hover {
+  opacity: 1;
+  color: var(--primary-cobalt);
+}
+
+.password-toggle-btn:focus {
+  outline: none;
+  opacity: 1;
+}
+
+
 /* input focus state */
 .input-field:focus {
   outline: none;
-  border-color: var(--primary-purple);
-  box-shadow: 0 0 0 3px rgba(75, 0, 130, 0.1);
+  border-color: var(--primary-cobalt); /* Using cobalt to match theme */
+  box-shadow: 0 0 0 3px rgba(0, 71, 133, 0.1);
 }
 body.theme-dark .input-field:focus {
-  border-color: var(--primary-purple-light);
-  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2); /* Adjusted focus shadow for dark */
+  border-color: var(--primary-cobalt-light);
+  box-shadow: 0 0 0 3px rgba(0, 111, 255, 0.2); /* Adjusted focus shadow for dark */
 }
 
 /* input hover state */
 .input-field:hover:not(:disabled) {
-  border-color: var(--primary-purple-light);
+  border-color: var(--primary-cobalt-light);
 }
 body.theme-dark .input-field:hover:not(:disabled) {
-  border-color: var(--primary-purple);
+  border-color: var(--primary-cobalt);
 }
 
 /* disabled input state */
