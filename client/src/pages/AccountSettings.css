@@ -1,4 +1,35 @@
-/* account settings specific styles */
+/* AccountSettings.css */
+
+/* scope all form fields on the account settings page */
+.account-settings input[type="text"],
+.account-settings input[type="email"],
+.account-settings input[type="password"],
+.account-settings input[type="tel"],
+.account-settings input[type="url"],
+.account-settings input[type="search"],
+.account-settings select,
+.account-settings textarea {
+  border: 2px solid var(--border-gray);
+  border-radius: var(--radius-lg); /* try 16px if you want more */
+  padding: var(--spacing-md);
+  font-size: var(--font-size-base);
+  background: var(--background-white);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* focus state: accessible, softer halo */
+.account-settings input:focus,
+.account-settings select:focus,
+.account-settings textarea:focus {
+  outline: none; /* we'll provide a visible custom focus */
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 4px rgba(75, 0, 130, 0.12);
+}
+
+.account-settings .input,
+.account-settings .textarea {
+  border-radius: var(--radius-lg) !important; /* ensure override, if needed */
+}
 
 .account-settings {
   display: grid; 

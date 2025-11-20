@@ -1,0 +1,44 @@
+.student-metrics-card {
+  margin-top: var(--spacing-xl);
+}
+
+.metrics-section h4 {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+}
+
+.metrics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.metric-item:last-child {
+  border-bottom: none;
+}
+
+.metric-question {
+  font-weight: 500;
+}
+
+.metric-count {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  background-color: var(--background-gray-medium);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+.no-metrics {
+  color: var(--text-secondary);
+  font-style: italic;
+}

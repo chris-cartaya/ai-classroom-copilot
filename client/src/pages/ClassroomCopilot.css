@@ -233,12 +233,13 @@ body.theme-dark .spinner-small {
 
 /* tips card styling */
 .tips-card {
-  background: linear-gradient(135deg, var(--primary-cobalt-light) 0%, var(--primary-cobalt) 100%);
-  color: white; /* Force white text on parent */
-  border: none;
+  background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-hover) 100%);
+  color: var(--header-text); /* Use header text color for contrast */
+  border: none; /* Remove border for gradient card */
 }
 body.theme-dark .tips-card {
-   background: linear-gradient(135deg, rgba(0, 91, 156, 0.8) 0%, rgba(0, 71, 133, 0.9) 100%), var(--background-card);
+   /* Use a slightly different gradient or overlay for dark mode if needed */
+   background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-hover) 100%), var(--background-card);
 }
 
 /* Explicitly set children to white to override global text-primary reset */

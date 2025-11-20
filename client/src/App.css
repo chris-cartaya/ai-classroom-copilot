@@ -54,7 +54,7 @@
   /* Icon color remains var(--header-icon-color) */
 }
 body.theme-dark .back-button:hover,
-body.user-button:hover {
+body.theme-dark .user-button:hover {
    background-color: var(--primary-cobalt-light);
    /* Icon color remains var(--header-icon-color) */
 }
@@ -174,7 +174,7 @@ body.theme-dark .role-button:hover {
 
 .role-button.active {
   background-color: var(--primary-cobalt);
-  color: var(--button-text-primary); /* use button text color for contrast */
+  color: var(--button-text-primary); /* Use button text color for contrast */
   border-color: var(--primary-cobalt);
 }
 body.theme-dark .role-button.active {

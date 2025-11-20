@@ -15,41 +15,121 @@ import './AccountSettings.css';
  * @param {function} onFontSizeChange - callback function to update the font size
  * @param {function} onLogout - callback function to handle user logout
  */
-const AccountSettings = ({
-  userRole,
-  onRoleChange,
-  theme,
-  onThemeChange,
-  fontSize,
-  onFontSizeChange,
-  onLogout, // <-- accept logout function
-}) => {
-  // state for profile inputs (mock data)
-  const [profileName, setProfileName] = useState('Chris Cartaya');
-  const [profileEmail, setProfileEmail] = useState('chris@university.edu');
-  const [isSavingProfile, setIsSavingProfile] = useState(false);
-  const [profileSaveStatus, setProfileSaveStatus] = useState('');
+const AccountSettings = ({ userRole, onRoleChange, theme, onThemeChange, fontSize, onFontSizeChange }) => {
+  // state for user profile information
+  const [profile, setProfile] = useState({
+    name: 'John Doe',
+    email: 'john.doe@university.edu',
+    role: userRole,
+    institution: 'University Name',
+    department: 'Computer Science'
+  });
 
-  // state for password inputs
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isChangingPassword, setIsChangingPassword] = useState(false);
-  const [passwordChangeStatus, setPasswordChangeStatus] = useState('');
+  // state for preferences - now uses props for theme and font size
+  const [preferences, setPreferences] = useState({
+    notifications: true,
+    emailUpdates: false
+  });
 
-  // mock profile update handler
-  const handleProfileUpdate = (e) => {
+  // state for password change
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+
+  // state for form submission
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  /**
+   * handle profile field changes
+   */
+  const handleProfileChange = (field, value) => {
+    setProfile({
+      ...profile,
+      [field]: value
+    });
+  };
+
+  /**
+   * handle preference changes (for checkboxes)
+   */
+  const handleCheckboxChange = (field, value) => {
+    setPreferences({
+      ...preferences,
+      [field]: value
+    });
+  };
+
+  /**
+   * handle password field changes
+   */
+  const handlePasswordChange = (field, value) => {
+    setPasswordData({
+      ...passwordData,
+      [field]: value
+    });
+  };
+
+  /**
+   * save profile changes
+   */
+  const handleSaveProfile = async (e) => {
     e.preventDefault();
-    setIsSavingProfile(true);
-    setProfileSaveStatus('');
+    setIsSaving(true);
+    setSaveMessage('');
+    setErrorMessage('');
 
-    // api call simulation
-    setTimeout(() => {
-      setIsSavingProfile(false);
-      // in a real app, you'd check the api response here
-      setProfileSaveStatus('Profile updated successfully!');
-      setTimeout(() => setProfileSaveStatus(''), 3000);
-    }, 1500);
+    try {
+      // TODO: replace with actual api call
+      // await fetch('http://localhost:8000/api/profile', {
+      //   method: 'PUT',
+      //   headers: { 'content-type': 'application/json' },
+      //   body: JSON.stringify(profile)
+      // });
+
+      setSaveMessage('Profile updated successfully!');
+
+      // update role if changed
+      if (profile.role !== userRole && onRoleChange) {
+        onRoleChange(profile.role);
+      }
+
+    } catch (err) {
+      setErrorMessage('Failed to update profile. Please try again.');
+      console.error('Profile update error:', err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  /**
+   * save preferences (only notifications for now)
+   */
+  const handleSavePreferences = async (e) => {
+    e.preventDefault();
+    setIsSaving(true);
+    setSaveMessage('');
+    setErrorMessage('');
+
+    try {
+      // TODO: replace with actual api call for preferences (theme/font size handled directly)
+      // await fetch('http://localhost:8000/api/preferences', {
+      //   method: 'PUT',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(preferences) // send only notification prefs
+      // });
+
+      setSaveMessage('Preferences saved successfully!');
+
+    } catch (err) {
+      setErrorMessage('Failed to save preferences. Please try again.');
+      console.error('Preferences save error:', err);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   // mock password change handler
@@ -62,19 +142,29 @@ const AccountSettings = ({
       return;
     }
 
-    if (oldPassword === 'password' && newPassword.length >= 6) { // mock check
-      setIsChangingPassword(true);
-      // api call simulation
-      setTimeout(() => {
-        setIsChangingPassword(false);
-        setPasswordChangeStatus('Password changed successfully!');
-        setOldPassword('');
-        setNewPassword('');
-        setConfirmPassword('');
-        setTimeout(() => setPasswordChangeStatus(''), 3000);
-      }, 1500);
-    } else {
-      setPasswordChangeStatus('Error: Invalid old password or new password is too short (min 6 chars).');
+    try {
+      // TODO: replace with actual api call
+      // await fetch('http://localhost:8000/api/change-password', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     currentPassword: passwordData.currentPassword,
+      //     newPassword: passwordData.newPassword
+      //   })
+      // });
+
+      setSaveMessage('Password changed successfully!');
+      setPasswordData({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+      });
+
+    } catch (err) {
+      setErrorMessage('Failed to change password. Please check your current password.');
+      console.error('Password change error:', err);
+    } finally {
+      setIsSaving(false);
     }
   };
 

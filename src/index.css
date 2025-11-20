@@ -1,0 +1,246 @@
+/* global styles and css variables for the ai classroom co-pilot application */
+
+:root {
+  /* color palette - light mode defaults */
+  --primary-cobalt: #004785;
+  --primary-cobalt-dark: #00335E;
+  --primary-cobalt-light: #005B9C;
+  --accent-green: #007749;
+  --accent-green-hover: #004F31;
+  --background-white: #ffffff;
+  --background-gray-light: #f5f5f5; /* Renamed for clarity */
+  --background-gray-medium: #eeeeee; /* Added medium gray */
+  --text-dark: #333333;
+  --text-light: #666666;
+  --border-gray: #dddddd;
+  --error-red: #dc3545;
+  --warning-yellow: #ffc107;
+
+  /* theme-aware variables (default to light mode) */
+  --background-page: var(--background-gray-light);
+  --background-card: var(--background-white);
+  --background-input: var(--background-white);
+  --background-hover-light: rgba(0, 71, 133, 0.05); /* Light hover background */
+  --text-primary: var(--text-dark);
+  --text-secondary: var(--text-light);
+  --border-color: var(--border-gray);
+  --header-background: var(--primary-cobalt); /* Specific variable for header */
+  --header-text: white; /* Default header text color */
+  --header-icon-color: white; /* Explicit color for header icons - white in light mode */
+  --button-text-primary: white; /* Text color for primary buttons */
+
+  /* spacing system */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-size-sm-base: 0.875rem; /* 14px */
+  --font-size-base-base: 1rem;    /* 16px */
+  --font-size-lg-base: 1.125rem; /* 18px */
+  --font-size-xl-base: 1.5rem;   /* 24px */
+  --font-size-xxl-base: 2rem;  /* 32px */
+
+  /* default font sizes (medium) */
+  --font-size-sm: var(--font-size-sm-base);
+  --font-size-base: var(--font-size-base-base);
+  --font-size-lg: var(--font-size-lg-base);
+  --font-size-xl: var(--font-size-xl-base);
+  --font-size-xxl: var(--font-size-xxl-base);
+
+  /* border radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* dark mode theme variables */
+body.theme-dark {
+  --primary-cobalt: #005B9C;
+  --primary-cobalt-dark: #004785;
+  --primary-cobalt-light: #006FFF;
+  --accent-green: #007749;
+  --accent-green-hover: #004F31;
+
+  --background-page: #121212;
+  --background-card: #1e1e1e;
+  --background-input: #2c2c2c;
+  --background-gray-medium: #333333;
+  --background-hover-light: rgba(0, 91, 156, 0.15);
+
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --border-color: #444444;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+  --header-background: #00335E;
+  --header-text: #e0e0e0;
+  --header-icon-color: #e0e0e0;
+  --button-text-primary: #e0e0e0;
+}
+
+/* font size classes */
+body.font-size-small {
+  --font-size-sm: calc(var(--font-size-sm-base) * 0.9);
+  --font-size-base: calc(var(--font-size-base-base) * 0.9);
+  --font-size-lg: calc(var(--font-size-lg-base) * 0.9);
+  --font-size-xl: calc(var(--font-size-xl-base) * 0.9);
+  --font-size-xxl: calc(var(--font-size-xxl-base) * 0.9);
+}
+
+body.font-size-medium { /* default */
+  --font-size-sm: var(--font-size-sm-base);
+  --font-size-base: var(--font-size-base-base);
+  --font-size-lg: var(--font-size-lg-base);
+  --font-size-xl: var(--font-size-xl-base);
+  --font-size-xxl: var(--font-size-xxl-base);
+}
+
+body.font-size-large {
+  --font-size-sm: calc(var(--font-size-sm-base) * 1.1);
+  --font-size-base: calc(var(--font-size-base-base) * 1.1);
+  --font-size-lg: calc(var(--font-size-lg-base) * 1.1);
+  --font-size-xl: calc(var(--font-size-xl-base) * 1.1);
+  --font-size-xxl: calc(var(--font-size-xxl-base) * 1.1);
+}
+
+/* reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background-color: var(--background-page);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease;
+}
+
+/* Apply theme colors to common elements */
+a {
+  color: var(--primary-cobalt);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: var(--primary-cobalt-dark);
+}
+body.theme-dark a {
+  color: var(--primary-cobalt-light);
+}
+body.theme-dark a:hover {
+  color: #c792ea;
+}
+
+/* Headings and paragraphs */
+h1, h2, h3, h4, h5, h6, p, li, label, span, div {
+  color: var(--text-primary);
+}
+
+/* accessibility: ensure focus is visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid var(--primary-cobalt-light);
+  outline-offset: 2px;
+}
+body.theme-dark *:focus-visible {
+  outline-color: var(--accent-green);
+}
+
+/* utility classes for common patterns */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+/* responsive typography adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: calc(var(--font-size-base) * 0.95);
+  }
+}
+
+/* ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  border: 3px solid var(--background-gray-medium);
+  border-top: 3px solid var(--primary-cobalt);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: var(--spacing-lg) auto;
+}
+body.theme-dark .spinner {
+  border-color: var(--border-color);
+  border-top-color: var(--primary-cobalt-light);
+}
+
+
+/* fade in animation for content */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* ensure required indicator color */
+.required-indicator {
+  color: var(--error-red);
+}
+
+/* ensure error message color */
+.error-message {
+  color: var(--error-red);
+}
