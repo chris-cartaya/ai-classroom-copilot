@@ -7,6 +7,12 @@
   margin-bottom: var(--spacing-md);
 }
 
+/* wrapper for input and possible toggle button */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 /* label styling */
 .input-label {
   font-size: var(--font-size-base);
@@ -35,6 +41,41 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease; /* Add background transition */
   width: 100%;
 }
+
+/* padding adjustment when toggle button is present */
+.input-field.input-with-toggle {
+  padding-right: 40px; /* Space for the eye icon */
+}
+
+/* password toggle button styling */
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.password-toggle-btn:hover {
+  opacity: 1;
+  color: var(--primary-cobalt);
+}
+
+.password-toggle-btn:focus {
+  outline: none;
+  opacity: 1;
+}
+
 
 /* input focus state */
 .input-field:focus {

@@ -7,6 +7,7 @@
   background-color: var(--background-page); /* use theme variable */
 }
 
+
 /* header navigation bar */
 .app-header {
   background-color: var(--header-background); /* use header specific background */
@@ -126,7 +127,7 @@ body.theme-dark .nav-button.active {
 }
 
 
-/* role selector for switching between student and instructor */
+/* role selector for switching between pages */
 .role-selector {
   background-color: var(--background-card); /* use card background */
   padding: var(--spacing-lg);
@@ -180,6 +181,7 @@ body.theme-dark .role-button.active {
   background-color: var(--primary-cobalt-light);
   color: var(--text-dark); /* Use dark text on light cobalt button */
 }
+
 
 /* responsive design for tablets */
 @media (max-width: 768px) {

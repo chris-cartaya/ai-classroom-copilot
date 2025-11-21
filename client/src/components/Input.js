@@ -1,21 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Input.css';
 
 /**
  * reusable input component for text entry
  * supports various input types and includes label and error message display
- * 
- * @param {string} type - input type: 'text', 'email', 'password', 'number', etc.
- * @param {string} label - label text to display above input
- * @param {string} value - current input value
- * @param {function} onChange - callback function when input value changes
- * @param {string} placeholder - placeholder text
- * @param {boolean} required - whether the input is required
- * @param {boolean} disabled - whether the input is disabled
- * @param {string} error - error message to display below input
- * @param {string} id - unique identifier for the input
- * @param {string} name - name attribute for the input
- * @param {string} className - additional css classes
+ * includes password visibility toggle
  */
 const Input = ({
   type = 'text',
@@ -33,6 +22,16 @@ const Input = ({
   // generate unique id if not provided
   const inputId = id || `input-${name || Math.random().toString(36).substr(2, 9)}`;
   
+  // state for password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  // determine actual input type based on visibility state
+  const inputType = type === 'password' && showPassword ? 'text' : type;
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  
   return (
     <div className={`input-group ${className}`.trim()}>
       {/* label for the input field */}
@@ -43,20 +42,35 @@ const Input = ({
         </label>
       )}
       
-      {/* input field */}
-      <input
-        type={type}
-        id={inputId}
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        required={required}
-        disabled={disabled}
-        className={`input-field ${error ? 'input-error' : ''}`}
-        aria-invalid={error ? 'true' : 'false'}
-        aria-describedby={error ? `${inputId}-error` : undefined}
-      />
+      {/* input wrapper to position password toggle */}
+      <div className="input-wrapper">
+        <input
+          type={inputType}
+          id={inputId}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          required={required}
+          disabled={disabled}
+          className={`input-field ${error ? 'input-error' : ''} ${type === 'password' ? 'input-with-toggle' : ''}`}
+          aria-invalid={error ? 'true' : 'false'}
+          aria-describedby={error ? `${inputId}-error` : undefined}
+        />
+        
+        {/* password visibility toggle */}
+        {type === 'password' && (
+          <button
+            type="button"
+            className="password-toggle-btn"
+            onClick={togglePasswordVisibility}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            disabled={disabled}
+          >
+            {showPassword ? '👁️' : '👁️‍🗨️'}
+          </button>
+        )}
+      </div>
       
       {/* error message display */}
       {error && (

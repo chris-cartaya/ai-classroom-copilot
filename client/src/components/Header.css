@@ -6,6 +6,26 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: var(--header-background); /* Moved bg color here for consistency */
+  color: var(--header-text);
+  box-shadow: var(--shadow-md); /* Moved shadow here */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px; /* Fixed height for better alignment */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Spacer to balance flex layout when buttons are missing */
+.header-spacer {
+    width: 44px;
+    height: 44px;
+    visibility: hidden;
 }
 
 /* ensure buttons have proper touch targets for mobile */
@@ -13,13 +33,71 @@
 .user-button {
   min-width: 44px;
   min-height: 44px;
+  background: transparent;
+  border: none;
+  color: var(--header-icon-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
 }
 
 /* hover effects for better user feedback */
+.back-button:hover,
+.user-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 .back-button:active,
 .user-button:active {
   transform: scale(0.95);
 }
+
+/* Center Section (Nav or Title) */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Integrated Navigation Styling */
+.header-nav {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.header-nav-link {
+    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white for inactive */
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    transition: all 0.2s ease;
+}
+
+.header-nav-link:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-nav-link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2); /* Distinct background for active */
+}
+
 
 /* ensure header is accessible with high contrast */
 @media (prefers-contrast: high) {
@@ -31,7 +109,29 @@
 /* reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   .back-button,
-  .user-button {
+  .user-button,
+  .header-nav-link {
     transition: none;
   }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* On smaller screens, you might want to hide the full text or adjust padding */
+    .header-nav-link {
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+}
+
+@media (max-width: 600px) {
+    /* On mobile, maybe stacking or simplified view is needed, 
+       but for now we'll just ensure they don't overflow */
+    .header-nav {
+        gap: 4px;
+    }
+    .header-nav-link {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
 }

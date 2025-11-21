@@ -104,27 +104,43 @@ const WeekCard = ({
         // add file immediately with 'uploading' status
         onAddMaterial(week.id, initialMaterial); // add to parent's state
 
-        // TODO: replace with actual api call to backend
+        // Upload to backend
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('week_title', week.title);
 
-        // simulate upload progress
-        for (let i = 0; i <= 100; i += 10) {
-          await new Promise(resolve => setTimeout(resolve, 50)); // faster simulation
+        const response = await fetch('http://localhost:8000/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        // naive progress fill
+        for (let i = 0; i <= 100; i += 20) {
+          await new Promise(resolve => setTimeout(resolve, 40));
           setUploadProgress({ fileName: file.name, progress: i });
         }
 
-        setStatusMessage(`Successfully uploaded ${file.name}. Processing...`);
+        if (!response.ok) {
+          // Try to read response body for details
+          let msg = `Upload failed with status ${response.status}`;
+          try {
+            const errData = await response.json();
+            if (errData && errData.error) msg = errData.error;
+          } catch (_) {
+            // ignore parse error
+          }
+          throw new Error(msg);
+        }
+        const data = await response.json();
+        if (data.error) {
+          throw new Error(data.error);
+        }
 
-        // update status to 'processing' - pass true for isUpdate
-        onAddMaterial(week.id, { ...initialMaterial, status: 'processing' }, true);
-
-        // simulate processing time
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        // update status to 'processed' - pass true for isUpdate
+        setStatusMessage(`${file.name} processed successfully (${data.slides_indexed || 0} slides indexed).`);
         onAddMaterial(week.id, { ...initialMaterial, status: 'processed' }, true);
-        setStatusMessage(`${file.name} processed successfully.`);
 
       } catch (err) {
-        setErrorMessage(`Failed to upload or process ${file.name}. Please try again.`);
+        setErrorMessage(`Failed to upload or process ${file.name}. ${err?.message || 'Please try again.'}`);
         console.error('Upload error:', err);
         // update status to 'error' - initialMaterial is now accessible here
         onAddMaterial(week.id, { ...initialMaterial, status: 'error' }, true);
