@@ -1,0 +1,261 @@
+{
+ "id": "CEN3078_Module2_Part3::slide0001::chunk0001",
+ "document": "CEN 3078 Computer Security\nModule 2 – Application and Network Attacks – Part 3\nSEED Lab 2: TCP Attacks Walkthrough\nSubmission Due: February 18",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0002::chunk0001",
+ "document": "Module 2 Topics\n• TCP fundamental attacks on the TCP protocol\n• Denial-of-Service (DoS)\n• SQL injection\n• Cross-site scripting (XSS)\n• Miscellaneous: Heartbleed, ransomware, cryptojacking",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0003::chunk0001",
+ "document": "Denial-of-Service (DoS) – Definition\nPrevents or impairs authorized use of networks, systems, or apps by exhausting CPU, memory, bandwidth, or disk.\nTargets availability; often focuses on network services exposed over their connections.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0004::chunk0001",
+ "document": "DoS Attack – Facts\n• Very common\n• Prevents users from accessing systems\n• Can require minimal skill\n• Effective due to physical limits: simultaneous users, file sizes, link speeds, storage capacity",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0005::chunk0001",
+ "document": "Common DoS Tools\n• Low Orbit Ion Cannon (LOIC)\n• High Orbit Ion Cannon (HOIC)",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0006::chunk0001",
+ "document": "DoS Categories\nClassic flooding (e.g., ping)\nObjective: overwhelm link capacity to target; packets dropped as capacity narrows.\nSource may be obvious unless spoofed; larger networks can overwhelm smaller ones.\nDefenses: load balancers, firewalls.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0007::chunk0001",
+ "document": "Flooding Attacks\n• Classified by protocol used\n• Intent: overload network capacity on a link to a server\n• Any packet type can be used to flood",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0008::chunk0001",
+ "document": "Distributed DoS (DDoS)\n• Multiple systems generate flooding traffic\n• Attacker compromises hosts (zombies) and forms botnets via OS/app flaws\n• Scale magnifies impact on targets",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0009::chunk0001",
+ "document": "HTTP-Based Attacks\n• HTTP flood – bombard server with requests\n• Spidering – bots crawl all site links recursively\n• Slowloris – sends incomplete requests to exhaust server connections\n• Uses seemingly legitimate HTTP; signature-only IDS/IPS may miss it\n• Mitigation: rate-limit per host, delayed binding at load balancer",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0010::chunk0001",
+ "document": "DNS Reflection Attack\n• Reflector loop between intermediary and target\n• Both act as reflectors (e.g., echo service)\n• Preventable with firewall rules that reject suspicious port combinations",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0011::chunk0001",
+ "document": "Normal DNS Operation vs Under Attack\nNormal: client queries UDP 53; server replies with IP.\nAttack: spoofed source (victim) to DNS; response sent to victim’s service (e.g., echo port), potentially creating a loop.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0012::chunk0001",
+ "document": "Amplification Attacks (Overview)\n• Variant of reflector attacks; send spoofed-source packets to intermediaries\n• Multiple responses per request (amplify)\n• Directed broadcast: all hosts respond (e.g., Smurf using ICMP echo)\n• Defense: disallow directed broadcasts into networks from outside",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0013::chunk0001",
+ "document": "Amplification Attacks (cont.) – Smurf\n• Uses broadcast pings to amplify traffic at target\n• Emphasizes need to block directed broadcasts and spoofing at ingress/egress",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0014::chunk0001",
+ "document": "DNS Amplification Attack\n• Small DNS queries → large responses\n• Spoof victim’s address; target flooded by replies\n• Core defense: prevent spoofed source addresses (BCP 38 / uRPF)",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0015::chunk0001",
+ "document": "DDoS Categories by Layer\n• Volume-based: UDP/ICMP floods; measured in bits per second\n• Protocol: SYN floods, fragmented packets, Ping of Death, Smurf; measured in packets per second\n• Application: HTTP-based; measured in requests per second",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0016::chunk0001",
+ "document": "Real-World DDoS Examples\n• Google attacks\n• AWS attacks\n• Memcached amplification\n• Mirai botnet campaigns",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0017::chunk0001",
+ "document": "Four Lines of DDoS Defense\n1) Block spoofed source addresses as close to source as possible\n2) Use modified TCP handling (SYN cookies)\n3) Drop incomplete connections when tables overflow\n4) Apply filters before traffic leaves or at ISP ingress",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0018::chunk0001",
+ "document": "DDoS Prevention (Additional)\n• Block IP directed broadcasts\n• Block suspicious services and port combos\n• Use CAPTCHAs to distinguish humans\n• Good security hygiene; mirror/replicate for high availability",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0019::chunk0001",
+ "document": "Responding to DoS – Preparations\n• Implement antispoofing, directed broadcast, and rate limiting filters\n• Deploy monitors and IDS to detect abnormal patterns",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0020::chunk0001",
+ "document": "Responding to DoS – Actions\n• Identify attack type; capture/analyze packets\n• Design upstream filters to block malicious traffic\n• Fix bugs if vulnerability-related\n• Work with ISP to trace source if legal action planned",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0021::chunk0001",
+ "document": "Responding to DoS – Continuity\n• Implement contingency plan\n• Shift to backups / alternate sites / new addresses\n• Update IR plan\n• Postmortem to improve future handling",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0022::chunk0001",
+ "document": "Moving Target Defense (MTD) – Concept\n• Control change across systems by moving VMs hosting services\n• Aim: operate safely even if compromised; reduce attacker persistence window",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0023::chunk0001",
+ "document": "MTD – System Model\n• Malicious and regular users access services on target VMs\n• Auth server directs users to entitled services\n• OpenFlow controller detects attack, runs MTD logic, and migrates\n• Only regular users redirected to new VM instances",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 23,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0024::chunk0001",
+ "document": "MTD Controller Architecture\n• Components to detect attacks, decide migrations, and execute moves\n• Integrates network control with VM orchestration",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 24,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0025::chunk0001",
+ "document": "MTD – Three Big Questions\n• Where to move? Choose optimal VM candidates; collect metrics periodically/on-demand\n• When to move? Balance migration cost vs. attack risk\n• How to move? Runtime migration or file copy; redirect regular users post-move",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 25,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0026::chunk0001",
+ "document": "Defending Against DoS – On Your Own\n• Filter incoming ICMP\n• Disallow unsolicited inbound traffic\n• Use tools (e.g., netstat) to analyze\n• Disable IP broadcasts; filter internal/external IPs\n• Keep AV signatures, OS, patches current\n• Maintain Acceptable Use Policy (AUP)",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 26,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0027::chunk0001",
+ "document": "Summary – DoS Insights\n• Among the most common Internet attacks\n• Often unsophisticated but highly impactful\n• Requires continuous vigilance and layered defense strategy",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 27,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0028::chunk0001",
+ "document": "SEED Lab 2 – TCP Attacks Walkthrough\n• Practice TCP fundamentals and classic attacks\n• Reinforce packet analysis and mitigation techniques\n• Deliverables due: February 18",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 28,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part3::slide0029::chunk0001",
+ "document": "End of Module 2 – Application and Network Attacks – Part 3",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 3.pptx",
+  "slide_index": 29,
+  "chunk_index": 1
+ }
+}

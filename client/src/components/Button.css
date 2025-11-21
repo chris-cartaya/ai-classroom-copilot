@@ -32,16 +32,16 @@
   font-size: var(--font-size-lg);
 }
 
-/* primary button variant - uses theme purple */
+/* primary button variant - uses theme cobalt */
 .btn-primary {
-  background-color: var(--primary-purple);
+  background-color: var(--primary-cobalt);
   color: var(--button-text-primary); /* Use button text color for contrast */
-  border: 2px solid var(--primary-purple);
+  border: 2px solid var(--primary-cobalt);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--primary-purple-dark);
-  border-color: var(--primary-purple-dark);
+  background-color: var(--primary-cobalt-dark);
+  border-color: var(--primary-cobalt-dark);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -53,13 +53,15 @@
 /* secondary button variant - uses theme background/border/text */
 .btn-secondary {
   background-color: var(--background-card); /* use card background */
-  color: var(--primary-purple);
-  border: 2px solid var(--primary-purple);
+  color: var(--primary-cobalt);
+  border: 2px solid var(--primary-cobalt);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: var(--primary-purple);
-  color: var(--background-card); /* use card background for text contrast */
+  /* CHANGED: Instead of filling with color (which made text hard to read),
+     we now apply a subtle background tint and keep the text blue. */
+  background-color: var(--background-hover-light);
+  color: var(--primary-cobalt); 
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -114,8 +116,8 @@ body.theme-dark .btn-danger:hover:not(:disabled) {
 /* outline button variant - used for "add week here" */
 .btn-outline {
   background-color: transparent;
-  color: var(--primary-purple);
-  border: 1px dashed var(--primary-purple);
+  color: var(--primary-cobalt);
+  border: 1px dashed var(--primary-cobalt);
   padding: var(--spacing-xs) var(--spacing-md); /* Smaller padding */
   font-size: var(--font-size-sm); /* Smaller font */
   opacity: 0.7;
@@ -127,8 +129,8 @@ body.theme-dark .btn-danger:hover:not(:disabled) {
   box-shadow: none; /* No shadow */
 }
 body.theme-dark .btn-outline {
-  color: var(--primary-purple-light);
-  border-color: var(--primary-purple-light);
+  color: var(--primary-cobalt-light);
+  border-color: var(--primary-cobalt-light);
 }
 body.theme-dark .btn-outline:hover:not(:disabled) {
   background-color: var(--background-hover-light);
@@ -145,7 +147,7 @@ body.theme-dark .btn-outline:hover:not(:disabled) {
 
 /* ensure buttons have proper focus styles for accessibility */
 .btn:focus-visible {
-  outline: 3px solid var(--primary-purple-light);
+  outline: 3px solid var(--primary-cobalt-light);
   outline-offset: 2px;
 }
 body.theme-dark .btn:focus-visible {

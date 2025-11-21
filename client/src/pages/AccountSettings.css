@@ -32,305 +32,131 @@
 }
 
 .account-settings {
-  padding: var(--spacing-md);
+  display: grid; 
+  /* FIX: Force single column layout to stack cards vertically, regardless of screen width */
+  grid-template-columns: 1fr; 
+  gap: var(--spacing-xl);
+  padding: 0 var(--spacing-md);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* settings cards spacing */
 .settings-card {
-  margin-bottom: var(--spacing-xl);
+  height: fit-content;
 }
 
-/* form grid layout for two-column forms */
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
-}
-
-/* form sections */
-.form-section {
-  margin-bottom: var(--spacing-lg);
-}
-
-.section-label {
-  display: block;
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  color: var(--text-primary); /* Use theme text color */
-  margin-bottom: var(--spacing-md);
-}
-
-/* role selector inline */
-.role-selector-inline {
-  display: flex;
-  gap: var(--spacing-lg);
-}
-
-.radio-option {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  cursor: pointer;
-  padding: var(--spacing-md);
-  border: 2px solid var(--border-color); /* Use theme border */
-  border-radius: var(--radius-md);
-  transition: all 0.2s ease;
-  flex: 1;
-  background-color: var(--background-card); /* Add background */
-}
-
-.radio-option span {
-  color: var(--text-primary); /* Ensure text color respects theme */
-}
-
-.radio-option:hover {
-  border-color: var(--primary-purple);
-  background-color: var(--background-hover-light); /* Use theme hover */
-}
-
-.radio-option input[type="radio"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  accent-color: var(--primary-purple); /* Style the radio button itself */
-}
-
-.radio-option input[type="radio"]:checked + span {
-  font-weight: 600;
-  color: var(--primary-purple);
-}
-body.theme-dark .radio-option input[type="radio"]:checked + span {
-   color: var(--primary-purple-light);
-}
-
-/* theme selector */
-.theme-selector {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.theme-option {
-  flex: 1;
-  padding: var(--spacing-lg);
-  border: 2px solid var(--border-color); /* Use theme border */
-  background-color: var(--background-card); /* Use card background */
-  color: var(--text-primary); /* Use theme text */
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-}
-
-.theme-option:hover {
-  border-color: var(--primary-purple);
-  transform: translateY(-2px);
-  background-color: var(--background-hover-light); /* Use theme hover */
-}
-
-.theme-option.active {
-  background-color: var(--primary-purple);
-  color: var(--button-text-primary); /* Use button text color */
-  border-color: var(--primary-purple);
-}
-
-/* font size selector */
-.font-size-selector {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.size-option {
-  flex: 1;
-  padding: var(--spacing-lg);
-  border: 2px solid var(--border-color); /* Use theme border */
-  background-color: var(--background-card); /* Use card background */
-  color: var(--text-primary); /* Use theme text */
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.size-option:nth-child(1) { font-size: calc(var(--font-size-sm-base) * 1.1); } /* Make buttons visually distinct */
-.size-option:nth-child(2) { font-size: calc(var(--font-size-base-base) * 1.1); }
-.size-option:nth-child(3) { font-size: calc(var(--font-size-lg-base) * 1.1); }
-
-
-.size-option:hover {
-  border-color: var(--primary-purple);
-  transform: translateY(-2px);
-  background-color: var(--background-hover-light); /* Use theme hover */
-}
-
-.size-option.active {
-  background-color: var(--primary-purple);
-  color: var(--button-text-primary); /* Use button text color */
-  border-color: var(--primary-purple);
-}
-
-/* checkbox group */
-.checkbox-group {
+.settings-form {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
 }
 
-.checkbox-option {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  cursor: pointer;
-  padding: var(--spacing-md);
-  border: 2px solid var(--border-color); /* Use theme border */
-  border-radius: var(--radius-md);
-  transition: all 0.2s ease;
-  background-color: var(--background-card); /* Add background */
+/* general setting group structure */
+.setting-group {
+  padding: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-lg);
+}
+.setting-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
-.checkbox-option span {
-   color: var(--text-primary); /* Ensure text color respects theme */
-}
-
-.checkbox-option:hover {
-  border-color: var(--primary-purple);
-  background-color: var(--background-hover-light); /* Use theme hover */
-}
-
-.checkbox-option input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  accent-color: var(--primary-purple); /* Style the checkbox */
-}
-
-.checkbox-option input[type="checkbox"]:checked + span {
+.setting-label {
+  display: block;
   font-weight: 600;
-  color: var(--primary-purple);
-}
-body.theme-dark .checkbox-option input[type="checkbox"]:checked + span {
-   color: var(--primary-purple-light);
-}
-
-/* form actions */
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border-color); /* Use theme border */
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
 }
 
-/* status messages */
-.status-message {
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+.setting-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
 }
 
-.status-success {
-  background-color: rgba(40, 167, 69, 0.1);
-  color: var(--accent-green);
-  border: 2px solid var(--accent-green);
-}
-body.theme-dark .status-success {
-  background-color: rgba(52, 199, 89, 0.15); /* Adjusted dark success background */
-  color: #34c759; /* Brighter green text */
-  border-color: #34c759;
-}
-
-.status-error {
-  background-color: rgba(220, 53, 69, 0.1);
-  color: var(--error-red);
-  border: 2px solid var(--error-red);
-}
-body.theme-dark .status-error {
-  background-color: rgba(220, 53, 69, 0.15);
-  color: #ff453a; /* Brighter red text */
-  border-color: #ff453a;
-}
-
-
-/* danger card styling */
-.danger-card {
-  border-color: var(--error-red); /* Use theme error color */
-}
-body.theme-dark .danger-card {
-   border-color: #ff453a; /* Brighter red border */
-}
-
-.danger-text {
-  color: var(--error-red); /* Use theme error color */
-  font-weight: 600;
-  margin-bottom: var(--spacing-lg);
-}
-body.theme-dark .danger-text {
-  color: #ff453a; /* Brighter red text */
-}
-
-.danger-actions {
+.setting-options {
   display: flex;
   gap: var(--spacing-md);
   flex-wrap: wrap;
 }
 
-/* Adjust button colors in danger section for dark mode */
-body.theme-dark .danger-actions .btn-secondary {
-  color: var(--error-red);
-  border-color: var(--error-red);
+/* --- REVISED STYLES FOR DISPLAY PREFERENCES (Full Width Buttons) --- */
+
+/* Style for the container that forces buttons to take up full width horizontally */
+.full-width-options {
+    display: flex;
+    /* Reduce gap for a tighter, more connected look */
+    gap: 0; 
+    border: 1px solid var(--border-color); /* Add thin border around the group */
+    border-radius: var(--radius-md);
+    overflow: hidden; /* Ensure rounded corners clip the buttons */
+    /* Override default setting-options gap */
+    margin-bottom: var(--spacing-md); 
 }
-body.theme-dark .danger-actions .btn-secondary:hover {
-  background-color: var(--error-red);
-  color: var(--background-card);
+
+/* Style for buttons inside the full-width containers */
+.full-width-options button {
+    flex: 1; /* Distribute space equally */
+    width: 100%; 
+    padding: var(--spacing-md) var(--spacing-sm); /* Increase padding for a larger button */
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    border: none !important; /* Remove individual button borders inside the group container */
+    border-radius: 0; /* Remove individual button rounding */
+}
+/* Re-add thin separator lines between the buttons */
+.theme-options button:first-child,
+.font-size-options button:first-child,
+.theme-options button:nth-child(2),
+.font-size-options button:nth-child(2) {
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* FINAL FIX: Force Active Preference Button to be Blue/White (like top nav) */
+/* Targets the active primary button within the preference groups */
+.settings-card .full-width-options .btn-primary {  /* <--- CHANGED FROM button.button-primary TO .btn-primary */
+    /* Set background to the primary cobalt color */
+    background-color: var(--primary-cobalt) !important; 
+    /* Set text color to white for contrast */
+    color: var(--button-text-primary) !important; 
+    /* Set border color to the primary cobalt */
+    border-color: var(--primary-cobalt) !important;
+}
+
+/* Ensure hover state on the active button is also a darker blue */
+.settings-card .full-width-options .btn-primary:hover { /* <--- CHANGED FROM button.button-primary TO .btn-primary */
+    background-color: var(--primary-cobalt-dark) !important;
+    border-color: var(--primary-cobalt-dark) !important;
 }
 
 
-/* responsive design for tablets */
+/* --- REVISED STYLES FOR ACCOUNT ACTIONS (Side-by-Side Buttons, No Description) --- */
+
+.account-actions-group .setting-label {
+    /* Larger spacing above the action buttons */
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Container for Logout and Delete buttons to sit side-by-side */
+.action-buttons-row {
+  display: flex;
+  gap: var(--spacing-md); /* Keep gap between buttons */
+  margin-top: var(--spacing-md); /* Add spacing below the label */
+}
+
+.action-buttons-row button {
+  flex: 1; /* Make both buttons take equal space */
+  padding: var(--spacing-md) var(--spacing-sm);
+  font-size: var(--font-size-base);
+}
+
+
+/* responsive adjustments */
 @media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .theme-selector,
-  .font-size-selector {
-    /* keep flex-direction row on tablet, but allow wrap */
-    flex-wrap: wrap;
-  }
-
-  .form-actions {
-    flex-direction: column;
-  }
-
-  .form-actions button {
-    width: 100%;
-  }
-
-  .danger-actions {
-    flex-direction: column;
-  }
-
-  .danger-actions button {
-    width: 100%;
-  }
-}
-
-/* responsive design for mobile */
-@media (max-width: 480px) {
-  .role-selector-inline {
-    flex-direction: column;
-  }
-  .theme-selector,
-  .font-size-selector {
-    flex-direction: column; /* stack options on smallest screens */
+  .account-settings {
+    /* This media query can now be removed or kept just for padding */
+    padding: 0 var(--spacing-lg);
   }
 }

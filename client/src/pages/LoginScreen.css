@@ -1,0 +1,89 @@
+/* login screen page styles */
+
+.login-screen {
+  flex-grow: 1; /* allow screen to take up full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-xl);
+}
+
+.login-card {
+  max-width: 450px; /* Slightly wider to accommodate name fields */
+  width: 100%;
+  text-align: center;
+}
+
+.login-card .card-title {
+  color: var(--text-primary);
+}
+
+.login-form {
+  margin-top: var(--spacing-lg);
+}
+
+.login-error {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  font-weight: 600;
+}
+
+.login-hint {
+  margin-top: var(--spacing-md);
+  text-align: center;
+}
+
+.login-hint small {
+   color: var(--text-dark) !important;
+}
+
+/* Buttons Row Styling */
+.buttons-row {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+/* Helper to make buttons take equal width */
+.flex-grow {
+  flex: 1;
+  white-space: nowrap; /* Prevent wrapping on small screens if possible */
+}
+
+/* Name fields row for registration */
+.name-row {
+  display: flex;
+  gap: var(--spacing-md);
+}
+.name-row > * {
+  flex: 1;
+}
+
+/* Explicit styles for the login button */
+.login-button {
+    background-color: var(--primary-cobalt) !important;
+    color: var(--button-text-primary) !important;
+    border: 1px solid var(--primary-cobalt) !important;
+}
+
+.login-button:hover {
+    background-color: var(--primary-cobalt-dark) !important;
+    border-color: var(--primary-cobalt-dark) !important;
+}
+
+/* responsive adjustments */
+@media (max-width: 480px) {
+  .login-card {
+    max-width: 100%;
+  }
+  
+  .buttons-row {
+    flex-direction: column; /* Stack buttons on very small screens */
+  }
+  
+  .name-row {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}

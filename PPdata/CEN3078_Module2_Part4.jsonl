@@ -1,0 +1,180 @@
+{
+ "id": "CEN3078_Module2_Part4::slide0001::chunk0001",
+ "document": "CEN 3078 – Computer Security\nModule 2 – Application and Network Attacks – Part 4",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0002::chunk0001",
+ "document": "Module 2 Topics\nTCP fundamental attacks on the TCP protocol\nDenial-of-Service attack\nSQL injection attack\nCross-site scripting attack\nMiscellaneous: Heartbleed bug and attack, ransomware, cryptojacking",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0003::chunk0001",
+ "document": "Interacting with a Database in Web Applications\nTypical web app components: users, web server, database\nUsers never talk directly to the DB; the web server is the channel\nIf the channel is not implemented properly, malicious users can attack the database\nSQL injection can damage the database",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0004::chunk0001",
+ "document": "Getting Data from Users (Form → HTTP Request)\nExample HTML form lets users type data and submit\nSubmitting sends an HTTP request with data attached\nRequest example is shown for illustration purposes",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0005::chunk0001",
+ "document": "HTTP GET Parameters and Server-Side Access\nGET request appends parameters after a question mark in the URL\nFormat: name=value pairs separated by ampersands\nWith HTTPS the format is similar but encrypted\nServer-side code accesses parameters via arrays like $_GET or $_POST (PHP example)\nCode snippet shows reading GET parameters in PHP",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0006::chunk0001",
+ "document": "How Web Applications Talk to MySQL\nConnect to the database server (PHP mysqli example)\nmysqli provides access to MySQL four point one and above\nAfter connecting, construct a query string and send it to the DB for execution\nUser input from forms eventually becomes part of the SQL string—an attack surface",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0007::chunk0001",
+ "document": "Launching SQL Injection Attacks (Idea)\nUser-provided data is mixed with web application code to form SQL\nQuestion: Can a user change the meaning of the SQL?\nExample: entering EID5002’# for the ID while using a random password\nThe hash causes the rest of the query to be treated as a comment\nPassword check is bypassed; sensitive fields like name, salary, SSN may be returned",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0008::chunk0001",
+ "document": "SQL Injection to Get All Records\nGoal: create a WHERE predicate that is always true\nTechnique: add OR one equals one to match all rows\nThis turns a selective query into one that returns the entire table\nSecurity breach: full disclosure of records without knowing each identifier",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0009::chunk0001",
+ "document": "Launching SQL Injection with cURL\nCommand-line tools make attack automation easier\nRaw special characters break HTTP requests; they must be percent-encoded\nEncode apostrophes, spaces, and the hash sign before sending\nExample shows corrected cURL with encoded characters",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0010::chunk0001",
+ "document": "Modifying the Database (UPDATE)\nExample: change password form posts EID, old password, new password\nVulnerable UPDATE query can be extended via injection\nAttacker can set additional attributes such as salary in the same statement\nScenario: Alice boosts her own salary or reduces Bob’s to zero using only EID knowledge",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0011::chunk0001",
+ "document": "Multiple SQL Statements (Concept)\nIf we can append an arbitrary SQL statement, damage escalates\nExample intent: append DROP DATABASE dbtest to delete an entire database\nChallenge: mysqli.query() in PHP does not allow multiple queries in one call\nThis limits some multi-statement injection attempts on MySQL",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0012::chunk0001",
+ "document": "Multiple SQL Statements (API Behavior)\nCode example attempts two statements via $mysqli->query()\nResult: error because multiple statements are not allowed in that API\nIf you truly need multiple statements, mysqli.multi_query() exists (not recommended for security)",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0013::chunk0001",
+ "document": "SQL Injection Humor\nA light-hearted example reminding that unsanitized input can break queries\nFamous T-shirt joke about a student named Robert’); DROP TABLE Students;—",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0014::chunk0001",
+ "document": "The Fundamental Cause\nMixing data and code together enables vulnerabilities:\n• SQL injection\n• Cross-site scripting\n• Shell/system() command injection\n• Format string attacks\nRoot issue: the parser cannot distinguish where code ends and data begins",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0015::chunk0001",
+ "document": "Countermeasures: Filtering and Encoding\nInspect user input before mixing with code\nFilter or encode special characters commonly used in injection\nEncoding tells the parser to treat characters as data, not code\nPHP mysqli has real_escape_string() to escape dangerous characters\nLimitations: filtering/escaping alone does not fix the root cause",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0016::chunk0001",
+ "document": "Countermeasures: Prepared Statements (Idea)\nFundamental cause: mixing data and code\nFundamental solution: separate code from data\nSend SQL template (code) and bind parameters (data) via separate channels\nDatabase parses and optimizes the template once; values are bound later\nImproves both security and performance for repeated statements",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0017::chunk0001",
+ "document": "Prepared Statements in Practice\nVulnerable version: code and data concatenated into one string\nHardened version: send code (prepared SQL with placeholders)\nThen send data (bound parameter values)\nStart execution after binding\nPrevents injected data from being interpreted as SQL code",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0018::chunk0001",
+ "document": "Why Prepared Statements Are Secure\nTrusted code travels a dedicated code channel\nUntrusted user data travels a data channel\nThe database knows the boundary between code and data\nData is never parsed as code; attacker-hidden SQL stays inert",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0019::chunk0001",
+ "document": "Defense-in-Depth Against SQL Injection\nInput validation and allowlists\nContext-aware output encoding\nLeast privilege for DB accounts; separate read and write roles\nShort session lifetimes; rotate secrets; audit queries\nWeb application firewalls as a compensating control",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part4::slide0020::chunk0001",
+ "document": "Summary\nRoot cause: data and code mixed together\nPrepared statements separate code and data to prevent injection\nFiltering/encoding help but are not sufficient by themselves\nCombine secure coding, least privilege, and monitoring for resilient apps",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 4.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}

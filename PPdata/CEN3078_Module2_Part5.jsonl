@@ -1,0 +1,198 @@
+{
+ "id": "CEN3078_Module2_Part5::slide0001::chunk0001",
+ "document": "CEN 3078 Computer Security\nModule 2 – Application and Network Attacks – Part 5",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0002::chunk0001",
+ "document": "Module 2 Topics\nTCP fundamental attacks on the TCP protocol\nDenial-of-Service attack\nSQL injection attack\nCross-site scripting attack\nMiscellaneous: Heartbleed bug and attack, ransomware, cryptojacking",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0003::chunk0001",
+ "document": "Cross-Site Scripting (XSS)\nAn attack where malicious scripts are injected into trusted websites.\nVictims’ browsers execute attacker’s code with the privileges of the vulnerable site.\nTypes: Non-persistent (reflected) and Persistent (stored).",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0004::chunk0001",
+ "document": "XSS Example – Reflected\nUser input echoed directly into response without sanitization.\nAttacker sends URL with malicious JavaScript embedded.\nVictim clicks the link → script runs in victim’s browser.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0005::chunk0001",
+ "document": "XSS Example – Stored\nMalicious script saved permanently on the server (e.g., in comments).\nDisplayed to users later, executing in their browsers.\nHigher impact because every visitor is affected.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0006::chunk0001",
+ "document": "Real XSS Examples\nSamy Worm (2005, MySpace): infected over a million profiles in less than 24 hours.\nVoteHillary.org → Obama iframe injection (2008).\nBBC TweetDeck vulnerability causing mass JavaScript retweets (2014).",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0007::chunk0001",
+ "document": "Reflected XSS Mechanics\nInput → Server → Immediate Response.\nMalicious payload delivered via crafted URL or form.\nExecuted in victim’s browser upon visiting link.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0008::chunk0001",
+ "document": "Stored XSS Mechanics\nAttacker submits JavaScript to a site that stores and reuses user input (e.g., profile, forum).\nVictim views page → script executes in browser.\nResults in session hijacking or content defacement.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0009::chunk0001",
+ "document": "Consequences of XSS Attacks\n• Web defacement (modify page content)\n• Session cookie theft and account takeover\n• Spoofing login pages to steal credentials\n• Self-propagating worms (spread to others)",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0010::chunk0001",
+ "document": "Self-Propagating XSS Worms\nMalicious JavaScript infects viewers and automatically posts itself to their profiles.\nEach new victim becomes a source of infection.\nExample: Samy Worm (2005).",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0011::chunk0001",
+ "document": "Countermeasure – Filtering\nSanitize and validate user input before display.\nRemove or escape JavaScript tags and event handlers.\nExample: strip <script> tags from input fields.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0012::chunk0001",
+ "document": "Countermeasure – Encoding\nConvert HTML special characters so they display as text.\nExample:\n<script>alert('XSS')</script> → &lt;script&gt;alert('XSS')&lt;/script&gt;",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0013::chunk0001",
+ "document": "Countermeasure – Content Security Policy (CSP)\nAllows only trusted sources for scripts and media.\nBlocks inline JavaScript and unapproved content.\nMitigates XSS and clickjacking risks.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0014::chunk0001",
+ "document": "Countermeasure – Input Validation\nWhitelist expected formats (e.g., email, integer).\nReject unexpected characters or markup.\nCombine with output encoding for best results.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0015::chunk0001",
+ "document": "Countermeasure – Frameworks\nUse secure template systems (e.g., Django, ReactJS, Angular).\nThey automatically encode user data before rendering.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0016::chunk0001",
+ "document": "Practice Question 1\nHow many ICMP packets (500 bytes each) per second are needed to saturate 0.5 Mbps, 2 Mbps, and 10 Mbps links?\nAnswer: 125 pps, 500 pps, 2500 pps respectively.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0017::chunk0001",
+ "document": "Practice Question 2\nZombie PC uplink = 128 kbps.\nHow many zombies needed to flood 0.5 Mbps, 2 Mbps, and 10 Mbps links?\nAnswer: 4, 16, 79 zombies respectively.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0018::chunk0001",
+ "document": "Practice Question 3\nIf we remove the half-open connection buffer to stop SYN floods, will it work?\nAnswer: No — creates a new ACK flood attack that consumes more memory per connection.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0019::chunk0001",
+ "document": "Miscellaneous Attack – Heartbleed\nExploits OpenSSL Heartbeat extension.\nAllows attackers to read server memory (SSL keys, passwords).",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0020::chunk0001",
+ "document": "Ransomware\nEncrypts files and demands payment for decryption.\nExamples: WannaCry, CryptoLocker.\nDefense: Backups and user awareness.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0021::chunk0001",
+ "document": "Cryptojacking\nMalicious scripts use victims’ CPUs to mine cryptocurrency without consent.\nOften delivered through malvertising or XSS injection.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part5::slide0022::chunk0001",
+ "document": "End of Module 2 – Application and Network Attacks – Part 5\nNext: Module 3 – Cryptography and Network Defense",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 5.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}

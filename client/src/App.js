@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import ClassroomCopilot from './pages/ClassroomCopilot';
 import CourseMaterials from './pages/CourseMaterials';
 import AccountSettings from './pages/AccountSettings';
+import LoginScreen from './pages/LoginScreen'; 
 import './App.css';
 
 /**
@@ -15,7 +16,11 @@ import './App.css';
  */
 function App() {
   // global state for user role (student or instructor)
-  const [userRole, setUserRole] = useState('student');
+  // set initial state to null/'' so login screen shows first
+  const [userRole, setUserRole] = useState(''); 
+  
+  // global state for login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // <-- new state
 
   // global state for theme (light or dark)
   const [theme, setTheme] = useState('light');
@@ -46,11 +51,43 @@ function App() {
 
   // effect to apply theme and font size classes to the body element
   useEffect(() => {
-    document.body.className = ''; // clear previous classes
+    // clear previous classes
+    document.body.className = ''; 
     document.body.classList.add(`theme-${theme}`);
     document.body.classList.add(`font-size-${fontSize}`);
   }, [theme, fontSize]);
 
+  /**
+   * handle successful login
+   * @param {string} role - the authenticated role ('student' or 'instructor')
+   */
+  const handleLoginSuccess = (role) => { 
+    setUserRole(role);
+    setIsLoggedIn(true);
+  };
+  
+  /**
+   * handle logout
+   * resets login state and user role
+   */
+  const handleLogout = () => { 
+    setIsLoggedIn(false);
+    setUserRole('');
+  };
+
+
+  // render login screen if not logged in
+  if (!isLoggedIn) {
+    return (
+      <Router>
+         <div className="app">
+           <LoginScreen onLogin={handleLoginSuccess} />
+         </div>
+      </Router>
+    );
+  }
+  
+  // render main app content if logged in
   return (
     <Router>
       <div className="app">
@@ -61,8 +98,9 @@ function App() {
           setTheme={setTheme}
           fontSize={fontSize}
           setFontSize={setFontSize}
-          courseWeeks={courseWeeks} // Pass new state down
-          setCourseWeeks={setCourseWeeks} // Pass setter down
+          courseWeeks={courseWeeks}
+          setCourseWeeks={setCourseWeeks}
+          onLogout={handleLogout} 
         />
       </div>
     </Router>
@@ -77,13 +115,49 @@ function AppContent({
   userRole, setUserRole,
   theme, setTheme,
   fontSize, setFontSize,
-  courseWeeks, setCourseWeeks // Receive new props
+  courseWeeks, setCourseWeeks,
+  onLogout 
 }) {
   const navigate = useNavigate();
+  const location = useLocation(); 
 
-  // current page title for header
-  const [pageTitle, setPageTitle] = useState('Classroom Copilot');
+  /**
+   * helper function to determine page title based on path
+   * @param {string} path - current location path
+   * @returns {string} corresponding page title
+   */
+  const getTitleFromPath = (path) => {
+      if (path.startsWith('/materials')) return 'Course Materials';
+      if (path.startsWith('/settings')) return 'Account Settings';
+      return 'Classroom Copilot';
+  };
 
+  // set initial page title based on current URL path
+  const [pageTitle, setPageTitle] = useState(getTitleFromPath(location.pathname));
+  
+  /**
+   * FIX: Redirect to the root path immediately upon component mount if the path is not '/'
+   * This ensures the user lands on the default page after logging in.
+   */
+  useEffect(() => {
+    const currentPath = location.pathname;
+    
+    // Check if the current URL is not the root path
+    if (currentPath !== '/') {
+        // Force navigation to the root path
+        navigate('/', { replace: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run only on initial mount (which happens after login)
+
+
+  /**
+   * effect to ensure page title is updated whenever the location changes
+   */
+  useEffect(() => {
+    setPageTitle(getTitleFromPath(location.pathname));
+  }, [location.pathname]);
+  
   /**
    * handle back navigation
    */
@@ -119,64 +193,41 @@ function AppContent({
     setFontSize(newSize);
   };
 
+  // Define navigation links JSX to pass to Header
+  const navigationLinks = (
+    <>
+      <Link
+        to="/"
+        className={`header-nav-link ${pageTitle === 'Classroom Copilot' ? 'active' : ''}`}
+      >
+        💬 Classroom Copilot
+      </Link>
+      <Link
+        to="/materials"
+        className={`header-nav-link ${pageTitle === 'Course Materials' ? 'active' : ''}`}
+      >
+        📚 Course Materials
+      </Link>
+      <Link
+        to="/settings"
+        className={`header-nav-link ${pageTitle === 'Account Settings' ? 'active' : ''}`}
+      >
+        ⚙️ Account Settings
+      </Link>
+    </>
+  );
 
   return (
     <>
-      {/* header component with navigation */}
+      {/* header component with navigation passed as prop */}
       <Header
         title={pageTitle}
         onBack={handleBack}
         onUserClick={handleUserClick}
+        navigation={navigationLinks} /* Pass navigation links here */
       />
 
-      {/* main navigation menu */}
-      <nav className="nav-menu" role="navigation" aria-label="Main navigation">
-        <Link
-          to="/"
-          className={`nav-button ${pageTitle === 'Classroom Copilot' ? 'active' : ''}`}
-          onClick={() => setPageTitle('Classroom Copilot')}
-          aria-current={pageTitle === 'Classroom Copilot' ? 'page' : undefined}
-        >
-          💬 Classroom Copilot
-        </Link>
-        <Link
-          to="/materials"
-          className={`nav-button ${pageTitle === 'Course Materials' ? 'active' : ''}`}
-          onClick={() => setPageTitle('Course Materials')}
-          aria-current={pageTitle === 'Course Materials' ? 'page' : undefined}
-        >
-          📚 Course Materials
-        </Link>
-        <Link
-          to="/settings"
-          className={`nav-button ${pageTitle === 'Account Settings' ? 'active' : ''}`}
-          onClick={() => setPageTitle('Account Settings')}
-          aria-current={pageTitle === 'Account Settings' ? 'page' : undefined}
-        >
-          ⚙️ Account Settings
-        </Link>
-      </nav>
-
-      {/* role selector - allows switching between student and instructor views */}
-      <div className="role-selector">
-        <h3>Current Role</h3>
-        <div className="role-buttons">
-          <button
-            className={`role-button ${userRole === 'student' ? 'active' : ''}`}
-            onClick={() => handleRoleChange('student')}
-            aria-pressed={userRole === 'student'}
-          >
-            👨‍🎓 Student
-          </button>
-          <button
-            className={`role-button ${userRole === 'instructor' ? 'active' : ''}`}
-            onClick={() => handleRoleChange('instructor')}
-            aria-pressed={userRole === 'instructor'}
-          >
-            👨‍🏫 Instructor
-          </button>
-        </div>
-      </div>
+      {/* Removed the separate <nav> block */}
 
       {/* main content area with routing */}
       <main className="main-content" role="main">
@@ -209,6 +260,7 @@ function AppContent({
                 onThemeChange={handleThemeChange}
                 fontSize={fontSize}
                 onFontSizeChange={handleFontSizeChange}
+                onLogout={onLogout} 
               />
             }
           />

@@ -1,0 +1,297 @@
+{
+ "id": "CEN3078_Module3_Part1::slide0001::chunk0001",
+ "document": "CEN 3078 Computer Security\nModule 3 – Defense Architectures and Design",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0002::chunk0001",
+ "document": "Module 3 – Defense Architectures and Design\nNetwork Scanning and Vulnerability Scanning\nDigital Forensics\nCybersecurity Engineering\nSecurity Policies\nFirewalls\nAuthentication and Access Controls\nFederated Trust\nIoT/Cloud Middleware",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0003::chunk0001",
+ "document": "Introduction\nSystems should be periodically assessed for vulnerabilities.\nMethods include vulnerability scanning, penetration testing, and auditing.\nTools can identify network weaknesses.\nSecurity procedures help create a more secure computing environment.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0004::chunk0001",
+ "document": "Basics of Assessing a System – The Six Ps\nPatch – Keep system patches up to date\nPorts – Disable unneeded ports\nProtect – Implement firewalls and intrusion detection systems\nPolicies – Enforce security policies\nProbe – Regularly scan networks for flaws\nPhysical – Secure hardware and physical access",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0005::chunk0001",
+ "document": "Securing Computer Systems\nUse established guides and templates:\n- NSA Cybersecurity Publications\n- Center for Internet Security (CIS)\n- SANS Institute\nTemplates available for Windows via Microsoft documentation.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0006::chunk0001",
+ "document": "Securing Workstations and Servers\nWorkstations:\n- Apply patches\n- Restrict user privileges\n- Use antivirus and firewalls\n- Enforce password policies\nServers:\n- Apply same rules as workstations\n- Enable logging and review regularly\n- Perform backups and disable unnecessary services",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0007::chunk0001",
+ "document": "Securing Networks\nSecure all computers in the network.\nUse firewalls, proxy servers, and IDS.\nSegment networks using routers and firewalls.\nSeparate web servers from internal systems.\nConsider a DMZ setup with inner and outer firewalls.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0008::chunk0001",
+ "document": "Demilitarized Zone (DMZ)\nAn area between internal and external networks.\nTypically involves two firewalls:\n- Outer firewall filters external traffic.\n- Inner firewall protects the internal LAN.\nUsed to host web or email servers safely.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0009::chunk0001",
+ "document": "Network Scanning\nRegularly check networks for vulnerabilities.\nPopular tools:\n- NESSUS (network vulnerabilities)\n- OWASP Zap (web applications)\n- Shodan (internet-exposed devices)\n- Kali Linux (penetration testing toolkit)\n- Vega and OpenVAS (open-source scanners)",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0010::chunk0001",
+ "document": "Testing and Scanning Standards\n- NIST 800-115: Testing and Assessment Guide\n- NSA-IAM: Penetration Test Standards\n- PCI DSS: Credit card industry standard\n- National Vulnerability Database (NVD): Public vulnerability repository using SCAP protocol",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0011::chunk0001",
+ "document": "Hiring Security Professionals\nCertification: CNE, MCITP, CISSP, Security+, CASP, GAIC, Cisco\nEducation: Computer science or information systems\nExperience: Minimum 5 years IT, 2 years security\nBackground: References, credit, and criminal record checks",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0012::chunk0001",
+ "document": "Summary\nRegularly assess systems for vulnerabilities.\nHigh-security sites: weekly; lower-risk sites: quarterly.\nSecure networks, systems, and servers.\nApply best practices consistently across infrastructure.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0013::chunk0001",
+ "document": "Digital Forensics – Objectives\nUnderstand forensic principles.\nCreate drive copies.\nUse forensic tools.\nPrepare reports.\nAvoid procedural mistakes.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0014::chunk0001",
+ "document": "Introduction to Digital Forensics\nNetwork admins are often first responders to cyber incidents.\nProper evidence handling is crucial for court admissibility.\nComputer forensics focuses on scientifically extracting digital evidence.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0015::chunk0001",
+ "document": "General Guidelines\n- Do not touch suspect drives.\n- Use Linux commands or forensic imaging tools (FTK Imager, OSForensics).\n- Always create a forensic copy rather than analyzing live data.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0016::chunk0001",
+ "document": "Documentation and Chain of Custody\n- Record all actions and personnel involved.\n- Secure and restrict evidence access.\n- Maintain a chain of custody log for all handling events.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0017::chunk0001",
+ "document": "FBI Forensics Guidelines\nInclude cost documentation: labor, hardware damage, lost data, downtime, lost revenue.\nExamples of evidence: logs, portable storage, emails, cell phones, and other digital devices.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0018::chunk0001",
+ "document": "U.S. Secret Service Guidelines\nSecure the scene.\nPreserve evidence.\nEstablish legal basis before seizure.\nAvoid file access and take photos.\nDisconnect power if data destruction is suspected.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0019::chunk0001",
+ "document": "Digital Forensics Standards\nSWGDE, ASCLD, RFC 3227, ISO/IEC 27037–27050 standards define collection, handling, and analysis of evidence.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0020::chunk0001",
+ "document": "Forensic Reporting and Tools\nReports must include: qualifications, actions, reasoning, and conclusions.\nCommon forensic tools: FTK, EnCase, OSForensics, Magnet Forensics, Sleuth Kit, Cellebrite.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0021::chunk0001",
+ "document": "Finding Evidence on a PC\nBrowsers can contain direct or indirect evidence.\nWindows stores data in index.dat.\nTools can recover browsing history even if deleted.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0022::chunk0001",
+ "document": "Finding Evidence in Logs\nWindows Logs: Security, Application, System, ForwardedEvents.\nLinux: syslog, auth.log, messages.\nSystem logs reveal unauthorized access or activities.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0023::chunk0001",
+ "document": "Recovering Deleted Files\nTools: FTK, OSForensics, EnCase, DiskDigger.\nDeleted data can often be restored unless securely wiped.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 23,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0024::chunk0001",
+ "document": "Operating System Utilities\nWindows tools: net sessions, openfiles, fc, netstat.\nUseful for tracking network and file activity during investigations.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 24,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0025::chunk0001",
+ "document": "The Windows Registry\nCentral configuration database.\nKey hives: HKCR, HKCU, HKLM, HKU, HKCC.\nValuable forensic source using regedit.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 25,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0026::chunk0001",
+ "document": "Mobile Forensics – Cell Phone Concepts\nDocument phone state (factory, active, semi-active).\nIdentify SIM, IMSI, ICCID, and IMEI numbers.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 26,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0027::chunk0001",
+ "document": "Mobile Forensics – Network Aspects\nCell towers: antenna + radio base stations.\nCellular networks: GSM, EDGE, UMTS, LTE, 5G, iDEN.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 27,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0028::chunk0001",
+ "document": "Forensic Certifications\nCertifications demonstrate minimum competence.\nExamples: AccessData (FTK), EnCase, CHFI, GCFA, GCFE.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 28,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0029::chunk0001",
+ "document": "Expert Witnesses\nCan provide opinion testimony under Federal Rule 702.\nDaubert Standard ensures scientific validity of expert testimony in court.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 29,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0030::chunk0001",
+ "document": "Other Forensic Disciplines\nNetwork forensics: capture and analyze packets using Wireshark, CommView, ngrep.\nVirtual forensics: analyze virtualized environments and cloud resources.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 30,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0031::chunk0001",
+ "document": "Summary\nAlways work on forensic copies.\nDocument every action.\nRetrieve browser and deleted data.\nLeverage registry and cloud information for evidence.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 31,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0032::chunk0001",
+ "document": "End of Module 3 – Part 1\nNext: Cybersecurity Engineering and Security Policies.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 32,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module3_Part1::slide0033::chunk0001",
+ "document": "Thank you.",
+ "metadata": {
+  "file_name": "Module 3 - Defense Architectures and Design - Part 1.pptx",
+  "slide_index": 33,
+  "chunk_index": 1
+ }
+}

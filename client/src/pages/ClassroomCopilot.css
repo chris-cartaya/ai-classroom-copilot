@@ -12,11 +12,11 @@
 
 .page-header h2 {
   font-size: var(--font-size-xxl);
-  color: var(--primary-purple);
+  color: var(--primary-cobalt);
   margin-bottom: var(--spacing-sm);
 }
 body.theme-dark .page-header h2 {
-   color: var(--primary-purple-light);
+   color: var(--primary-cobalt-light);
 }
 
 .page-description {
@@ -75,17 +75,17 @@ body.theme-dark .page-header h2 {
 
 /* question bubble styling */
 .question-bubble {
-  background-color: var(--primary-purple);
+  background-color: var(--primary-cobalt);
   color: var(--header-text); /* Use header text color for contrast */
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   margin-left: auto;
   max-width: 80%;
-  border: 1px solid var(--primary-purple-dark); /* Add subtle border */
+  border: 1px solid var(--primary-cobalt-dark);
 }
 body.theme-dark .question-bubble {
-   background-color: var(--primary-purple-dark); /* Slightly darker in dark mode */
-   border-color: var(--primary-purple);
+   background-color: var(--primary-cobalt-dark);
+   border-color: var(--primary-cobalt);
 }
 
 .bubble-header {
@@ -179,20 +179,20 @@ body.theme-dark .confidence-badge {
   background-color: var(--background-card); /* Use card background */
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
-  border-left: 3px solid var(--primary-purple);
+  border-left: 3px solid var(--primary-cobalt);
   border: 1px solid var(--border-color); /* Add subtle border */
 }
 body.theme-dark .citation-item {
-  border-left-color: var(--primary-purple-light);
+  border-left-color: var(--primary-cobalt-light);
 }
 
 .citation-item strong {
-  color: var(--primary-purple);
+  color: var(--primary-cobalt);
   display: block;
   margin-bottom: var(--spacing-xs);
 }
 body.theme-dark .citation-item strong {
-  color: var(--primary-purple-light);
+  color: var(--primary-cobalt-light);
 }
 
 .citation-content {
@@ -242,9 +242,9 @@ body.theme-dark .tips-card {
    background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-hover) 100%), var(--background-card);
 }
 
-
+/* Explicitly set children to white to override global text-primary reset */
 .tips-card h3 {
-  color: inherit; /* Inherit color */
+  color: white; 
   margin-bottom: var(--spacing-md);
 }
 
@@ -258,7 +258,7 @@ body.theme-dark .tips-card {
   padding: var(--spacing-sm) 0;
   padding-left: var(--spacing-lg);
   position: relative;
-  color: inherit; /* Inherit color */
+  color: white; /* Explicitly set list items to white */
 }
 
 .tips-list li::before {
@@ -268,9 +268,7 @@ body.theme-dark .tips-card {
   color: var(--accent-green);
   font-weight: bold;
 }
-body.theme-dark .tips-list li::before {
-  color: var(--accent-green); /* Ensure checkmark color is visible */
-}
+/* Removed dark mode override since text is now always white */
 
 /* responsive design for tablets */
 @media (max-width: 768px) {

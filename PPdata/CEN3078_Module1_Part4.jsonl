@@ -1,0 +1,135 @@
+{
+ "id": "CEN3078_Module1_Part4::slide0001::chunk0001",
+ "document": "CEN 3078 Computer Security\nModule 1 – Application and Network Analysis",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0002::chunk0001",
+ "document": "Module 1 Overview\nNetwork and application layers – security concepts\nPacket sniffing and spoofing\nIntrusion detection systems\nLegal and ethical issues",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0003::chunk0001",
+ "document": "Cyber Crime and Forensic Evidence\nCybercrime – criminal activity where computers or networks are a tool, target, or location of the crime.\nForensic Evidence – anything used in court to prove a statement’s validity.\nCannot be hearsay – must come from reliable monitoring.\nRoutine monitoring supports custody and recordkeeping.\nEvidence must prove beyond reasonable doubt.",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0004::chunk0001",
+ "document": "Types of Cyber Crime (U.S. DOJ Categories)\n• Minimum human supervision\n• Recover from crashes and reinitializations\n• Self-monitor and detect intruder modification\n• Intellectual Property Infringement",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0005::chunk0001",
+ "document": "Intellectual Property\nAny intangible asset of human knowledge and ideas.\nExamples: software, data, designs, books, inventions.\nProtected through:\n• Copyrights\n• Trademarks\n• Patents",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0006::chunk0001",
+ "document": "Copyright\nProtects tangible or fixed expression of an idea, not the idea itself.\nTo claim copyright:\n• Work must be original.\n• Idea must be expressed in a fixed medium.\nFiled through national copyright offices.",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0007::chunk0001",
+ "document": "Patent\nGrants a property right to the inventor.\nRight to exclude others from making, using, or selling the invention.\nExample: RSA public-key cryptosystem (patented 1983–2000).\nTypes: utility, design, and plant patents.",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0008::chunk0001",
+ "document": "Trademark\nA word, name, symbol, or device used in trade.\nIndicates source and distinguishes goods or services.\nRights prevent confusingly similar marks but not competition with distinct marks.",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0009::chunk0001",
+ "document": "Privacy\nOverlaps with computer security.\nDriven by data collection, IoT, social networks, and research.\nConcerns over personal data misuse lead to privacy laws and technical protections.\nAssures individual control over personal data collection, access, and disclosure.",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0010::chunk0001",
+ "document": "Privacy Protection\nRequires both policy and technical measures.\nTechnical examples:\n• Database security controls\n• Social media privacy settings\n• Tagging notifications\n• Data anonymization before release",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0011::chunk0001",
+ "document": "Data Privacy\nPolicy considerations for managing and reusing data:\n• Consent and informed participation\n• Privacy (control) vs. confidentiality (authorized access)\n• Ownership and authorship responsibilities\n• Data sharing and societal benefits\n• Governance and custodianship for data management",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0012::chunk0001",
+ "document": "Ethical Issues\nEthics – moral principles guiding right and wrong actions.\nComputing introduces new ethical challenges:\n• Massive data scale\n• Creation of digital entities without prior ethical frameworks\n• Misuse of information and communication technologies",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0013::chunk0001",
+ "document": "Ethical Hacking\nEthical hackers test and secure systems under client direction.\nThey report vulnerabilities and provide mitigation strategies.\nGrowing demand due to rising malware and ransomware threats.\nKey questions:\n• What vulnerabilities exist?\n• What can attackers access?\n• How can issues be fixed?\nReference: https://www.eccouncil.org/ethical-hacking/",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0014::chunk0001",
+ "document": "Network, IoT, and Cybersecurity Lab (EagleCyberNest @ HE 303)\nNow Hiring!\nFGCU’s first student research lab focused on cybersecurity.\nOpportunities include research, hands-on learning, and service-learning hours.\nResources: routers, switches, racks, high-speed network, and drones.\nContact: cqu@fgcu.edu",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part4::slide0015::chunk0001",
+ "document": "End of Module 1 – Part 4",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 4.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}

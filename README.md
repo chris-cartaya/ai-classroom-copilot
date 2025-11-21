@@ -28,21 +28,26 @@ The backend is a Python server powered by FastAPI.
     cd /path/to/ai-classroom-copilot
     ```
 
-2.  **Activate Virtual Environment**:
+2.  **Setup Python Environment**:
     ```powershell
-    # On Windows
+    # On Windows, ensure you have Python and pip installed
+    # Create and activate a virtual environment
+    python -m venv .venv
     .\.venv\Scripts\activate
+    
+    # Install backend dependencies
+    pip install -r server/requirements.txt
     ```
 
-3.  **Install Dependencies**:
-    ```bash
-    pip install -r client/src/requirements.txt
+3.  **Start the Backend Server**:
+    *   **Important**: Before running the server, you need to set your `PYTHONPATH` environment variable to the project's root directory. This helps Python locate modules correctly.
+    ```powershell
+    # In PowerShell (run this in each new terminal session for the backend)
+    $env:PYTHONPATH = (Get-Location).Path
     ```
-
-4.  **Run the Server**:
-    ```bash
-    # This will start the server with auto-reload on port 8000
-    uvicorn client.src.main:app --reload
+    *   Then, start the server:
+    ```powershell
+    python -m uvicorn server.main:app --reload
     ```
     Keep this terminal open.
 
@@ -53,15 +58,7 @@ The frontend is a React application.
 1.  **Navigate to Client Directory**: Open a new terminal and navigate into the `client` folder.
     ```bash
     cd /path/to/ai-classroom-copilot/client
-    ```
-
-2.  **Install Dependencies**:
-    ```bash
     npm install
-    ```
-
-3.  **Run the Client**:
-    ```bash
     npm start
     ```
     This will open the application in your browser, typically at `http://localhost:3000`.

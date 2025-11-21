@@ -1,0 +1,288 @@
+{
+ "id": "CEN3078_Module2_Part2::slide0001::chunk0001",
+ "document": "CEN 3078 – Computer Security\nModule 2 – Application and Network Attacks – Part 2",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0002::chunk0001",
+ "document": "Module 2 Part 2 Overview\n• TCP and session attacks\n• Cookie, session, and token abuse\n• Web application attacks\n• DoS and DDoS techniques\n• Detection and mitigation strategies",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0003::chunk0001",
+ "document": "TCP Basics for Attackers and Defenders\n• Three-way handshake: SYN → SYN-ACK → ACK\n• Sequence and acknowledgment numbers\n• Connection state (LISTEN, SYN-RECEIVED, ESTABLISHED)\n• Why it matters: spoofing, flooding, and hijacking rely on these mechanics",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0004::chunk0001",
+ "document": "SYN Flood Attack\n• Sends large volumes of SYN packets with bogus sources\n• Server allocates half-open state; backlog fills\n• Legitimate clients starve → denial of service\n• Defenses: SYN cookies, backlog tuning, rate limits, filtering, CDN scrubbing",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0005::chunk0001",
+ "document": "TCP Reset and Session Desynchronization\n• Inject forged RST packets to tear down connections\n• Guessable sequence windows enable resets\n• Impacts long-lived flows (BGP, streaming)\n• Mitigations: TCP authentication options, encryption, tighter RST checks",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0006::chunk0001",
+ "document": "TCP Session Hijacking\n• Attacker observes or predicts sequence numbers\n• Injects packets to take over application stream\n• Often combined with ARP spoofing or on-path placement\n• Defenses: TLS, VPNs, random ISNs, switch port security, DHCP snooping",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0007::chunk0001",
+ "document": "Name and Address Spoofing\n• ARP spoofing: poison cache to intercept traffic on LANs\n• DNS poisoning: inject false records → redirect domains\n• IP spoofing: falsify source address for reflection and evasion\n• Countermeasures: dynamic ARP inspection, DNSSEC, uRPF, egress filtering",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0008::chunk0001",
+ "document": "Cookies, Sessions, and Tokens\n• Cookies persist state across stateless HTTP\n• Session identifiers map to server-side state\n• Tokens (including JSON Web Tokens) carry claims\n• Risks: theft, fixation, weak entropy, improper scopes and expiry",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0009::chunk0001",
+ "document": "Cookie and Session Attacks\n• Session fixation: force victim to use attacker’s ID\n• Session hijacking: steal ID via XSS, sniffing, malware\n• Insecure attributes: missing HttpOnly, Secure, SameSite\n• Defenses: rotate IDs on login, strong attributes, short TTL, server-side revocation lists",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0010::chunk0001",
+ "document": "Web Injection Attacks\n• SQL injection: untrusted input in queries\n• Command injection: shell or interpreter abuse\n• Template injection and deserialization flaws\n• Prevention: parameterized queries, allowlists, input normalization, safe APIs",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0011::chunk0001",
+ "document": "Cross-Site Scripting and Request Forgery\n• XSS: injects script into victim’s browser context\n• CSRF: tricks browser into sending authenticated action\n• Protections: output encoding, CSP, input validation, SameSite cookies, CSRF tokens, double-submit patterns",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0012::chunk0001",
+ "document": "Authentication and Authorization Pitfalls\n• Weak password storage (plain, md5)\n• Missing MFA, credential stuffing exposures\n• Broken access control and IDOR\n• Best practices: salted adaptive hashing, MFA, least privilege, deny by default, comprehensive authorization checks on every request",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0013::chunk0001",
+ "document": "Denial-of-Service (DoS) and Distributed DoS (DDoS)\n• Volumetric: saturate bandwidth (UDP floods, amplification)\n• Protocol: exhaust state (SYN floods, fragmented packets)\n• Application: expensive requests (HTTP, login brute force)\n• Mitigation: rate limits, caching, WAF rules, anycast CDNs, upstream scrubbing centers",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0014::chunk0001",
+ "document": "Reflection and Amplification Attacks\n• Spoofed source to reflect traffic at victim\n• Amplifiers: DNS, NTP, memcached, CLDAP\n• Small requests → massive responses\n• Defenses: BCP 38 egress filtering, rate-limit amplifiers, close open resolvers, use anycast and autoscaling at edge",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0015::chunk0001",
+ "document": "Detection and Monitoring\n• IDS and IPS signatures for known patterns\n• Anomaly detection on baselines and flows\n• Web and API telemetry: status codes, latencies, error spikes\n• Centralized logging and SIEM correlation with alert tuning to reduce noise",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0016::chunk0001",
+ "document": "Response and Hardening Playbook\n• Prepare: inventories, runbooks, contacts, backups\n• Identify and contain: block indicators, isolate segments\n• Eradicate and recover: patch, rotate credentials, restore\n• Improve: post-incident review, control gaps, tabletop exercises",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0017::chunk0001",
+ "document": "Threat Intelligence and Attribution\n• Aggregates IoCs from multiple incidents\n• Enables proactive blocking and trend awareness\n• Attribution analyzes TTPs (tactics, techniques, procedures)\n• Sources: ISACs, MISP, commercial and open feeds",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0018::chunk0001",
+ "document": "Incident Lifecycle Model\n1. Preparation\n2. Detection and Analysis\n3. Containment, Eradication, Recovery\n4. Post-Incident Activity\nAligns with NIST SP 800-61 Rev. 2 guidance for IR teams.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0019::chunk0001",
+ "document": "Data Breach Examples\n• Equifax 2017 – unpatched Apache Struts vuln → PII leak\n• Target 2013 – HVAC vendor credentials → POS malware\n• Colonial Pipeline 2021 – ransomware → fuel supply disruption\nLesson: patching, vendor security, and segmentation are critical.",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0020::chunk0001",
+ "document": "Supply Chain Attacks\n• Target dependencies or updates to compromise many\n• Examples: SolarWinds, CCleaner, npm typosquatting\n• Mitigation: verify signatures, SBOMs, least-privilege build systems, monitor artifact integrity",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0021::chunk0001",
+ "document": "Zero-Day Exploits\n• Previously unknown vulnerabilities with no patch\n• Valuable to both defenders and attackers\n• Defenses: virtual patching, behavioral detection, defense-in-depth, vulnerability disclosure programs",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0022::chunk0001",
+ "document": "Browser and Client-Side Attacks\n• Exploit browser plugins, extensions, or outdated code\n• Drive-by downloads and malvertising\n• Sandbox bypass and privilege escalation\n• Mitigation: patch browsers, limit plugins, enable sandboxing and application whitelisting",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0023::chunk0001",
+ "document": "Mobile Threats\n• Malicious apps or SDKs harvest data\n• Jailbreak/root exploits remove controls\n• Unsecured Wi-Fi and Bluetooth attacks\n• Defenses: MDM, app-store vetting, VPN usage, user permissions review",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 23,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0024::chunk0001",
+ "document": "IoT Vulnerabilities\n• Default credentials and insecure firmware\n• Lack of updates and logging\n• Physical access risks and exposed APIs\n• Mitigation: network segmentation, firmware signing, device inventory management",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 24,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0025::chunk0001",
+ "document": "Cloud Security Risks\n• Misconfigured storage buckets and IAM roles\n• Shared responsibility confusion\n• Insecure APIs and keys in code repos\n• Solutions: CSPM, least privilege, cloud WAF, secrets management, continuous auditing",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 25,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0026::chunk0001",
+ "document": "Email Security Threats\n• Phishing, spear-phishing, business email compromise\n• Malicious attachments and links\n• Spoofed domains and look-alike addresses\n• Countermeasures: SPF, DKIM, DMARC, sandbox analysis, security awareness training",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 26,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0027::chunk0001",
+ "document": "Insider Threats\n• Malicious or negligent employees\n• Data exfiltration via USB, email, cloud sync\n• Privilege misuse and policy violations\n• Mitigation: least privilege, monitoring, user behavior analytics, training and deterrence",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 27,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0028::chunk0001",
+ "document": "Security Frameworks and Controls\n• NIST CSF, ISO 27001, CIS Controls\n• Provide structured approach to risk management\n• Controls: Identify, Protect, Detect, Respond, Recover\n• Use as benchmarks for policy and compliance programs",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 28,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0029::chunk0001",
+ "document": "Legal and Ethical Considerations\n• GDPR, HIPAA, PCI-DSS impact incident handling\n• Obligations for notification and data minimization\n• Ethics in disclosure and research\n• Balance transparency with responsible security practice",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 29,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0030::chunk0001",
+ "document": "Emerging Threats\n• AI-driven phishing and deepfakes\n• Quantum impact on cryptography\n• Critical infrastructure and ICS vulnerabilities\n• 5G and edge computing security gaps\n• Continuous adaptation required for defense",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 30,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0031::chunk0001",
+ "document": "Summary\n• TCP, session, and web attacks exploit protocol and logic flaws\n• Defenses require layered controls and vigilant monitoring\n• Incident response and frameworks guide resilience\n• Stay current with threat intel and secure development lifecycles",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 31,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module2_Part2::slide0032::chunk0001",
+ "document": "End of Module 2 – Application and Network Attacks Part 2",
+ "metadata": {
+  "file_name": "Module 2 - Application and Network Attacks - Part 2.pptx",
+  "slide_index": 32,
+  "chunk_index": 1
+ }
+}

@@ -1,0 +1,387 @@
+{
+ "id": "CEN3078_Module1_Part2::slide0001::chunk0001",
+ "document": "CEN 3078 – Computer Security\nModule 1 – Application and Network Analysis – Part 2",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 1,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0002::chunk0001",
+ "document": "Module Overview\n• Application Layer Protocols\n• Secure Communications\n• Web Security Concepts\n• Email Security\n• Firewalls and Intrusion Detection\n• Hands-on Labs",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 2,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0003::chunk0001",
+ "document": "Application Layer Overview\n• Highest layer in the OSI and TCP/IP models\n• Provides services for user applications\n• Protocols: HTTP, FTP, SMTP, DNS, DHCP, SNMP, etc.",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 3,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0004::chunk0001",
+ "document": "HTTP (Hypertext Transfer Protocol)\n• Primary protocol for web communication\n• Operates on port 80 (HTTP) and port 443 (HTTPS)\n• Stateless client-server model\n• Uses request and response messages",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 4,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0005::chunk0001",
+ "document": "Common HTTP Methods\nGET – Request data from a resource\nPOST – Submit data to be processed\nPUT – Replace a resource\nDELETE – Remove a resource\nHEAD – Retrieve headers only\nOPTIONS – Request communication options",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 5,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0006::chunk0001",
+ "document": "HTTP Status Codes\n1xx – Informational\n2xx – Success\n3xx – Redirection\n4xx – Client error (404 Not Found)\n5xx – Server error (500 Internal Server Error)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 6,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0007::chunk0001",
+ "document": "Secure HTTP (HTTPS)\n• HTTP over TLS/SSL (Transport Layer Security)\n• Encrypts communication between browser and server\n• Protects confidentiality and integrity of transmitted data",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 7,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0008::chunk0001",
+ "document": "DNS (Domain Name System)\n• Resolves human-readable names into IP addresses\n• Hierarchical and distributed database\n• Uses UDP port 53 for queries\n• Vulnerabilities: DNS spoofing and cache poisoning",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 8,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0009::chunk0001",
+ "document": "FTP (File Transfer Protocol)\n• Used for transferring files between hosts\n• Operates on ports 20 (data) and 21 (control)\n• Sends data in plaintext — insecure\n• FTPS or SFTP preferred for secure transfers",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 9,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0010::chunk0001",
+ "document": "SMTP (Simple Mail Transfer Protocol)\n• Used for sending email between servers\n• Operates on port 25\n• POP3 and IMAP used for retrieving messages\n• Email security extensions include STARTTLS and S/MIME",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 10,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0011::chunk0001",
+ "document": "Email Security Threats\n• Phishing and spoofing\n• Spam and malware attachments\n• Man-in-the-Middle attacks\n• Compromised credentials\n• Lack of encryption",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 11,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0012::chunk0001",
+ "document": "Secure Email Technologies\n• S/MIME – Secure/Multipurpose Internet Mail Extensions\n• PGP – Pretty Good Privacy\n• Encrypts email contents and verifies sender identity\n• Uses public/private key pairs",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 12,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0013::chunk0001",
+ "document": "Web Security Threats\n• Cross-site scripting (XSS)\n• SQL injection\n• Cross-site request forgery (CSRF)\n• Session hijacking\n• Insecure cookies or authentication tokens",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 13,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0014::chunk0001",
+ "document": "Web Application Security Controls\n• Input validation\n• Output encoding\n• Proper session handling\n• Strong authentication and authorization\n• Web Application Firewalls (WAFs)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 14,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0015::chunk0001",
+ "document": "Transport Layer Security (TLS)\n• Successor to SSL\n• Provides encryption, integrity, and authentication\n• Uses asymmetric and symmetric cryptography\n• Commonly used in HTTPS, SMTP, IMAP, and VPNs",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 15,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0016::chunk0001",
+ "document": "TLS Handshake Overview\n1. ClientHello – supported ciphers and versions\n2. ServerHello – chooses cipher suite\n3. Certificate – server identity\n4. Key Exchange – session key established\n5. Encrypted communication begins",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 16,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0017::chunk0001",
+ "document": "Public Key Infrastructure (PKI)\n• Framework for managing digital certificates\n• Certificate Authority (CA) issues and signs certificates\n• Ensures authenticity and trust in communication",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 17,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0018::chunk0001",
+ "document": "Firewalls\n• Filter incoming and outgoing network traffic\n• Enforce security policies\n• Types: Packet-filtering, Stateful, Proxy, Next-Gen\n• Key function in network perimeter defense",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 18,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0019::chunk0001",
+ "document": "Firewall Rules Example\nAllow: TCP port 443 from internal to external\nBlock: All inbound except established connections\nAllow: DNS (UDP 53)\nDrop: Unknown or suspicious ports",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 19,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0020::chunk0001",
+ "document": "Intrusion Detection Systems (IDS)\n• Detect malicious or suspicious activity\n• Signature-based and anomaly-based detection\n• Examples: Snort, Suricata, OSSEC\n• Complements firewall protection",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 20,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0021::chunk0001",
+ "document": "Intrusion Prevention Systems (IPS)\n• Actively block detected attacks\n• Often integrated with firewalls\n• Can drop packets, reset sessions, or quarantine hosts",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 21,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0022::chunk0001",
+ "document": "Security Information and Event Management (SIEM)\n• Aggregates and correlates logs from multiple systems\n• Provides real-time analysis and alerts\n• Examples: Splunk, IBM QRadar, Elastic Security",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 22,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0023::chunk0001",
+ "document": "Network Address Translation (NAT)\n• Hides internal IP addresses behind a public IP\n• Provides basic security and conserves IPv4 addresses\n• Types: Static NAT, Dynamic NAT, Port Address Translation (PAT)",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 23,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0024::chunk0001",
+ "document": "Virtual Private Networks (VPNs)\n• Securely connect remote users to a private network\n• Encrypts traffic over untrusted networks\n• Types: Site-to-site, Remote-access\n• Common protocols: IPSec, SSL/TLS, WireGuard",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 24,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0025::chunk0001",
+ "document": "IPSec Overview\n• Operates at the Network Layer\n• Provides confidentiality, integrity, and authentication\n• Two modes: Transport (end-to-end) and Tunnel (gateway-to-gateway)\n• Uses AH and ESP protocols",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 25,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0026::chunk0001",
+ "document": "IPSec Architecture\n• Authentication Header (AH): integrity and authentication\n• Encapsulating Security Payload (ESP): encryption and integrity\n• Security Associations (SAs): define connection parameters",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 26,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0027::chunk0001",
+ "document": "Secure Shell (SSH)\n• Provides secure remote access over TCP port 22\n• Replaces insecure protocols (Telnet, rlogin)\n• Supports tunneling and port forwarding\n• Uses public key authentication",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 27,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0028::chunk0001",
+ "document": "Remote Administration Best Practices\n• Disable unused remote access protocols\n• Use multi-factor authentication (MFA)\n• Restrict IP ranges\n• Log and monitor all access attempts",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 28,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0029::chunk0001",
+ "document": "Network Segmentation\n• Divides network into smaller subnets\n• Limits attack propagation\n• Common approaches: VLANs, firewalls, SDN policies",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 29,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0030::chunk0001",
+ "document": "Demilitarized Zone (DMZ)\n• Perimeter network separating internal LAN from external traffic\n• Hosts public-facing services (web, mail, DNS)\n• Protected by firewalls on both sides",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 30,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0031::chunk0001",
+ "document": "Load Balancers\n• Distribute network or application traffic across servers\n• Improve reliability and performance\n• Can perform health checks and failover\n• Often integrated with reverse proxies",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 31,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0032::chunk0001",
+ "document": "Proxy Servers\n• Intermediary between clients and servers\n• Cache content and mask internal clients\n• Types: Forward proxy, Reverse proxy, Transparent proxy",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 32,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0033::chunk0001",
+ "document": "Content Delivery Networks (CDNs)\n• Distributed servers deliver web content closer to users\n• Reduces latency and load\n• Adds DDoS protection and caching\n• Examples: Cloudflare, Akamai, AWS CloudFront",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 33,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0034::chunk0001",
+ "document": "Cloud Security Basics\n• Shared responsibility model\n• Common risks: misconfiguration, data breaches, API abuse\n• Controls: encryption, IAM policies, monitoring, zero-trust design",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 34,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0035::chunk0001",
+ "document": "Zero Trust Architecture (ZTA)\n• Assume no implicit trust — verify every request\n• Enforce least privilege\n• Continuous authentication and authorization\n• Microsegmentation and strong identity controls",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 35,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0036::chunk0001",
+ "document": "Wireless Security\n• WPA3 encryption standard\n• Disable WPS and default credentials\n• Separate guest networks\n• Use strong passphrases and 802.1X authentication",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 36,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0037::chunk0001",
+ "document": "IoT Security Challenges\n• Limited device resources\n• Default credentials and weak patching\n• Privacy risks and lateral movement\n• Solutions: network isolation, firmware updates, strong authentication",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 37,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0038::chunk0001",
+ "document": "Incident Response Process\n1. Preparation\n2. Identification\n3. Containment\n4. Eradication\n5. Recovery\n6. Lessons Learned",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 38,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0039::chunk0001",
+ "document": "Security Policies and Standards\n• Define organizational rules and expectations\n• Align with frameworks: NIST, ISO 27001, CIS Controls\n• Include acceptable use, password, and incident response policies",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 39,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0040::chunk0001",
+ "document": "Security Awareness and Training\n• Human error = major attack vector\n• Train employees on phishing, password hygiene, reporting\n• Conduct regular simulated attacks",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 40,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0041::chunk0001",
+ "document": "Review Questions\n1. What are the functions of a firewall and IDS?\n2. How does TLS secure communications?\n3. Explain the purpose of a DMZ.\n4. What are common web security threats?",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 41,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0042::chunk0001",
+ "document": "Summary\n• Application protocols introduce specific security challenges\n• Network defenses include firewalls, IDS/IPS, VPNs\n• Security must be layered and continuously monitored",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 42,
+  "chunk_index": 1
+ }
+}
+{
+ "id": "CEN3078_Module1_Part2::slide0043::chunk0001",
+ "document": "End of Module 1 – Part 2",
+ "metadata": {
+  "file_name": "Module 1 - Application and Network Analysis - Part 2.pptx",
+  "slide_index": 43,
+  "chunk_index": 1
+ }
+}

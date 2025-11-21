@@ -74,15 +74,24 @@ class SlideRetriever:
         for i, (document, similarity_score) in enumerate(documents):
             content = document.page_content
             metadata = document.metadata
+            logger.info(f"Processing document with metadata: {metadata}")
 
             # Build citation information
             citation_parts = []
-            if 'module' in metadata:
-                citation_parts.append(f"Module {metadata['module']}")
-            if 'slide' in metadata:
-                citation_parts.append(f"Slide {metadata['slide']}")
             if 'source' in metadata:
-                citation_parts.append(f"Source: {metadata['source']}")
+                source_name = metadata['source']
+                citation_parts.append(f"File: {source_name}")
+                if 'module' in metadata:
+                    module_name = str(metadata['module'])
+                    # Add module only if it's not a "Week" module OR if the filename doesn't contain a "Module" identifier
+                    if not (module_name.lower().startswith("week ") and "module " in source_name.lower()):
+                        citation_parts.append(f"Module: {module_name}")
+            elif 'module' in metadata:
+                # Fallback if source isn't there
+                citation_parts.append(f"Module: {metadata['module']}")
+
+            if 'slide' in metadata:
+                citation_parts.append(f"Slide: {metadata['slide']}")
 
             citation = " | ".join(citation_parts)
             confidence = f"(Relevance: {similarity_score:.2f})"
