@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import TextArea from '../components/TextArea';
 import Button from '../components/Button';
@@ -22,16 +23,15 @@ const ClassroomCopilot = () => {
   // state for error messages
   const [error, setError] = useState('');
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   /**
-   * handle question submission
-   * sends question to backend api and displays response with citations
-   * implements fr-1.1, fr-1.2, fr-1.3
+   * Reusable function to send a message to the backend
+   * Allows calling from both the form submit and auto-prompts
    */
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // validate that question is not empty
-    if (!question.trim()) {
+  const sendMessage = async (messageText) => {
+    if (!messageText.trim()) {
       setError('Please enter a question');
       return;
     }
@@ -46,28 +46,30 @@ const ClassroomCopilot = () => {
       const response = await fetch('http://localhost:8000/ask', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question })
+        body: JSON.stringify({ question: messageText })
       });
       const data = await response.json();
       
       // add question and answer to conversation history
-      setConversation([
-        ...conversation,
+      // Use functional update to ensure we have the latest conversation state
+      setConversation(prevConversation => [
+        ...prevConversation,
         {
           type: 'question',
-          content: question,
+          content: messageText,
           timestamp: new Date().toISOString()
         },
         {
           type: 'answer',
           content: data.answer,
-          citations: data.documents.map(doc => ({ source: doc[0].metadata.source, content: doc[0].page_content })),
+          // Check if documents exist before mapping to avoid errors
+          citations: data.documents ? data.documents.map(doc => ({ 
+              source: doc[0].metadata.source, 
+              content: doc[0].page_content 
+          })) : [],
           timestamp: new Date().toISOString()
         }
       ]);
-      
-      // clear the question input
-      setQuestion('');
       
     } catch (err) {
       // handle errors gracefully (fr-5)
@@ -77,6 +79,35 @@ const ClassroomCopilot = () => {
       // reset loading state
       setIsLoading(false);
     }
+  };
+
+  /**
+   * Effect to handle auto-sent prompts from navigation state
+   * Checks if an autoSendPrompt was passed (e.g., from Module Quiz generation)
+   */
+  useEffect(() => {
+    if (location.state && location.state.autoSendPrompt) {
+      const prompt = location.state.autoSendPrompt;
+      
+      // Send the prompt
+      sendMessage(prompt);
+      
+      // Clear the state so it doesn't re-send on refresh or navigation
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location, navigate]);
+
+  /**
+   * handle question submission form
+   * sends question to backend api and displays response with citations
+   * implements fr-1.1, fr-1.2, fr-1.3
+   */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await sendMessage(question);
+    // clear the question input after sending
+    setQuestion('');
   };
 
   /**
