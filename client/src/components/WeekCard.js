@@ -1,18 +1,18 @@
 import React, { useState, useRef } from 'react';
 import Button from './Button';
 import Card from './Card';
-import './WeekCard.css'; // New CSS file for WeekCard
+import './WeekCard.css'; 
 
 const WeekCard = ({
   week,
   userRole,
   onDeleteWeek,
-  onAddMaterial, // new prop for adding material (or updating status)
-  onDeleteMaterial, // new prop for deleting material
-  formatFileSize, // utility function from parent
-  getStatusBadgeClass // utility function from parent
+  onAddMaterial, 
+  onDeleteMaterial, 
+  formatFileSize, 
+  getStatusBadgeClass 
 }) => {
-  const [showUploadForm, setShowUploadForm] = useState(false); // State to toggle file upload form visibility
+  const [showUploadForm, setShowUploadForm] = useState(false); 
   const [isDragging, setIsDragging] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -49,10 +49,8 @@ const WeekCard = ({
     await processFiles(files);
   };
 
-  // Function to handle viewing a file (placeholder)
   const handleViewMaterial = (materialName) => {
-    alert(`Simulating view for: ${materialName}\n(Full functionality requires backend integration)`);
-    // In a real app, this might open a modal, link to a file URL, etc.
+    window.open(`http://localhost:8000/uploads/${materialName}`, '_blank');
   };
 
   const processFiles = async (files) => {
@@ -63,7 +61,7 @@ const WeekCard = ({
       return;
     }
 
-    // validate file types (fr-2)
+    // validate file types
     const allowedTypes = ['.pptx', '.pdf', '.docx'];
     const invalidFiles = files.filter(file => {
       const extension = '.' + file.name.split('.').pop().toLowerCase();
@@ -75,88 +73,88 @@ const WeekCard = ({
       return;
     }
 
-    // validate file size (max 10mb per nfr-2)
-    const maxSize = 10 * 1024 * 1024; // 10mb in bytes
+    // validate file size (max 25mb to match backend)
+    const maxSize = 25 * 1024 * 1024; 
     const oversizedFiles = files.filter(file => file.size > maxSize);
 
     if (oversizedFiles.length > 0) {
-      setErrorMessage(`File(s) too large: ${oversizedFiles.map(f => f.name).join(', ')}. Maximum size is 10 MB per file.`);
+      setErrorMessage(`File(s) too large: ${oversizedFiles.map(f => f.name).join(', ')}. Maximum size is 25 MB per file.`);
       return;
     }
 
-    let processingSuccessful = true; // Flag to track overall success
+    let processingSuccessful = true; 
 
     // process each file
     for (const file of files) {
+      // Use the ORIGINAL name for the optimistic UI update
       const tempId = Date.now() + Math.random();
-      // define initialMaterial outside the try block so it's accessible in catch
+      
       const initialMaterial = {
         id: tempId,
-        name: file.name,
+        name: file.name, 
         size: formatFileSize(file.size),
         uploadDate: new Date().toISOString().split('T')[0],
         status: 'uploading'
       };
 
       try {
-        setUploadProgress({ fileName: file.name, progress: 0 }); // Show progress immediately
+        setUploadProgress({ fileName: file.name, progress: 0 }); 
 
-        // add file immediately with 'uploading' status
-        onAddMaterial(week.id, initialMaterial); // add to parent's state
+        // add file immediately to UI
+        onAddMaterial(week.id, initialMaterial); 
 
         // Upload to backend
         const formData = new FormData();
-        formData.append('file', file);
-        formData.append('week_title', week.title);
+        formData.append('file', file); // Send the ORIGINAL file
+        formData.append('week_title', week.title); // Week title is sent separately
 
+        // This endpoint sends the file to the backend, which saves it to PPData
         const response = await fetch('http://localhost:8000/upload', {
           method: 'POST',
           body: formData
         });
 
-        // naive progress fill
+        // naive progress animation
         for (let i = 0; i <= 100; i += 20) {
           await new Promise(resolve => setTimeout(resolve, 40));
           setUploadProgress({ fileName: file.name, progress: i });
         }
 
         if (!response.ok) {
-          // Try to read response body for details
           let msg = `Upload failed with status ${response.status}`;
           try {
             const errData = await response.json();
             if (errData && errData.error) msg = errData.error;
-          } catch (_) {
-            // ignore parse error
-          }
+          } catch (_) {}
           throw new Error(msg);
         }
+        
         const data = await response.json();
         if (data.error) {
           throw new Error(data.error);
         }
 
-        setStatusMessage(`${file.name} processed successfully (${data.slides_indexed || 0} slides indexed).`);
-        onAddMaterial(week.id, { ...initialMaterial, status: 'processed' }, true);
+        setStatusMessage(`${file.name} uploaded & ingested successfully.`);
+        
+        // Update status to processed using the real ID from backend
+        // We still use the file name as the matching key in case the temp ID changed
+        onAddMaterial(week.id, { ...initialMaterial, id: data.id || initialMaterial.id, status: 'processed' }, true);
 
       } catch (err) {
-        setErrorMessage(`Failed to upload or process ${file.name}. ${err?.message || 'Please try again.'}`);
+        setErrorMessage(`Failed to upload ${file.name}. ${err.message}`);
         console.error('Upload error:', err);
-        // update status to 'error' - initialMaterial is now accessible here
         onAddMaterial(week.id, { ...initialMaterial, status: 'error' }, true);
-        processingSuccessful = false; // Mark as failed
+        processingSuccessful = false; 
       } finally {
-         // Clear progress bar only when done with *this* file
          setUploadProgress(null);
       }
-    } // End of loop
+    } 
 
-    // Only hide form if all processing was successful
     if (processingSuccessful && !errorMessage) {
        setTimeout(() => {
           setShowUploadForm(false);
-          setStatusMessage(''); // Clear success message when form hides
-       }, 2000); // Hide after 2 seconds
+          setStatusMessage(''); 
+       }, 2000); 
     }
   };
 
@@ -175,7 +173,7 @@ const WeekCard = ({
                  setStatusMessage('');
                  setUploadProgress(null);
                }}
-              ariaLabel={showUploadForm ? "Hide upload form" : "Add material to this week"}
+              ariaLabel={showUploadForm ? "Hide upload form" : "Add material to this module"}
               title={showUploadForm ? "Hide upload form" : "Add material"}
             >
               {showUploadForm ? 'Cancel' : 'Add Material'}
@@ -184,10 +182,10 @@ const WeekCard = ({
               variant="danger"
               size="small"
               onClick={() => onDeleteWeek(week.id)}
-              ariaLabel={`Delete week ${week.title}`}
-              title="Delete Week"
+              ariaLabel={`Delete module ${week.title}`}
+              title="Delete Module"
             >
-              Delete Week
+              Delete Module
             </Button>
           </div>
         )}
@@ -259,7 +257,7 @@ const WeekCard = ({
       <div className="week-materials">
         {week.materials.length === 0 ? (
           <p className="no-materials">
-            {userRole === 'instructor' ? 'No material posted. Click "Add Material" above to upload.' : 'No material posted for this week.'}
+            {userRole === 'instructor' ? 'No material posted. Click "Add Material" above to upload.' : 'No material posted for this module.'}
           </p>
         ) : (
           <div className="materials-list">
@@ -279,25 +277,23 @@ const WeekCard = ({
                     {material.status}
                   </span>
                 </div>
-                <div className="material-actions"> {/* Container for all actions */}
-                  {/* View button - visible to both roles if processed */}
+                <div className="material-actions"> 
                   {material.status === 'processed' && (
                      <Button
                        variant="secondary"
                        size="small"
-                       onClick={() => handleViewMaterial(material.name)} // Added onClick handler
+                       onClick={() => handleViewMaterial(material.name)} 
                        ariaLabel={`View ${material.name}`}
                      >
                        👀 View
                      </Button>
                    )}
-                  {/* Delete button - only for instructor */}
                   {userRole === 'instructor' && (
                     <Button
                       variant="danger"
                       size="small"
                       onClick={() => onDeleteMaterial(week.id, material.id)}
-                      ariaLabel={`Delete ${material.name} from week ${week.title}`}
+                      ariaLabel={`Delete ${material.name} from module ${week.title}`}
                       title="Delete Material"
                     >
                       Delete

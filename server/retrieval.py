@@ -8,6 +8,7 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain_core.documents import Document
 from typing import List, Tuple, Dict, Any
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +16,10 @@ class SlideRetriever:
     def __init__(self, persist_directory: str = "./chroma_db"):
         """Initialize the retrieval system with embedding model and ChromaDB"""
         logger.info("Initializing SlideRetriever...")
+        
+        # Log the absolute path of the persist_directory
+        abs_path = os.path.abspath(persist_directory)
+        logger.info(f"Using ChromaDB persist directory: {abs_path}")
 
         # Initialize embedding model - this converts text to vectors
         self.embedding_model = OllamaEmbeddings(
