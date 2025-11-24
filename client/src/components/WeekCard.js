@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'; // Ensure this is imported
 import Button from './Button';
 import Card from './Card';
 import './WeekCard.css'; 
@@ -17,8 +18,29 @@ const WeekCard = ({
   const [uploadProgress, setUploadProgress] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
-
+  
+  const navigate = useNavigate(); // Initialize hook
   const fileInputRef = useRef(null);
+
+  // Updated handler with explicit formatting instructions
+  const handleGenerateQuiz = () => {
+    // Extract just the number from "Module 1"
+    const moduleNumber = week.title.replace(/[^0-9]/g, '');
+    
+    // Updated prompt with stricter formatting requirements
+    const prompt = `Generate a summary of main concepts from Module ${moduleNumber}. Then, create a five-question multiple choice quiz based on Module ${moduleNumber}. Please format the quiz exactly as follows for every question:
+
+Question X) [Question text]
+A) [Option A]
+B) [Option B]
+C) [Option C]
+D) [Option D]
+
+Include the correct answers at the very bottom.`;
+    
+    // Navigate to home (Classroom Copilot) and pass the prompt in state
+    navigate('/', { state: { autoSendPrompt: prompt } });
+  };
 
   const handleBrowseClick = () => {
     fileInputRef.current?.click();
@@ -164,6 +186,17 @@ const WeekCard = ({
         <h3 className="week-title">{week.title}</h3>
         {userRole === 'instructor' && (
           <div className="week-actions">
+            {/* New Button: Generate Quiz & Summary */}
+            <Button
+              variant="secondary"
+              size="small"
+              onClick={handleGenerateQuiz}
+              ariaLabel={`Generate quiz and summary for ${week.title}`}
+            >
+              Generate Module Quiz & Summary
+            </Button>
+
+            {/* Existing Add Material Button */}
             <Button
               variant="secondary"
               size="small"
