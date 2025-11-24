@@ -7,6 +7,7 @@ from watchdog.events import FileSystemEventHandler
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import UploadFile, File, Form, Response, status
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, EmailStr
 from langchain_chroma import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
@@ -52,6 +53,29 @@ class PPTXHandler(FileSystemEventHandler):
                 persist_directory=CHROMA_DIR
             )
             logger.info(f"Successfully auto-ingested '{filename}'.")
+
+            # Also update the SQLite database
+            conn = _get_db_conn()
+            cur = conn.cursor()
+            
+            # Check if the material already exists to avoid duplicates
+            cur.execute("SELECT id FROM materials WHERE filename = ?", (filename,))
+            if cur.fetchone() is None:
+                try:
+                    size_bytes = os.path.getsize(file_path)
+                    cur.execute(
+                        "INSERT INTO materials (filename, week_title, uploaded_at, size_bytes) VALUES (?, ?, ?, ?)",
+                        (filename, week_title, datetime.utcnow().isoformat(), size_bytes),
+                    )
+                    conn.commit()
+                    logger.info(f"'{filename}' also added to SQLite materials table.")
+                except Exception as e:
+                    logger.error(f"Failed to add '{filename}' to SQLite: {e}")
+                    conn.rollback()
+            else:
+                logger.info(f"'{filename}' already exists in SQLite materials table.")
+
+            conn.close()
         except Exception as e:
             logger.error(f"Failed to auto-ingest '{filename}': {e}")
 
@@ -273,6 +297,22 @@ async def upload_material(file: UploadFile = File(...), week_title: str = Form("
         logger.error(f"Failed to process upload {original_name}: {e}")
         return {"error": f"Failed to upload/process file: {str(e)}"}
 
+@app.get("/files")
+async def list_files():
+    """
+    Lists all files in the UPLOADS_DIR directory.
+    """
+    if not os.path.exists(UPLOADS_DIR) or not os.path.isdir(UPLOADS_DIR):
+        logger.warning(f"Uploads directory '{UPLOADS_DIR}' not found.")
+        return {"error": "Files directory not found on server."}
+
+    try:
+        files = [f for f in os.listdir(UPLOADS_DIR) if os.path.isfile(os.path.join(UPLOADS_DIR, f))]
+        return {"files": files}
+    except Exception as e:
+        logger.error(f"Failed to list files in '{UPLOADS_DIR}': {e}")
+        return {"error": f"Failed to list files: {str(e)}"}
+
 @app.get("/materials/{material_id}/view")
 async def view_material_content(material_id: int):
     conn = _get_db_conn()
@@ -337,6 +377,12 @@ async def delete_material(material_id: int):
 @app.get("/")
 def read_root():
     return {"message": "AI Classroom Copilot backend is running"}
+
+from fastapi.staticfiles import StaticFiles
+
+...
+
+app.mount("/uploads", StaticFiles(directory=UPLOADS_DIR), name="uploads")
 
 if __name__ == "__main__":
     import uvicorn

@@ -50,8 +50,7 @@ const WeekCard = ({
   };
 
   const handleViewMaterial = (materialName) => {
-    // In a real app, this would open the file or a viewer
-    alert(`View functionality for ${materialName} would open here.`);
+    window.open(`http://localhost:8000/uploads/${materialName}`, '_blank');
   };
 
   const processFiles = async (files) => {

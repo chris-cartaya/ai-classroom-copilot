@@ -236,6 +236,9 @@ yarn-error.log*
 *~
 #  Node modules
 client/node_modules
+server/app.db
+server/chroma_db/
+client/src/chroma_db/
 
 client/src/.venv/
 client/src/app.db
