@@ -236,13 +236,14 @@ yarn-error.log*
 *~
 #  Node modules
 client/node_modules
+server/app.db
+server/chroma_db/
+client/src/chroma_db/
 
 client/src/.venv/
 client/src/app.db
-client/src/uploads/
-client/src/chroma_db/
-src/chroma_db/
-*.sqlite3
+
+
 client/node_modules/
 .env
 outputs/

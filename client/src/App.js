@@ -4,7 +4,7 @@ import Header from './components/Header';
 import ClassroomCopilot from './pages/ClassroomCopilot';
 import CourseMaterials from './pages/CourseMaterials';
 import AccountSettings from './pages/AccountSettings';
-import LoginScreen from './pages/LoginScreen'; 
+import LoginScreen from './pages/LoginScreen';
 import './App.css';
 
 /**
