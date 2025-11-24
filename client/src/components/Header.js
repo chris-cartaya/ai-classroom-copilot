@@ -3,14 +3,12 @@ import './Header.css';
 
 /**
  * header component that displays the navigation bar at the top of the application
- * matches the purple header design from the reference image
  *
  * @param {string} title - the page title (used as fallback or for mobile)
  * @param {function} onBack - callback function when back button is clicked
- * @param {function} onUserClick - callback function when user profile button is clicked
  * @param {node} navigation - navigation links to display in the center
  */
-const Header = ({ title, onBack, onUserClick, navigation }) => {
+const Header = ({ title, onBack, navigation }) => {
   return (
     <header className="app-header" role="banner">
       <div className="header-content">
@@ -39,18 +37,8 @@ const Header = ({ title, onBack, onUserClick, navigation }) => {
             )}
         </div>
 
-        {/* user profile button - only shown if onUserClick callback is provided */}
-        {onUserClick ? (
-          <button
-            className="user-button user-profile-button"
-            onClick={onUserClick}
-            aria-label="Open user profile menu"
-          >
-            👤
-          </button>
-        ) : (
-            <div className="header-spacer"></div>
-        )}
+        {/* Spacer to balance the layout (replaces the user icon) */}
+        <div className="header-spacer"></div>
       </div>
     </header>
   );

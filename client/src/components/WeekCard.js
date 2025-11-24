@@ -173,7 +173,7 @@ const WeekCard = ({
                  setStatusMessage('');
                  setUploadProgress(null);
                }}
-              ariaLabel={showUploadForm ? "Hide upload form" : "Add material to this week"}
+              ariaLabel={showUploadForm ? "Hide upload form" : "Add material to this module"}
               title={showUploadForm ? "Hide upload form" : "Add material"}
             >
               {showUploadForm ? 'Cancel' : 'Add Material'}
@@ -182,10 +182,10 @@ const WeekCard = ({
               variant="danger"
               size="small"
               onClick={() => onDeleteWeek(week.id)}
-              ariaLabel={`Delete week ${week.title}`}
-              title="Delete Week"
+              ariaLabel={`Delete module ${week.title}`}
+              title="Delete Module"
             >
-              Delete Week
+              Delete Module
             </Button>
           </div>
         )}
@@ -257,7 +257,7 @@ const WeekCard = ({
       <div className="week-materials">
         {week.materials.length === 0 ? (
           <p className="no-materials">
-            {userRole === 'instructor' ? 'No material posted. Click "Add Material" above to upload.' : 'No material posted for this week.'}
+            {userRole === 'instructor' ? 'No material posted. Click "Add Material" above to upload.' : 'No material posted for this module.'}
           </p>
         ) : (
           <div className="materials-list">
@@ -293,7 +293,7 @@ const WeekCard = ({
                       variant="danger"
                       size="small"
                       onClick={() => onDeleteMaterial(week.id, material.id)}
-                      ariaLabel={`Delete ${material.name} from week ${week.title}`}
+                      ariaLabel={`Delete ${material.name} from module ${week.title}`}
                       title="Delete Material"
                     >
                       Delete

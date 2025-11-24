@@ -32,7 +32,7 @@ function App() {
   const [courseWeeks, setCourseWeeks] = useState([
     {
       id: 'week-1',
-      title: 'Week 1',
+      title: 'Module 1', // Updated to Module
       materials: [
         // Example material, you can remove these or leave for initial testing
         { id: 'mat-1', name: 'Introduction to AI.pptx', size: '2.5 MB', uploadDate: '2023-01-15', status: 'processed' },
@@ -41,7 +41,7 @@ function App() {
     },
     {
       id: 'week-2',
-      title: 'Week 2',
+      title: 'Module 2', // Updated to Module
       materials: [
         { id: 'mat-3', name: 'Advanced AI Concepts.docx', size: '3.1 MB', uploadDate: '2023-01-22', status: 'processed' },
       ],

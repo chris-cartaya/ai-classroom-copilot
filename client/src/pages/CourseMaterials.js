@@ -9,19 +9,6 @@ import '../components/WeekCard.css';
 const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
   const [studentMetrics, setStudentMetrics] = useState([]);
 
-  useEffect(() => {
-    // Fetch course materials from the backend when the component mounts
-    fetch('http://localhost:8000/materials')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch materials');
-        }
-        return response.json();
-      })
-      .then(data => setCourseWeeks(data))
-      .catch(err => console.error("Error fetching course materials:", err));
-  }, [setCourseWeeks]);
-
   // Utility function to format file size for display
   const formatFileSize = (bytes) => {
     if (bytes === 0) return '0 Bytes';
@@ -54,9 +41,23 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
   const renumberWeeks = (weeks) => {
     return weeks.map((week, index) => ({
       ...week,
-      title: `Week ${index + 1}` // Update title based on index
+      title: `Module ${index + 1}` // Update title to use "Module"
     }));
   };
+
+  useEffect(() => {
+    // Fetch course materials from the backend when the component mounts
+    fetch('http://localhost:8000/materials')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch materials');
+        }
+        return response.json();
+      })
+      // Apply renumbering to ensure "Module" terminology is used even if server sends "Week"
+      .then(data => setCourseWeeks(renumberWeeks(data)))
+      .catch(err => console.error("Error fetching course materials:", err));
+  }, [setCourseWeeks]);
 
   /**
    * handle adding a new week, optionally at a specific index.
@@ -66,7 +67,7 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
   const handleAddWeek = (index = null) => {
     const newWeek = {
       id: `week-${Date.now()}`,
-      title: `Week ${index !== null ? index + 1 : courseWeeks.length + 1}`, 
+      title: `Module ${index !== null ? index + 1 : courseWeeks.length + 1}`, // Updated to Module
       materials: [],
     };
 
@@ -88,7 +89,7 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
    * handle deleting a week and renumber subsequent weeks.
    */
   const handleDeleteWeek = (weekId) => {
-    if (window.confirm('Are you sure you want to delete this week and all its materials? This action cannot be undone.')) {
+    if (window.confirm('Are you sure you want to delete this module and all its materials? This action cannot be undone.')) {
       // Local delete only (prototype behavior)
       const updatedWeeks = courseWeeks.filter(week => week.id !== weekId);
       setCourseWeeks(renumberWeeks(updatedWeeks));
@@ -152,7 +153,7 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
           <h2>Course Materials Management</h2>
           <p className="page-description">
             {userRole === 'instructor'
-              ? 'Organize your course content into weeks. Upload PPTX files for each week.'
+              ? 'Organize your course content into modules. Upload PPTX files for each module.'
               : 'Explore the course materials organized by your instructor.'
             }
           </p>
@@ -163,9 +164,9 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
         <div className="weeks-list">
           {courseWeeks.length === 0 ? (
             <div className="empty-state">
-              <p>No weeks have been added yet.</p>
+              <p>No modules have been added yet.</p>
               {userRole === 'instructor' && (
-                <p>Click "Add Week" below to start organizing your materials.</p>
+                <p>Click "Add Module" below to start organizing your materials.</p>
               )}
             </div>
           ) : (
@@ -177,10 +178,10 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
                        variant="outline" 
                        size="small"
                        onClick={() => handleAddWeek(index)}
-                       ariaLabel={`Add a new week before ${week.title}`}
-                       title={`Add week before ${week.title}`}
+                       ariaLabel={`Add a new module before ${week.title}`}
+                       title={`Add module before ${week.title}`}
                      >
-                       ＋ Add Week Here
+                       ＋ Add Module Here
                      </Button>
                    </div>
                 )}
@@ -204,9 +205,9 @@ const CourseMaterials = ({ userRole, courseWeeks, setCourseWeeks }) => {
               variant="success"
               size="large"
               onClick={() => handleAddWeek(courseWeeks.length)} 
-              ariaLabel="Add a new week to the end of the course materials"
+              ariaLabel="Add a new module to the end of the course materials"
             >
-              ➕ Add Week at End
+              ➕ Add Module at End
             </Button>
           </div>
         )}
