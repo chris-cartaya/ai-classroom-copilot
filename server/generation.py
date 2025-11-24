@@ -6,7 +6,7 @@ Responsible for taking retrieved context and generating answers with citations
 import ollama
 from typing import List, Dict, Any
 import logging
-from server.retrieval import SlideRetriever
+from retrieval import SlideRetriever
 
 logger = logging.getLogger(__name__)
 
@@ -74,8 +74,8 @@ class RetrievalAugmentedGeneration:
     This is the main class that orchestrates the entire process
     """
 
-    def __init__(self, persist_directory: str):
-        self.retriever = SlideRetriever(persist_directory=persist_directory)
+    def __init__(self):
+        self.retriever = SlideRetriever()
         self.generator = AnswerGenerator()
         logger.info("RAG pipeline initialized")
 

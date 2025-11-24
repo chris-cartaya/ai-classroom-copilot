@@ -105,43 +105,41 @@ const WeekCard = ({
 
         // Upload to backend
         const formData = new FormData();
-        formData.append('file', file); // Send the ORIGINAL file
-        formData.append('week_title', week.title); // Week title is sent separately
+        formData.append('file', file);
+        formData.append('week_title', week.title);
 
-        // This endpoint sends the file to the backend, which saves it to PPData
         const response = await fetch('http://localhost:8000/upload', {
           method: 'POST',
           body: formData
         });
 
-        // naive progress animation
+        // naive progress fill
         for (let i = 0; i <= 100; i += 20) {
           await new Promise(resolve => setTimeout(resolve, 40));
           setUploadProgress({ fileName: file.name, progress: i });
         }
 
         if (!response.ok) {
+          // Try to read response body for details
           let msg = `Upload failed with status ${response.status}`;
           try {
             const errData = await response.json();
             if (errData && errData.error) msg = errData.error;
-          } catch (_) {}
+          } catch (_) {
+            // ignore parse error
+          }
           throw new Error(msg);
         }
-        
         const data = await response.json();
         if (data.error) {
           throw new Error(data.error);
         }
 
-        setStatusMessage(`${file.name} uploaded & ingested successfully.`);
-        
-        // Update status to processed using the real ID from backend
-        // We still use the file name as the matching key in case the temp ID changed
-        onAddMaterial(week.id, { ...initialMaterial, id: data.id || initialMaterial.id, status: 'processed' }, true);
+        setStatusMessage(`${file.name} processed successfully (${data.slides_indexed || 0} slides indexed).`);
+        onAddMaterial(week.id, { ...initialMaterial, status: 'processed' }, true);
 
       } catch (err) {
-        setErrorMessage(`Failed to upload ${file.name}. ${err.message}`);
+        setErrorMessage(`Failed to upload or process ${file.name}. ${err?.message || 'Please try again.'}`);
         console.error('Upload error:', err);
         onAddMaterial(week.id, { ...initialMaterial, status: 'error' }, true);
         processingSuccessful = false; 
