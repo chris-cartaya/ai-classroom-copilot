@@ -96,7 +96,7 @@ def start_watcher():
 
 def ingest_existing_powerpoints():
     """Scans for existing PowerPoints and ingests them."""
-    directories_to_scan = ["./PPdata", "./server/uploads"]
+    directories_to_scan = ["./server/uploads"]
     logger.info(f"Performing one-time scan of {directories_to_scan} for existing PowerPoints...")
     
     for directory in directories_to_scan:
